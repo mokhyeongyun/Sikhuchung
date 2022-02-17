@@ -12,7 +12,7 @@ public class SikhuchungController {
     @Autowired
     private SikhuchungService sikhuchungService;
 
-    @GetMapping(value = "/sikhuchung/sikhuchungTest")
+    @GetMapping(value = "/sikhuchung/sikhuchungTest.do")
     public String sikhuchungTest() {
 
         return "sikhuchung/sikhuchungTest";
