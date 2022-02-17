@@ -18,4 +18,28 @@ public class SikhuchungController {
         return "sikhuchung/sikhuchungTest";
     }
 
+    // 로그인 화면이동
+    @GetMapping(value = "/sikhuchung/login.do")
+    public String login() {
+        return "sikhuchung/login";
+    }
+
+    // 회원가입 화면 이동
+    @GetMapping(value = "/sikhuchung/join.do")
+    public String join() {
+        return "sikhuchung/join";
+    }
+
+    // 아이디찾기 화면 이동
+    @GetMapping(value = "/sikhuchung/find_id.do")
+    public String findId() {
+        return "sikhuchung/find_id";
+    }
+
+    // 비밀번호찾기 화면 이동
+    @GetMapping(value = "/sikhuchung/find_pw.do")
+    public String findPw() {
+        return "sikhuchung/find_pw";
+    }
+
 }
