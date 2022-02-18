@@ -22,13 +22,14 @@ public class SikhuchungController {
         return "sikhuchung/sikhuchungTest";
     }
 
-<<<<<<< HEAD
+    // 공지사항 리스트
     @GetMapping(value = "/sikhuchung/noticelist.do")
     public String openNoticeList(Model model) {
         List<NoticeDTO> noticeList = sikhuchungService.getNoticeList();
         model.addAttribute("noticeList", noticeList);
         return "sikhuchung/noticelist";
-=======
+    }
+
     // 로그인 화면이동
     @GetMapping(value = "/sikhuchung/login.do")
     public String login() {
@@ -51,7 +52,7 @@ public class SikhuchungController {
     @GetMapping(value = "/sikhuchung/find_pw.do")
     public String findPw() {
         return "sikhuchung/find_pw";
->>>>>>> origin/mok
+
     }
 
 }
