@@ -1,7 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sikhuchung.mapper.SikhuchungMapper">
+    
+    <sql id="noticeColumns">
+          notice_number
+        , user_id
+        , notice_title
+        , notice_content
+        , TO_CHAR(sysdate, 'yyyy-MM-dd') notice_date
+        , notice_hit
+        , notice_update_id
+        , notice_update_date
+        , notice_delete
+    </sql>
+    
+    <insert id="insertNotice" parameterType="NoticeDTO">
+        INSERT INTO s_notice (
+            <include refid="noticeColumns" />
+        ) VALUES (
+              #{noticeNumber}
+            , #{userId}
+            , #{noticeTitle}
+            , #{noticeContent}
+            , sysdate
+            , 0
+            , NULL
+            , NULL
+            , 'N'
+        )
+    </insert>
 
+    <select id="selectNoticeDetail" parameterType="long" resultType="NoticeDTO">
+        SELECT
+            <include refid="noticeColumns" />
+        FROM
+            s_notice
+        WHERE
+            notice_delete = 'N'
+        AND
+            notice_number = #{noticeNumber}
+    </select>
 
+    <update id="updateNotice" parameterType="NoticeDTO">
+        UPDATE s_notice
+        SET
+              notice_update_date = sysdate
+            , notice_title = #{noticeTitle}
+            , notice_content = #{noticeContent}
+            , user_id = #{userId}
+        WHERE
+            notice_number = #{noticeNumber}
+    </update>
+
+    <update id="deleteNotice" parameterType="long">
+        UPDATE s_notice
+        SET
+              notice_delete = 'Y'
+        WHERE
+            notice_number = #{noticeNumber}
+    </update>
+
+    <select id="selectNoticeList" parameterType="NoticeDTO" resultType="NoticeDTO">
+        SELECT
+            <include refid="noticeColumns" />
+        FROM
+            s_notice
+        WHERE
+            notice_delete = 'N'
+        ORDER BY
+            notice_number DESC,
+            notice_date DESC
+    </select>
+
+    <select id="selectNoticeTotalCount" parameterType="NoticeDTO" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            s_notice
+        WHERE
+            notice_delete = 'N'
+    </select>
 
 </mapper>
