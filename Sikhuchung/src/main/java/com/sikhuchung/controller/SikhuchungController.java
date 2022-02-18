@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.service.SikhuchungService;
@@ -20,6 +21,23 @@ public class SikhuchungController {
     public String sikhuchungTest() {
 
         return "sikhuchung/sikhuchungTest";
+    }
+
+    // 공지사항 글쓰기
+    @GetMapping(value = "/sikhuchung/noticewrite.do")
+    public String openNoticeWrite(@RequestParam(value = "noticeNumber", required = false) int noticeNumber,
+            Model model) {
+        if (noticeNumber == 0) {
+            model.addAttribute("notice", new NoticeDTO());
+        } else {
+            NoticeDTO notice = sikhuchungService.getNoticeDetail(noticeNumber);
+            if (notice == null) {
+                return "redirect:/notice/noticelist.do";
+            }
+            model.addAttribute("notice", notice);
+        }
+
+        return "sikhuchung/noticewrite";
     }
 
     // 공지사항 리스트

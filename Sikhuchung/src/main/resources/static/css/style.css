@@ -1,0 +1,13 @@
+div.notice_search {
+	text-align: center;
+}
+div.notice_search select.selectpicker {
+	height: 30px;
+}
+div.notice_search input.input-search {
+	width: 30%;
+}
+div.notice_paging {
+	width: 230px;
+	margin: 100px auto;
+}
