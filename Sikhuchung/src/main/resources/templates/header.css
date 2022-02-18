@@ -1,0 +1,77 @@
+/* 전체 공동 구역 */
+* {
+    padding: 0;
+    margin: 0;
+}
+h2 {
+    font-family: "Cafe24 Ssurround air";
+    font-weight: bold;
+    font-size: 2em;
+}
+a {
+    text-decoration-line: none;
+    font-family: "Cafe24 Ssurround air";
+    font-weight: bold;
+    font-size: 1em;
+}
+a:link, a:visited, a:active {
+    color: white;
+}
+a:hover {
+    color: rgb(218, 117, 117);
+}
+ul {
+    list-style: none;
+}
+
+/* header */
+header {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(157, 173, 189);
+}
+.main_title {
+    height: 1em;
+    width: 30%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    margin: 0px;
+}
+.main_nav_panel {
+    height: 50px;
+    width: 60%;
+    padding: 5px;
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+    border: solid 1px green;
+}
+.main_ul_panel {
+    display: block;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.main_nav_panel li {
+    display: inline-block;
+    padding: 0px 5px;
+    margin: 0px 5px;
+}
+.sub_nav_panel {
+    height: 50px;
+    width: 100%;
+    padding: 5px;
+    border: solid 3px black;
+}
+.sub_ul_panel {
+    display: block;
+    margin-top: 10px;
+}
+.sul_ul_panel li {
+    display: inline-block;
+    padding: 0px 5px;
+    margin: 0px 5px;
+}
