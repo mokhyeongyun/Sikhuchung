@@ -65,6 +65,7 @@ body {
     width: 15em;
     padding: 10px 20px;
     margin: auto;
+    align-items: baseline;
 }
 .list_img {
     height: 100%;
