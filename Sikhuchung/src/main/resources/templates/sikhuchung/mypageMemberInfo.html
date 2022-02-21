@@ -22,7 +22,7 @@
 				</div>
 				<div class="member_cont">
                   <div class="important">* 표시는 반드시 입력하셔야 하는 항목입니다.</div>
-                    <form id="formMemberUpdate" name="formMemberUpdate" action="" method="get">
+                    <form id="formMemberUpdate" name="formMemberUpdate" action="/sikhuchung/mypageMemberInfo.do" method="get">
                         <div class="base_join_box">
                             <div class="base_join_sec">
                                 <table>
@@ -35,7 +35,7 @@
                                             <th><span class="">* 아이디</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="text" id="" name="" readonly>
+                                                    <input type="text" id="id" name="uid" readonly>
                                                 </div>
                                             </td>
 
@@ -44,7 +44,7 @@
                                             <th><span class="">* 비밀번호</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="password" id="" name="" autocomplete="off" placeholder="">
+                                                    <input type="password" id="password" name="upw" autocomplete="off" placeholder="">
                                                 </div>
                                             </td>
                                         </tr>
@@ -52,7 +52,7 @@
                                             <th><span class="">* 비밀번호 확인</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="password" name="" id="" autocomplete="off">
+                                                    <input type="password" name="upwCheck" id="passwordCheck" autocomplete="off">
                                                 </div>
                                             </td>
                                         </tr>
@@ -60,7 +60,7 @@
                                             <th><span class="">* 이름</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="text" name="" id="" value="" maxlength="30">
+                                                    <input type="text" name="uname" id="name" maxlength="30">
                                                 </div>
                                             </td>
                                         </tr>
@@ -68,7 +68,7 @@
                                             <th><span class="">* 이메일</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="text" name="" id="" value=""> 
+                                                    <input type="text" name="uemail" id="email" value=""> 
                                                 </div>
                                                 <div class=""></div>  <!-- 유효성메세지 -->
                                             </td>
@@ -77,7 +77,7 @@
                                             <th><span class="">* 휴대폰번호</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="text" id="" name="" maxlength="12" placeholder="- 없이 입력하세요." value="">
+                                                    <input type="text" id="tel" name="utel" maxlength="12" placeholder="- 없이 입력하세요.">
                                                 </div>
                                             </td>
                                         </tr>
@@ -89,7 +89,7 @@
 
                         <div class="btn_join_box">
                             <button type="button" id="" class="btn_join_cancel">취소</button>
-                            <button type="button" class="btn_join" value="회원가입">정보수정</button>
+                            <button type="button" class="btn_join" onclick="userUpdateNullCheck()" value="회원가입">정보수정</button>
                         </div>
                     </form>
                 </div>

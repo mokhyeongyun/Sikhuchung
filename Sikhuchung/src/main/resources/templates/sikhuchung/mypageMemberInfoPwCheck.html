@@ -19,20 +19,22 @@
 		<div class="contents">
 			<div class="mypage_cont">
 				<div class="my_page_password">
-					<div class="mypage_zone_tit">
-						<h2>회원정보 변경</h2>
-					</div>
-					<p>
-						<strong>회원님의 정보를 안전하게 보호하기 위해 계정을 <span>재인증</span> 해주세요.
-						</strong>
-					</p>
-					<div class="mypage_pwcheck">
-						<span>비밀번호</span> <input type="password" id="" name="">
-					</div>
-					<div class="btn_pwcheck_box">
-						<a class="btn_pwcheck_cancel">취소</a>
-						<button type="button" class="btn_pwcheck_certify">인증하기</button>
-					</div>
+					<form name="formPwCertify" id="formPwCertify" action="/sikhuchung/mypageMemberInfoPwCheck.do" method="get" novalidate="novalidate">
+						<div class="mypage_zone_tit">
+							<h2>회원정보 변경</h2>
+						</div>
+						<p>
+							<strong>회원님의 정보를 안전하게 보호하기 위해 계정을 <span>재인증</span> 해주세요.
+							</strong>
+						</p>
+						<div class="mypage_pwcheck">
+							<span>비밀번호</span> <input type="password" id="pw" name="upw">
+						</div>
+						<div class="btn_pwcheck_box">
+							<a class="btn_pwcheck_cancel">취소</a>
+							<button type="button" class="btn_pwcheck_certify" onclick="pwCertifyNullCheck()">인증하기</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

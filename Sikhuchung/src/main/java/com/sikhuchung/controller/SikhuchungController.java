@@ -31,14 +31,26 @@ public class SikhuchungController {
     }
 
     // 로그인 화면이동 -- 현균
-    @GetMapping(value = "/sikhuchung/login.do")
+    @GetMapping(value = "/sikhuchung/login")
     public String login() {
         return "sikhuchung/login";
     }
 
+    // 로그인 진행 -- 현균
+    @GetMapping(value = "/sikhuchung/login.do")
+    public String userLogin() {
+        return "sikhuchung/login";
+    }
+
     // 회원가입 화면 이동 -- 현균
-    @GetMapping(value = "/sikhuchung/join.do")
+    @GetMapping(value = "/sikhuchung/join")
     public String join() {
+        return "sikhuchung/join";
+    }
+
+    // 회원가입진행 -- 현균
+    @GetMapping(value = "/sikhuchung/join.do")
+    public String userJoin() {
         return "sikhuchung/join";
     }
 
