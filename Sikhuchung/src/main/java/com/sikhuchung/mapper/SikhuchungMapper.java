@@ -8,15 +8,19 @@ import com.sikhuchung.domain.NoticeDTO;
 
 @Mapper
 public interface SikhuchungMapper {
+    /* 공지사항 */
     public int insertNotice(NoticeDTO params);
 
-    public NoticeDTO selectNoticeDetail(int noticeNumber);
+    public NoticeDTO selectNoticeDetail(Long noticeNumber);
 
     public int updateNotice(NoticeDTO params);
 
-    public int deleteNotice(int noticeNumber);
+    public int deleteNotice(Long noticeNumber);
 
     public List<NoticeDTO> selectNoticeList();
 
     public int selectNoticeTotalCount();
+
+    /* 후기 */
+
 }

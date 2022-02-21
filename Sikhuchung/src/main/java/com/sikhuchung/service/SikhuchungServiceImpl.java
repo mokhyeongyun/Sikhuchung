@@ -15,8 +15,9 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     @Autowired
     private SikhuchungMapper sikhuchungMapper;
 
+    /* 공지사항 */
     @Override
-    public boolean registerService(NoticeDTO params) {
+    public boolean registerNotice(NoticeDTO params) {
         int queryResult = 0;
 
         if (params.getNoticeNumber() == 0) {
@@ -29,12 +30,12 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     }
 
     @Override
-    public NoticeDTO getNoticeDetail(int noticeNumber) {
+    public NoticeDTO getNoticeDetail(Long noticeNumber) {
         return sikhuchungMapper.selectNoticeDetail(noticeNumber);
     }
 
     @Override
-    public boolean deleteNotice(int noticeNumber) {
+    public boolean deleteNotice(Long noticeNumber) {
         int queryResult = 0;
 
         NoticeDTO notice = sikhuchungMapper.selectNoticeDetail(noticeNumber);
@@ -59,4 +60,5 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return noticeList;
     }
 
+    /* 후기 */
 }

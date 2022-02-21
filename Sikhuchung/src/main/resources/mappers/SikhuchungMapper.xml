@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sikhuchung.mapper.SikhuchungMapper">
-    
+    <!-- 공지사항 -->
     <sql id="noticeColumns">
           notice_number
         , user_id
@@ -16,21 +16,25 @@
     
     <insert id="insertNotice" parameterType="NoticeDTO">
         INSERT INTO s_notice (
-            <include refid="noticeColumns" />
+            notice_number
+            ,user_id
+            ,notice_title
+            ,notice_content
+            ,notice_date
+            ,notice_hit
+            ,notice_delete
         ) VALUES (
-              #{noticeNumber}
-            , #{userId}
-            , #{noticeTitle}
-            , #{noticeContent}
+              #{sequ_notice_number.nextval}
+            , #{userId, jdbcType=VARCHAR}
+            , #{noticeTitle, jdbcType=VARCHAR}
+            , #{noticeContent, jdbcType=VARCHAR}
             , sysdate
             , 0
-            , NULL
-            , NULL
             , 'N'
         )
     </insert>
 
-    <select id="selectNoticeDetail" parameterType="long" resultType="NoticeDTO">
+    <select id="selectNoticeDetail" parameterType="Long" resultType="NoticeDTO">
         SELECT
             <include refid="noticeColumns" />
         FROM
@@ -52,7 +56,7 @@
             notice_number = #{noticeNumber}
     </update>
 
-    <update id="deleteNotice" parameterType="long">
+    <update id="deleteNotice" parameterType="Long">
         UPDATE s_notice
         SET
               notice_delete = 'Y'
@@ -80,5 +84,7 @@
         WHERE
             notice_delete = 'N'
     </select>
-
+    
+    <!-- 후기 -->
+    
 </mapper>

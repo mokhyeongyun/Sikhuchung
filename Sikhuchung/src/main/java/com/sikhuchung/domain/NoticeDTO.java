@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NoticeDTO {
-    int noticeNumber, noticeHit;
+    Long noticeNumber, noticeHit;
     String userId, noticeTitle, noticeContent, noticeDate, noticeUpdateId, noticeUpdateDate, noticeDelete;
 }
