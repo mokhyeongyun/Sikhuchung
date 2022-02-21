@@ -4,67 +4,81 @@
 	<title>login</title>
 </th:block>
 <th:block layout:fragment="contents">
-	<div id="contents">
-		<div class="sub_content">
-			<div class="side_cont">
-				<div class="sub_menu_box">
-					<h2>마이페이지</h2>
-					<ul class="sub_menu_mypage">
-						<li>쇼핑정보
-							<ul class="sub_depth1">
-								<li><a href="">- 주문목록</a></li>
-								<li><a href="">- 회원정보 변경</a></li>
-								<li><a href="">- 회원 탈퇴</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+	<div class="sub_content">
+		<div class="side_cont">
+			<div class="sub_menu_box">
+				<h2>마이페이지</h2>
+				<ul class="sub_menu_mypage">
+					<li><a href="">- 주문목록</a></li>
+					<li><a href="">- 회원정보 변경</a></li>
+					<li><a href="">- 회원 탈퇴</a></li>
+				</ul>
 			</div>
+		</div>
 
-			<div class="content">
-				<div class="mypage_cont">
-					<div class="mypage_lately_info">
-						<div class="mypage_zone_tit">
-							<h3>주문목록</h3>
-						</div>
-						<div class="date_check_box">
-							<div class="mypage_lately_info_cont">
-								<span class="pick_list_num"> 주문목록 내역 총 <strong>0</strong> 건
-								</span>
-								<div class="mypage_table_type">
-									<table>
-										<colgroup>
-											<col style="width: 15%">
-											<!-- 날짜/주문번호 -->
-											<col>
-											<!-- 상품명 -->
-											<col style="width: 15%">
-											<!-- 상품금액/수량 -->
-											<col style="width: 15%">
-											<!-- 주문상태 -->
-											<col style="width: 15%">
-											<!-- 리뷰 -->
-										</colgroup>
-										<thead>
-											<tr>
-												<th>날짜/주문번호</th>
-												<th>상품명</th>
-												<th class="nd-dpnone-426">상품금액/수량</th>
-												<th class="nd-dpnone-426">주문상태</th>
-												<th class="nd-dpnone-426">확인/리뷰</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>날짜/주문번호</td>
-												<td>상품명</td>
-												<td>상품금액/수량</td>
-												<td>주문상태</td>
-												<td>확인/리뷰</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+		<div class="contents">
+			<div class="mypage_cont">
+				<div class="mypage_order_info">
+					<div class="mypage_zone_tit">
+						<h3>주문목록</h3>
+					</div>
+					<div class="date_check_box">
+						<div>
+							<span class="order_list_num"> 주문목록 내역 총 <strong>0</strong> 건
+							</span>
+							<div class="mypage_order_info_table">
+								<table>
+									<colgroup>
+										<col style="width: 20%">
+										<!-- 날짜/주문번호 -->
+										<col>
+										<!-- 상품명 -->
+										<col style="width: 15%">
+										<!-- 상품금액/수량 -->
+										<col style="width: 15%">
+										<!-- 주문상태 -->
+										<col style="width: 15%">
+										<!-- 리뷰 -->
+									</colgroup>
+									<thead>
+										<tr>
+											<th>날짜/주문번호</th>
+											<th>상품명</th>
+											<th class="nd-dpnone-426">상품금액/수량</th>
+											<th class="nd-dpnone-426">주문상태</th>
+											<th class="nd-dpnone-426">확인/리뷰</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>날짜/주문번호</td>
+											<td>상품명</td>
+											<td>상품금액/수량</td>
+											<td>주문상태</td>
+											<td>
+											    <a href="" >후기작성</a>
+											</td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td>날짜/주문번호</td>
+											<td>상품명</td>
+											<td>상품금액/수량</td>
+											<td>주문상태</td>
+											<td> <a href="" >후기작성</a></td>
+										</tr>
+									</tbody>
+									<tbody>
+										<tr>
+											<td>날짜/주문번호</td>
+											<td>상품명</td>
+											<td>상품금액/수량</td>
+											<td>주문상태</td>
+											<td> <a href="">후기작성</a></td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>

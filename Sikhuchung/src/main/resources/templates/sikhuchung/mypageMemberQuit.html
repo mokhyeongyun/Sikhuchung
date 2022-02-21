@@ -4,31 +4,27 @@
 	<title>login</title>
 </th:block>
 <th:block layout:fragment="contents">
-	<div id="contents">
-		<div class="sub_content">
-			<div class="side_cont">
-				<div class="sub_menu_box">
-					<h2>마이페이지</h2>
-					<ul class="sub_menu_mypage">
-						<li>쇼핑정보
-							<ul class="sub_depth1">
-								<li><a href="">- 주문목록</a></li>
-								<li><a href="">- 회원정보 변경</a></li>
-								<li><a href="">- 회원 탈퇴</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
+	<div class="sub_content">
+		<div class="side_cont">
+			<div class="sub_menu_box">
+				<h2>마이페이지</h2>
+				<ul class="sub_menu_mypage">
+					<li><a href="">- 주문목록</a></li>
+					<li><a href="">- 회원정보 변경</a></li>
+					<li><a href="">- 회원 탈퇴</a></li>
+				</ul>
 			</div>
-			<div class="content">
-				<div class="mypage_cont">
+		</div>
+		<div class="contents">
+			<div class="mypage_cont">
+				<div class="my_page_password">
 					<form id="formMemberQuit" name="formMemberQuit" action="" method="get">
 						<div>
 							<div class="mypage_zone_tit">
 								<h2>회원탈퇴</h2>
 							</div>
 							<div class="mypage_unregister">
-								<div class="mypage_zone_tit">
+								<div class="unregister_guid">
 									<h3>01.회원탈퇴 안내</h3>
 								</div>
 								<div class="unregister_info">
@@ -37,37 +33,25 @@
 									고객정보 보호정책에따라 관리됩니다.<br>
 								</div>
 
-								<div class="mypage_zone_tit">
+								<div class="unregister_guid">
 									<h3>02.회원탈퇴 하기</h3>
 								</div>
 
 								<div class="mypage_table_type">
-									<table class="table_left">
-										<colgroup>
-											<col style="width: 15%;">
-											<col style="width: 85%;">
-										</colgroup>
-										<tbody>
-											<tr>
-												<th scope="row">비밀번호</th>
-												<td><input type="password" id="" name="" autocomplete="off" placeholder=""></td>
-											</tr>
-										</tbody>
-									</table>
+									<div class="mypage_pwcheck">
+										<span>비밀번호</span> <input type="password" id="" name="">
+									</div>
 								</div>
 							</div>
 						</div>
 
-						<div class="btn_center_box">
-							<a href="" class="">이전으로</a>
-							<button type="submit" class="">탈퇴</button>
+						<div class="btn_pwcheck_box">
+							<a href="" class="btn_pwcheck_cancel">이전으로</a>
+							<button type="submit" class="btn_pwcheck_certify">탈퇴</button>
 						</div>
 					</form>
 				</div>
-				<!-- //mypage_cont -->
-
 			</div>
-
 		</div>
 	</div>
 </th:block>
