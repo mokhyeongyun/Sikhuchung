@@ -12,7 +12,9 @@ public interface SikhuchungService {
 
     public boolean deleteNotice(Long noticeNumber);
 
-    public List<NoticeDTO> getNoticeList();
+    public List<NoticeDTO> getNoticeList(NoticeDTO params);
+
+    public boolean hitPlus(Long noticeNumber);
 
     /* 후기 */
 

@@ -17,9 +17,11 @@ public interface SikhuchungMapper {
 
     public int deleteNotice(Long noticeNumber);
 
-    public List<NoticeDTO> selectNoticeList();
+    public List<NoticeDTO> selectNoticeList(NoticeDTO params);
 
-    public int selectNoticeTotalCount();
+    public int selectNoticeTotalCount(NoticeDTO params);
+
+    public boolean hitPlus(Long noticeNumberLong);
 
     /* 후기 */
 

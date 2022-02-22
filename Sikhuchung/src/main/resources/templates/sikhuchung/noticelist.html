@@ -37,15 +37,7 @@
             </div>
 		</div>
 		<div class="notice_paging">
-		    <nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item"><a class="page-link" href="#">이전</a></li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item"><a class="page-link" href="#">다음</a></li>
-			  </ul>
-			</nav>
+			<nav th:replace="sikhuchung/fragments/common :: pagination"></nav>
 		</div>
 		<div class="notice_search">
 		  <form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
@@ -60,5 +52,14 @@
             </button>
           </form>
 		</div>
+	    <script th:inline="javascript">
+	            /*<![CDATA[*/
+	
+	            function movePage(uri, queryString) {
+	                location.href = uri + queryString;
+	            }
+	
+	            /*]]>*/
+	    </script>
   </th:block>
 </html>

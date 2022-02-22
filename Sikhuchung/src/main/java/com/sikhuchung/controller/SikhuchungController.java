@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -25,7 +26,7 @@ public class SikhuchungController {
         return "sikhuchung/sikhuchungTest";
     }
 
-    // 공지사항 글쓰기
+    // 공지사항 글쓰기 이동
     @GetMapping(value = "/sikhuchung/noticewrite.do")
     public String openNoticeWrite(@RequestParam(value = "noticeNumber", required = false) Long noticeNumber,
             Model model) {
@@ -44,7 +45,7 @@ public class SikhuchungController {
 
     // 공지사항 글쓰기 처리
     @PostMapping(value = "/sikhuchung/register.do")
-    public String registerNotice(final NoticeDTO params) {
+    public String registerNotice(NoticeDTO params) {
         try {
             boolean isRegistered = sikhuchungService.registerNotice(params);
             if (isRegistered == false) {
@@ -62,9 +63,10 @@ public class SikhuchungController {
 
     // 공지사항 리스트
     @GetMapping(value = "/sikhuchung/noticelist.do")
-    public String openNoticeList(Model model) {
-        List<NoticeDTO> noticeList = sikhuchungService.getNoticeList();
+    public String openNoticeList(@ModelAttribute("params") NoticeDTO params, Model model) {
+        List<NoticeDTO> noticeList = sikhuchungService.getNoticeList(params);
         model.addAttribute("noticeList", noticeList);
+
         return "sikhuchung/noticelist";
     }
 
@@ -84,6 +86,7 @@ public class SikhuchungController {
         }
         model.addAttribute("notice", notice);
 
+        sikhuchungService.hitPlus(noticeNumber);
         return "sikhuchung/noticeview";
     }
 

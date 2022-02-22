@@ -7,7 +7,7 @@
         , user_id
         , notice_title
         , notice_content
-        , TO_CHAR(sysdate, 'yyyy-MM-dd') notice_date
+        , TO_CHAR(notice_date, 'yyyy-MM-dd') notice_date
         , notice_hit
         , notice_update_id
         , notice_update_date
@@ -24,7 +24,7 @@
             ,notice_hit
             ,notice_delete
         ) VALUES (
-              #{sequ_notice_number.nextval}
+              sequ_notice_number.nextval
             , #{userId, jdbcType=VARCHAR}
             , #{noticeTitle, jdbcType=VARCHAR}
             , #{noticeContent, jdbcType=VARCHAR}
@@ -65,8 +65,17 @@
     </update>
 
     <select id="selectNoticeList" parameterType="NoticeDTO" resultType="NoticeDTO">
+        <![CDATA[
         SELECT
-            <include refid="noticeColumns" />
+            notice_number
+	        , user_id
+	        , notice_title
+	        , notice_content
+	        , TO_CHAR(notice_date, 'yyyy-MM-dd') notice_date
+	        , notice_hit
+	        , notice_update_id
+	        , notice_update_date
+	        , notice_delete
         FROM
             s_notice
         WHERE
@@ -74,6 +83,8 @@
         ORDER BY
             notice_number DESC,
             notice_date DESC
+              
+        ]]>    
     </select>
 
     <select id="selectNoticeTotalCount" parameterType="NoticeDTO" resultType="int">
@@ -84,6 +95,14 @@
         WHERE
             notice_delete = 'N'
     </select>
+    
+    <update id="hitPlus" parameterType="long">
+        UPDATE s_notice
+        SET
+            notice_hit = notice_hit+1
+        WHERE
+            notice_number = #{noticeNumber}    
+    </update>
     
     <!-- 후기 -->
     

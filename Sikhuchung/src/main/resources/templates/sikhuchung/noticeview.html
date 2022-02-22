@@ -50,7 +50,6 @@
                 <button type="button" class="btn btn-danger waves-effect waves-light" th:onclick="deleteNotice([[ ${notice.noticeNumber} ]])">삭제하기</button>
             </div>
         </div>
-        <script src="sikhuchung.js"></script>
         <!-- /.card-content -->
         <script th:inline="javascript">
             /*<![CDATA[*/
@@ -58,11 +57,11 @@
             function deleteNotice(noticeNumber) {
 
                 if (confirm(noticeNumber + "번 게시글을 삭제할까요?")) {
-                	var uri = /*[[ @{/notice/delete.do} ]]*/null;
+                	var uri = /*[[ @{/sikhuchung/delete.do} ]]*/"";
                     var html = "";
 
                     html += '<form name="dataForm" action="'+uri+'" method="post">';
-                        html += '<input type="hidden" name="noticeNumber" value="'+noticeNumber+'" />';
+                    html += '<input type="hidden" name="noticeNumber" value="'+noticeNumber+'" />';
                     html += '</form>';
 
                     $("body").append(html);
