@@ -1,3 +1,4 @@
 {
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5501,
+    "livePreview.defaultPreviewPath": "/Sikhuchung/src/main/resources/templates/sikhuchung/test.html"
 }
