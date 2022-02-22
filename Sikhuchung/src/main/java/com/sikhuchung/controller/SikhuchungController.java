@@ -42,4 +42,22 @@ public class SikhuchungController {
         return "sikhuchung/find_pw";
     }
 
+    // 장바구나 화면
+    @GetMapping(value = "/sikhuchung/cart.do")
+    public String cart() {
+        return "sikhuchung/cart";
+    }
+
+    // 결제창 화면
+    @GetMapping(value = "/sikhuchung/payment.do")
+    public String payment() {
+        return "sikhuchung/payment";
+    }
+
+    // 주문목록 화면
+    @GetMapping(value = "/sikhuchung/orderlist.do")
+    public String orderlist() {
+        return "sikhuchung/orderlist";
+    }
+
 }

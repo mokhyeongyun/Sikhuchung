@@ -1,0 +1,79 @@
+/* 필립 css 시작 */
+
+.amount_list {
+    text-align:right;
+    background-color : rgb(224,224,224);
+    border : rgb(224,224,224);
+}
+
+.btn_list {
+    border-bottom:white;
+}
+
+.gray_button {
+    background-color : rgb(224,224,224);
+    border : rgb(224,224,224);
+    border-radius : 5px;
+}
+.dark_gray_button {
+    background-color : rgb(94,94,94);
+    border : rgb(94,94,94);
+    border-radius : 5px;
+    color : white;
+}
+#btn_right{
+    text-align:right;
+}
+
+.payment_table {
+    width: 100%;
+    margin:0;
+    padding:0;
+    margin-bottom:30px;
+}
+.payment_table thead{
+	border-bottom:3px solid rgb(224,224,224);
+	font-size:16pt;
+}
+.payment_table tbody {
+	border-bottom:3px solid rgb(224,224,224);
+	font-size:12pt;
+}
+.payment_table tbody tr{
+    width:30%;
+}
+.payment_table tbody tr:last-child td{
+    margin-bottom:10px;
+}
+.payment_table tbody tr td:nth-child(1){
+    padding-left:20px;
+}
+.payment_table tbody td{
+    width:155px;
+    float:left;
+    padding-top:10px;
+}
+.payment_table tbody tr.amount_list td{
+    width:350px;
+    float:right;
+}
+.payment_table tr.payment_btn td{
+    text-align:center;;
+}
+button.payment_btn{
+    text-align:center;
+    margin:auto;
+    width:100px;
+    border-radius:5px;
+    border:1px solid rgb(224,224,224);
+}
+.payment_btn_box {
+	text-align:center;
+}
+#cart_content{
+	width:80%;
+	margin:auto;
+}
+
+
+/* 필립 css 끝 */
