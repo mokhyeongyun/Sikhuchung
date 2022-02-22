@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 
 @Service
@@ -57,6 +59,20 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         }
 
         return noticeList;
+    }
+
+    /* 회원가입 */
+    @Transactional
+    @Override
+    public void joinUser(UserVO userVO) {
+        userVO.setUgrade("USER");
+        sikhuchungMapper.saveUser(userVO);
+    }
+
+    /* 아이디 중복확인 */
+    @Override
+    public int idCheck(String userId) throws Exception {
+        return sikhuchungMapper.idCheck(userId);
     }
 
 }

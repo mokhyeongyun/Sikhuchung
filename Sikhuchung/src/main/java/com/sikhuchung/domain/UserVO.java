@@ -12,7 +12,7 @@ public class UserVO {
     private String uname;
     private String uemail;
     private int utel;
-    private int ugrade;
+    private String ugrade;
     private String ujoindate;
 
 }

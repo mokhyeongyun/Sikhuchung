@@ -298,6 +298,16 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     cursor: pointer;
     font-weight: bold;
 }
+/* 중복아이디 존재하지 않는경우 */
+    .id_input_re_1{
+        color : green;
+        display : none;
+    }
+    /* 중복아이디 존재하는 경우 */
+    .id_input_re_2{
+        color : red;
+        display : none;
+    }
 
 /*****************마이페이지 회원정보변경***********/
 .sub_content {
