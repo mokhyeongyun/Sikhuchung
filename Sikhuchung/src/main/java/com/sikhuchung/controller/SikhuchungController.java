@@ -177,7 +177,6 @@ public class SikhuchungController {
         return "sikhuchung/find_pw";
     }
 
-<<<<<<< HEAD
     // 마이페이지-주문목록 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/mypageOrderInfo.do")
     public String mypageOrderInfo() {
@@ -200,7 +199,8 @@ public class SikhuchungController {
     @GetMapping(value = "/sikhuchung/mypageMemberQuit.do")
     public String mypageMemberQuit() {
         return "sikhuchung/mypageMemberQuit";
-=======
+    }
+
     // 장바구나 화면
     @GetMapping(value = "/sikhuchung/cart.do")
     public String cart() {
@@ -217,7 +217,6 @@ public class SikhuchungController {
     @GetMapping(value = "/sikhuchung/orderlist.do")
     public String orderlist() {
         return "sikhuchung/orderlist";
->>>>>>> philip
     }
 
 }

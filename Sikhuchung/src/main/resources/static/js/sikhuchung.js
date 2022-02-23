@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function Slider(target, type) {
   // 상태
   let index = 1;
@@ -376,7 +375,6 @@ function userQuitNullCheck() {
         document.formUserQuit.submit();
     }
 }
-=======
 /* 필립 js 시작 */
 function paymentFormCheck(){
     let order_user,order_phone; /*이 부분이 없어도 정상 실행됌*/
@@ -416,4 +414,3 @@ function paymentFormCheck(){
 
 
 /* 필립 js 끝 */
->>>>>>> philip
