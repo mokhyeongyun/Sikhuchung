@@ -25,7 +25,7 @@ public class SikhuchungController {
         return "sikhuchung/sikhuchungTest";
     }
 
-    // 공지사항 리스트
+    // 공지사항 리스트 -- 유진
     @GetMapping(value = "/sikhuchung/noticelist.do")
     public String openNoticeList(Model model) {
         List<NoticeDTO> noticeList = sikhuchungService.getNoticeList();

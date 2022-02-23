@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-html {
-  height: 100%;
-  width: 80%;
-  margin: auto;
-}
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
     margin: 0;
     padding: 0;
@@ -363,16 +353,14 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 .content_box{
 	width:100%;
-=======
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea,
-	button {
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
 	margin: 0;
 	padding: 0;
 }
 
 .content_box {
 	width: 100%;
->>>>>>> mok
 }
 /* 로그인  */
 .member_wrap {
