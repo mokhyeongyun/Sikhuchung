@@ -31,6 +31,10 @@ public class Criteria {
         this.pageSize = 10;
     }
 
+    public int getStartPage() {
+        return (currentPageNo - 1) * recordsPerPage;
+    }
+
     public String makeQueryString(int pageNo) {
 
         UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("currentPageNo", pageNo)

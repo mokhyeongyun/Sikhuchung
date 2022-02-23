@@ -66,7 +66,7 @@
 
     <select id="selectNoticeList" parameterType="NoticeDTO" resultType="NoticeDTO">
         <![CDATA[
-        SELECT
+        SELECT 
             notice_number
 	        , user_id
 	        , notice_title
@@ -76,14 +76,13 @@
 	        , notice_update_id
 	        , notice_update_date
 	        , notice_delete
-        FROM
-            s_notice
-        WHERE
-            notice_delete = 'N'
-        ORDER BY
-            notice_number DESC,
-            notice_date DESC
-              
+            FROM (
+                SELECT ROW_NUMBER() OVER (ORDER BY notice_number DESC, notice_date DESC) NUM
+                    , A.*
+                    FROM S_NOTICE A
+                    ORDER BY notice_number DESC,notice_date DESC
+                    )
+             WHERE NUM BETWEEN #{paginationInfo.firstRecordIndex} AND #{paginationInfo.lastRecordIndex} AND notice_delete = 'N'
         ]]>    
     </select>
 
