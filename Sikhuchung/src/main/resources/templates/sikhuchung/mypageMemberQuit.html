@@ -9,16 +9,16 @@
 			<div class="sub_menu_box">
 				<h2>마이페이지</h2>
 				<ul class="sub_menu_mypage">
-					<li><a href="">- 주문목록</a></li>
-					<li><a href="">- 회원정보 변경</a></li>
-					<li><a href="">- 회원 탈퇴</a></li>
+					<li><a href="mypageMemberInfo.do">- 주문목록</a></li>
+					<li><a href="mypageMemberInfoPwCheck.do">- 회원정보 변경</a></li>
+					<li><a href="mypageMemberQuit.do">- 회원 탈퇴</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="contents">
 			<div class="mypage_cont">
 				<div class="my_page_password">
-					<form id="formMemberQuit" name="formMemberQuit" action="" method="get">
+					<form id="formUserQuit" name="formUserQuit" action="/sikhuchung/mypageMemberQuit.do" method="get">
 						<div>
 							<div class="mypage_zone_tit">
 								<h2>회원탈퇴</h2>
@@ -39,7 +39,7 @@
 
 								<div class="mypage_table_type">
 									<div class="mypage_pwcheck">
-										<span>비밀번호</span> <input type="password" id="" name="">
+										<span>비밀번호</span> <input type="password" id="password" name="upw">
 									</div>
 								</div>
 							</div>
@@ -47,7 +47,7 @@
 
 						<div class="btn_pwcheck_box">
 							<a href="" class="btn_pwcheck_cancel">이전으로</a>
-							<button type="submit" class="btn_pwcheck_certify">탈퇴</button>
+							<button type="button" class="btn_pwcheck_certify" onclick="userQuitNullCheck()">탈퇴</button>
 						</div>
 					</form>
 				</div>

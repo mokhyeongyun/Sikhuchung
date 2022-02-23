@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
 
 @Controller
@@ -31,18 +34,44 @@ public class SikhuchungController {
     }
 
     // 로그인 화면이동 -- 현균
-    @GetMapping(value = "/sikhuchung/login.do")
+    @GetMapping(value = "/sikhuchung/login")
     public String login() {
+        return "sikhuchung/login";
+    }
+
+    // 로그인 진행 -- 현균
+    @GetMapping(value = "/sikhuchung/login.do")
+    public String userLogin() {
         return "sikhuchung/login";
     }
 
     // 회원가입 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/join.do")
-    public String join() {
+    public String joinForm() {
         return "sikhuchung/join";
     }
 
+    // 회원가입진행 -- 현균
+    @PostMapping(value = "/sikhuchung/join.do")
+    public String userJoin(UserVO userVO) {
+        sikhuchungService.joinUser(userVO);
+        return "sikhuchung/login";
+    }
+
+    // 아이디 중복 검사 --현균
+    @PostMapping(value = "/sikhuchung/userIdChk")
+    @ResponseBody
+    public String userIdChkPOST(String userId) throws Exception {
+        /* System.out.print("memberIdChk() 진입"); */
+        int result = sikhuchungService.idCheck(userId);
+        if (result != 0) {
+            return "fail"; // 중복 아이디가 존재
+        } else {
+            return "success"; // 중복 아이디 x
+        }
+    }
     // 아이디찾기 화면 이동 -- 현균
+
     @GetMapping(value = "/sikhuchung/find_id.do")
     public String findId() {
         return "sikhuchung/find_id";
