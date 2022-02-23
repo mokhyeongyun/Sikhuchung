@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="sikhuchung/layout/basic">
+
+<th:block layout:fragment="title">
+    <title>결제 페이지</title>
+</th:block>
+<th:block layout:fragment="contents">
+    <div id="cart_content">
+        <h3>주문서 작성/결제</h3>
+    
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"><input type="checkbox" name="" value="" checked></th>
+              <th scope="col">사진</th>
+              <th scope="col">상품/옵션 정보</th>
+              <th scope="col">수량</th>
+              <th scope="col">상품금액</th>
+              <th scope="col">할인</th>
+              <th scope="col">합계금액</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+             <th:block th:each="num: ${#numbers.sequence(1,5)}">
+                <tr>
+                    <td><input type="checkbox" name="" value="" checked></td>
+                    <td>사진</td>
+                    <td>제품명</td>
+                    <td>수량</td>
+                    <td>금액</td>
+                    <td>할인</td>
+                    <td>합계</td>
+                </tr>
+            </th:block>
+          </tbody>
+        </table>
+      
+      <form>
+        <table class="payment_table">
+            <thead>
+                <tr>
+                    <th>주문자 정보</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr>
+                    <td>주문하시는 분</td>
+                    <td><input type="text" name="" id="order_user" size=25></td>
+                </tr>
+                <tr>
+                    <td>이메일</td>
+                    <td><input type="text" name="" id="order_email" size=25></td>
+                </tr>
+                <tr>
+                    <td>휴대폰 번호</td>
+                    <td><input type="text" name="" id="order_phone" placeholder="'-'는 제외하고 입력해주세요." size=25></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="payment_table">
+            <thead>
+                <tr>
+                    <th>배송 정보</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr>
+                    <td>배송지 입력</td>
+                    <td><input type="radio" name="payment_address" value="self_address" checked>직접입력</td>
+                    <td><input type="radio" name="payment_address" value="user_address">주문자 정보와 동일</td>
+                </tr>
+                <tr>
+                    <td>받으실 분</td>
+                    <td><input type="text" name="" id="get_user" size=25></td>
+                </tr>
+                <tr>
+                    <td>받으실 곳</td>
+                    <td><input type="text" name="" id="get_address" size=25></td>
+                </tr>
+                <tr>
+                    <td>휴대폰 번호</td>
+                    <td><input type="text" name="" id="get_phone" placeholder="'-'는 제외하고 입력해주세요." size=25></td>
+                </tr>
+            </tbody>
+        </table>
+      
+        <table class="payment_table">
+            <thead>
+                <tr>
+                    <th>배송 방법</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="radio" name="payment_delivery" value="early_delivery" checked>새벽 배송</td>
+                    <td><input type="radio" name="payment_delivery" value="standard_delivery">일반 배송</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="payment_table">
+            <thead>
+                <tr>
+                    <th>결제 정보</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr>
+                    <td>합계 상품 금액</td>
+                    <td>30000원</td>
+                </tr>
+                <tr>
+                    <td>배송비</td>
+                    <td>3000원</td>
+                </tr>
+                <tr>
+                    <td>할인</td>
+                    <td>0원</td>
+                </tr>
+                <tr>
+                    <td>최종 결제 금액</td>
+                    <td>33000원</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="payment_table">
+            <thead>
+                <tr>
+                    <th>결제수단 선택/결제</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr>
+                    <td>결제수단</td>
+                    <td><input type="radio" name="payment_method" value="direct_money" checked>무통장 입금</td>
+                    <td><input type="radio" name="payment_method" value="kakaopay">카카오페이</td>
+                </tr>
+                <tr>
+                    <td>입금자명</td>
+                    <td><input type="text" name="" id="" placeholder="장필립" size=25 readonly></td>
+                </tr>
+                <tr>
+                    <td>입금은행</td>
+                    <td><input type="text" name="" id="" placeholder="국민은행" size=25 readonly></td>
+                </tr>
+                <tr>
+                    <td>계좌번호</td>
+                    <td><input type="text" name="" id="" placeholder="200001-04-151211" size=25 readonly></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table class="payment_table">
+            <tr class="amount_list">
+                <td>총 합계 + 배송비(3,000) : </td>
+            </tr>
+        </table>
+      </form>
+        <div class="payment_btn_box">
+            <button class="payment_btn" onclick="paymentFormCheck()">결제하기</button>
+<!--             <a href="/sikhuchung/cart.do"><button class="payment_btn">결제하기</button></a> -->
+        </div>
+    </div>
+    
+</th:block>
+</html>
