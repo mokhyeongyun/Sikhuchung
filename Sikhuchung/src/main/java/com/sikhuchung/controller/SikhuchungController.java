@@ -77,5 +77,5 @@ public class SikhuchungController {
     public String mypageMemberQuit() {
         return "sikhuchung/mypageMemberQuit";
     }
-
+    
 }
