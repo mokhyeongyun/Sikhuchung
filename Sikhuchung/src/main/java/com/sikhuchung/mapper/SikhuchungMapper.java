@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.UserVO;
 
 @Mapper
 public interface SikhuchungMapper {
@@ -19,4 +20,10 @@ public interface SikhuchungMapper {
     public List<NoticeDTO> selectNoticeList();
 
     public int selectNoticeTotalCount();
+
+    /* 회원가입 */
+    public void saveUser(UserVO userVO);
+
+    /* id중복확인 */
+    public int idCheck(String userId);
 }
