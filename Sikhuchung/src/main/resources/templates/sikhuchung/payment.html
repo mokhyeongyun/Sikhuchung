@@ -8,7 +8,6 @@
     <div id="cart_content">
         <h3>주문서 작성/결제</h3>
     
-    <form name="" action="" method="post">
         <table class="table">
           <thead>
             <tr>
@@ -36,7 +35,6 @@
             </th:block>
           </tbody>
         </table>
-      </form>
       
       <form>
         <table class="payment_table">
@@ -49,15 +47,15 @@
             <tbody>
                 <tr>
                     <td>주문하시는 분</td>
-                    <td><input type="text" name="" id="" size=25></td>
-                </tr>
-                <tr>
-                    <td>휴대폰 번호</td>
-                    <td><input type="text" name="" id="" size=25></td>
+                    <td><input type="text" name="" id="order_user" size=25></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td><input type="text" name="" id="" size=25></td>
+                    <td><input type="text" name="" id="order_email" size=25></td>
+                </tr>
+                <tr>
+                    <td>휴대폰 번호</td>
+                    <td><input type="text" name="" id="order_phone" placeholder="'-'는 제외하고 입력해주세요." size=25></td>
                 </tr>
             </tbody>
         </table>
@@ -72,20 +70,20 @@
             <tbody>
                 <tr>
                     <td>배송지 입력</td>
-                    <td><input type="radio" name="payment_address" value="self_address">직접입력</td>
+                    <td><input type="radio" name="payment_address" value="self_address" checked>직접입력</td>
                     <td><input type="radio" name="payment_address" value="user_address">주문자 정보와 동일</td>
                 </tr>
                 <tr>
                     <td>받으실 분</td>
-                    <td><input type="text" name="" id="" size=25></td>
+                    <td><input type="text" name="" id="get_user" size=25></td>
                 </tr>
                 <tr>
                     <td>받으실 곳</td>
-                    <td><input type="text" name="" id="" size=25></td>
+                    <td><input type="text" name="" id="get_address" size=25></td>
                 </tr>
                 <tr>
                     <td>휴대폰 번호</td>
-                    <td><input type="text" name="" id="" placeholder="'-'는 제외하고 입력해주세요." size=25></td>
+                    <td><input type="text" name="" id="get_phone" placeholder="'-'는 제외하고 입력해주세요." size=25></td>
                 </tr>
             </tbody>
         </table>
@@ -99,7 +97,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="radio" name="payment_delivery" value="early_delivery">새벽 배송</td>
+                    <td><input type="radio" name="payment_delivery" value="early_delivery" checked>새벽 배송</td>
                     <td><input type="radio" name="payment_delivery" value="standard_delivery">일반 배송</td>
                 </tr>
             </tbody>
@@ -142,7 +140,7 @@
             <tbody>
                 <tr>
                     <td>결제수단</td>
-                    <td><input type="radio" name="payment_method" value="direct_money">무통장 입금</td>
+                    <td><input type="radio" name="payment_method" value="direct_money" checked>무통장 입금</td>
                     <td><input type="radio" name="payment_method" value="kakaopay">카카오페이</td>
                 </tr>
                 <tr>
@@ -165,10 +163,11 @@
                 <td>총 합계 + 배송비(3,000) : </td>
             </tr>
         </table>
-        <div class="payment_btn_box">
-            <button class="payment_btn">결제하기</button>
-        </div>
       </form>
+        <div class="payment_btn_box">
+            <button class="payment_btn" onclick="paymentFormCheck()">결제하기</button>
+<!--             <a href="/sikhuchung/cart.do"><button class="payment_btn">결제하기</button></a> -->
+        </div>
     </div>
     
 </th:block>
