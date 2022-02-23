@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="sikhuchung/layout/basic">
+<th:block layout:fragment="title">
+    <title>식후청</title>
+</th:block>
+<th:block layout:fragment="contents">
+    <main>
+        <div class="detail_info_top_area">
+            <div class="detail_info_img_area">
+                <img src="썸네일.jpg" alt="" class="detail_info_img_area">
+            </div>
+            <div class="detail_info_table_area">
+                <table class="detail_info_table">
+                    <tr class="detail_info_tr">
+                        <td><button type="button" onclick="" class="detail_info_btn"><img src="rectify.png" alt=""
+                                    class="detail_info_btn_img"></button></td>
+                        <td><button type="submit" onclick="" class="detail_info_btn"><img src="delete.png" alt=""
+                                    class="detail_info_btn_img"></button></td>
+                    </tr>
+                    <tr class="detail_info_tr">
+                        <td rowspan="2">
+                            <h3 class="td_title">[포항] 못난이 사과 1KG <br>9,800원</h3>
+                        </td>
+                    </tr>
+                    <tr class="detail_info_tr">
+                        <td class="detail_info_td_label">상품분류</td>
+                        <td class="detail_info_td_content">제철 과일</td>
+                    </tr>
+                    <tr class="detail_info_tr">
+                        <td class="detail_info_td_label">원산지</td>
+                        <td class="detail_info_td_content">경북 포항</td>
+                    </tr>
+                    <tr class="detail_info_tr">
+                        <td class="detail_info_td_label">배송비</td>
+                        <td class="detail_info_td_content">3,000원 [거리 무관]</td>
+                    </tr>
+                    <tr class="detail_info_tr">
+                        <td class="detail_info_td_label">배송방법</td>
+                        <td class="detail_info_td_content">새벽 , 일반</td>
+                    </tr>
+                    <tr class="detail_info_tr">
+                        <td class="detail_info_td_label">재고</td>
+                        <td class="detail_info_td_content">900BOX</td>
+                    </tr>
+                    <tr class="detail_info_tr">
+                        <td class="detail_info_td_label">상품선택</td>
+                        <td class="detail_info_select_box"><select name="mount" id="" class="detail_info_select">
+                                <option value="basic">상품 선택</option>
+                                <option value="1">1box</option>
+                                <option value="2">2box</option>
+                                <option value="3">3box</option>
+                                <option value="4">4box</option>
+                                <option value="5">5box</option>
+                            </select></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="detail_info_middle_area">
+            <img src="1.jpg" alt="" class="detail_info_img">
+            <img src="2.jpg" alt="" class="detail_info_img">
+            <img src="3.jpg" alt="" class="detail_info_img">
+            <img src="4.jpg" alt="" class="detail_info_img">
+            <img src="5.jpg" alt="" class="detail_info_img">
+            <img src="6.jpg" alt="" class="detail_info_img">
+            <img src="7.jpg" alt="" class="detail_info_img">
+        </div>
+        <div class="detail_info_line_area">
+            <hr class="detail_info_line">
+        </div>
+        <div class="detail_info_bottom_area">
+            <p class="detail_info_btm_title">상품 후기</p>
+        </div>
+    </main>
+</th:block>
+</html>

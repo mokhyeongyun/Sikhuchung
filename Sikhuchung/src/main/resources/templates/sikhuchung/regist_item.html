@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="sikhuchung/layout/basic">
+<th:block layout:fragment="title">
+    <title>식후청</title>
+</th:block>
+<th:block layout:fragment="contents">
+    <main>
+        <div class="regist_title_area">
+            <p class="regist_title_kor">상품 등록</p>
+            <p class="regist_title_eng">Register the product</p>
+        </div>
+        <div class="regist_content_area">
+            <table class="regist_info_table">
+                <tr class="regist_info_tr">
+                    <td class="regist_info_label">과일분류</td>
+                    <td class="regist_info_select_box"><select name="fruit_classification." id="" class="regist_info_select">
+                        <option value="basic">분류 선택</option>
+                        <option value="제철">제철과일</option>
+                        <option value="간편">간편과일</option>
+                        <option value="별난">별난과일</option>
+                        <option value="선물">선물과일</option>
+                    </select></td>
+                </tr>
+                <tr class="regist_info_p">
+                    <td rowspan="2"><p>2109470923709</p></td>
+                </tr>
+                <tr class="regist_info_tr">
+                    <td class="regist_info_label">상품명</td>
+                    <td class="regist_info_content"><input type="text" name="" id="" placeholder="상품명을 입력해 주세요" class="regist_info_box"></td>
+                    
+                </tr>
+                <tr class="regist_info_p">
+                    <td rowspan="2"><p>2109470923709</p></td>
+                </tr>
+                <tr class="regist_info_tr">
+                    <td class="regist_info_label">가격</td>
+                    <td class="regist_info_content"><input type="text" name="" id="" placeholder="가격을 입력해 주세요" class="regist_info_box"></td>
+                </tr>
+                <tr class="regist_info_p">
+                    <td rowspan="2"><p>2109470923709</p></td>
+                </tr>
+                <tr class="regist_info_tr">
+                    <td class="regist_info_label">원산지</td>
+                    <td class="regist_info_content"><input type="text" name="" id="" placeholder="원산지을 입력해 주세요" class="regist_info_box"></td>
+                </tr>
+                <tr class="regist_info_p">
+                    <td rowspan="2"><p>2109470923709</p></td>
+                </tr>
+                <tr class="regist_info_tr">
+                    <td class="regist_info_label">배송 방법</td>
+                    <td class="regist_info_content"><input type="text" name="" id="" placeholder="배송 방법을 입력해 주세요" class="regist_info_box"></td>
+                </tr>
+                <tr class="regist_info_p">
+                    <td rowspan="2"><p>2109470923709</p></td>
+                </tr>
+                <tr class="regist_info_tr">
+                    <td class="regist_info_label">재고</td>
+                    <td class="regist_info_content"><input type="text" name="" id="" placeholder="판매 수량을 입력해 주세요" class="regist_info_box"></td>
+                </tr>
+                <tr class="regist_info_p">
+                    <td rowspan="2"><p>2109470923709</p></td>
+                </tr>
+                <tr class="regist_info_tr">
+                    <td class="regist_info_label">상품 사진</td>
+                    <td class="regist_info_content"><input type="file" accept="image/*" name="" id="" placeholder="상품 사진을 등록해 주세요"></td>
+                </tr>
+                <tr class="regist_info_tr">
+                    <td class="regist_info_label">상품 상세 정보</td>
+                    <td class="regist_info_content"><input type="file" multiple accept="image/*" name="" id="" placeholder="상품 상세 정보 사진을 등록해 주세요"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="regist_btn_area">
+            <button type="button" class="regist_btn_left">돌아가기</button>
+            <button type="submit" class="regist_btn_right">등록 완료</button>
+        </div>
+    </main>
+</th:block>
+</html>
