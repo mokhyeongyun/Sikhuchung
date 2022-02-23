@@ -8,6 +8,7 @@
 		<div class="join_base_wrap">
 			<div class="member_tit">
 				<h2>회원가입</h2>
+			     <span th:text="${session.user}"></span>
 			</div>
 
 			<div class="member_cont">
@@ -26,7 +27,7 @@
 										<th><span class="">* 아이디</span></th>
 										<td>
 											<div>
-												<input type="text" class="uid" id="uid" name="uid" maxlength="15"  required>
+												<input type="text" class="uid" id="uid" name="user_id" maxlength="15"  required>
 												<button type="button" id="btnIdCheck" class="btn_idcheck" onclick="idDuplicateCheck()">중복확인</button>
 											</div>
 											 <span class="id_input_re_1" id="idMsg2">사용 가능한 아이디입니다.</span> 
@@ -39,7 +40,7 @@
 										<th><span class="">* 비밀번호</span></th>
 										<td>
 											<div>
-												<input type="password" id="upw" name="upw" autocomplete="off" maxlength="20" required>
+												<input type="password" id="upw" name="user_pw" autocomplete="off" maxlength="20" required>
 											</div>
 											<p class="sign_p pw_msg" id="pwMsg">영어,특수문자,숫자 1개이상 포함하여 4~20자 사이로 입력해주세요.</p>
 										</td>
@@ -57,7 +58,7 @@
 										<th><span class="">* 이름</span></th>
 										<td>
 											<div>
-												<input type="text" name="uname" id="uname" value="" maxlength="20" required>
+												<input type="text" name="user_name" id="uname" value="" maxlength="20" required>
 											</div>
 											<p class="sign_p name_msg" id="nameMsg">2~20자 사이의 한글과 영어만 입력가능합니다.</p>
 										</td>
@@ -66,7 +67,7 @@
 										<th><span class="">* 이메일</span></th>
 										<td>
 											<div>
-												<input type="text" name="uemail" id="uemail" value=""  required>
+												<input type="text" name="user_email" id="uemail" value=""  required>
 											</div>
 											<p class="sign_p email_msg" id="emailMsg">예)sikhuchung@naver.com</p>
 										</td>
@@ -75,7 +76,7 @@
 										<th><span class="">* 휴대폰번호</span></th>
 										<td>
 											<div>
-												<input type="text" id="utel" name="utel" maxlength="12" placeholder="- 없이 입력하세요."  required>
+												<input type="text" id="utel" name="user_tel" maxlength="12" placeholder="- 없이 입력하세요."  required>
 											</div>
 											<p class="sign_p tel_msg" id="telMsg">최소 11자리 이상의 숫자만 입력 가능합니다.</p>
 										</td>

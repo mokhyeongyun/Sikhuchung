@@ -7,18 +7,18 @@
 		<div class="content_box">
 			<div class="member_wrap">
 				<div class="member_cont">
-					<form id="formLogin" name="formLogin" method="get" action="/sikhuchung/login.do">
+					<form id="formLogin" name="formLogin" method="post" action="/sikhuchung/login.do">
 						<div class="member_login_box">
 							<h3>회원 로그인</h3>
 							<div class="login_input_sec">
 								<div>
-									<input type="text" id="id" name="username" placeholder="아이디">
-									<input type="password" id="pw" name="userpass" placeholder="비밀번호">
+									<input type="text" class="id" id="id" name="user_id" placeholder="아이디" value="">
+									<input type="password" class="pw"  id="pw" name="user_pw" placeholder="비밀번호" value="">
 								</div>
 								<button type="button" onclick="loginNullCheck()">로그인</button>
 							</div>
-							<div class="id_chk">
-								<p>아이디, 비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</p>
+							<div>
+								<p class="id_chk">아이디, 비밀번호가 일치하지 않습니다. 다시 입력해 주세요.</p>
 							</div>
 						</div>
 						<div class="btn_login_box">

@@ -68,18 +68,24 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return noticeList;
     }
 
-    /* 회원가입 */
+    /* 회원가입 --현균 */
     @Transactional
     @Override
     public void joinUser(UserVO userVO) {
-        userVO.setUgrade("USER");
+        userVO.setUser_grade("USER");
         sikhuchungMapper.saveUser(userVO);
     }
 
-    /* 아이디 중복확인 */
+    /* 아이디 중복확인 --현균 */
     @Override
     public int idCheck(String userId) throws Exception {
         return sikhuchungMapper.idCheck(userId);
+    }
+
+    /* 로그인 */
+    @Override
+    public int userLogin(UserVO userVO) throws Exception {
+        return sikhuchungMapper.userLogin(userVO);
     }
 
     @Override

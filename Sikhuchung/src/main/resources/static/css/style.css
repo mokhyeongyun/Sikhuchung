@@ -362,6 +362,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 	width: 100%;
 }
 /* 로그인  */
+.id_chk{
+	display : none;
+	color : red;
+	font-size : 10px;
+}
 .member_wrap {
 	width: 510px;
 	margin: 20px auto 40px auto;

@@ -33,4 +33,7 @@ public interface SikhuchungMapper {
 
     /* id중복확인 */
     public int idCheck(String userId);
+
+    /* 로그인 */
+    public int userLogin(UserVO userVO);
 }
