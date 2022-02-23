@@ -4,36 +4,35 @@
 	<title>join</title>
 </th:block>
 <th:block layout:fragment="contents">
-	<div id="contents">
 		<div class="content_box">
 			<div class="join_base_wrap">
-				<div>
+				<div class="member_tit">
 					<h2>회원가입</h2>
 				</div>
 
-				<div>
+				<div class="member_cont">
+				  <div class="important">* 표시는 반드시 입력하셔야 하는 항목입니다.</div>
 					<form id="formJoin" name="formJoin" action="" method="get">
-						<div class="base_info_box">
-							<span class="important">표시는 반드시 입력하셔야 하는 항목입니다.</span>
-							<div>
-								<table border="0" cellpadding="0" cellspacing="0">
+						<div class="base_join_box">
+							<div class="base_join_sec">
+								<table>
 									<colgroup>
 										<col width="25%">
 										<col width="75%">
 									</colgroup>
 									<tbody>
 										<tr>
-											<th><span class="important">아이디</span></th>
+											<th><span class="">* 아이디</span></th>
 											<td>
 												<div>
 													<input type="text" id="" name="">
-													<button type="button" id="btnIdCheck" class="" onclick="">중복확인</button>
+													<button type="button" id="btnIdCheck" class="btn_idcheck" onclick="">중복확인</button>
 												</div>
 											</td>
 
 										</tr>
 										<tr>
-											<th><span class="important">비밀번호</span></th>
+											<th><span class="">* 비밀번호</span></th>
 											<td>
 												<div>
 													<input type="password" id="" name="" autocomplete="off" placeholder="">
@@ -41,7 +40,7 @@
 											</td>
 										</tr>
 										<tr>
-											<th><span class="important">비밀번호 확인</span></th>
+											<th><span class="">* 비밀번호 확인</span></th>
 											<td>
 												<div>
 													<input type="password" name="" id="" autocomplete="off">
@@ -49,7 +48,7 @@
 											</td>
 										</tr>
 										<tr>
-											<th><span class="important">이름</span></th>
+											<th><span class="">* 이름</span></th>
 											<td>
 												<div>
 													<input type="text" name="" id="" value="" maxlength="30">
@@ -57,7 +56,7 @@
 											</td>
 										</tr>
 										<tr>
-											<th><span class="important">이메일</span></th>
+											<th><span class="">* 이메일</span></th>
 											<td>
 												<div>
 													<input type="text" name="" id="" value=""> 
@@ -66,7 +65,7 @@
 											</td>
 										</tr>
 										<tr>
-											<th><span class="important">휴대폰번호</span></th>
+											<th><span class="">* 휴대폰번호</span></th>
 											<td>
 												<div>
 													<input type="text" id="" name="" maxlength="12" placeholder="- 없이 입력하세요." value="">
@@ -79,14 +78,13 @@
 							</div>
 						</div>
 
-						<div class="btn_center_box">
-							<button type="button" id="" class="">돌아가기</button>
-							<button type="button" class="" value="회원가입">회원가입</button>
+						<div class="btn_join_box">
+							<button type="button" id="" class="btn_join_cancel">돌아가기</button>
+							<button type="button" class="btn_join" value="회원가입">회원가입</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-	</div>
 </th:block>
 </html>
