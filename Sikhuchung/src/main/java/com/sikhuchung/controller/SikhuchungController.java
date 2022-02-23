@@ -55,4 +55,20 @@ public class SikhuchungController {
 
     }
 
+    // 메인화면 -- 재훈
+    @GetMapping(value = "/sikhuchung/main.do")
+    public String main() {
+        return "sikhuchung/main";
+    }
+    
+    // 상품 추가 -- 재훈
+    @GetMapping(value = "/sikhuchung/item_regist.do")
+    public String item_regist() {
+        return "sikhuchung/item_regist";
+    }
+    // 상품 수정 -- 재훈
+    @GetMapping(value = "/sikhuchung/item_modify.do")
+    public String item_modify() {
+        return "sikhuchung/item_modify";
+    }   
 }
