@@ -26,7 +26,6 @@ public interface SikhuchungMapper {
 
     /* 후기 */
 
-<<<<<<< HEAD
     public int selectNoticeTotalCount();
 
     /* 회원가입 */
@@ -34,6 +33,4 @@ public interface SikhuchungMapper {
 
     /* id중복확인 */
     public int idCheck(String userId);
-=======
->>>>>>> yj
 }

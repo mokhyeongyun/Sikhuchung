@@ -7,14 +7,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-=======
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
->>>>>>> yj
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.UserVO;
@@ -28,13 +24,9 @@ public class SikhuchungController {
 
     @GetMapping(value = "/sikhuchung/sikhuchungTest.do")
     public String sikhuchungTest() {
-
         return "sikhuchung/sikhuchungTest";
     }
 
-<<<<<<< HEAD
-    // 공지사항 리스트 -- 유진
-=======
     // 공지사항 글쓰기 이동
     @GetMapping(value = "/sikhuchung/noticewrite.do")
     public String openNoticeWrite(@RequestParam(value = "noticeNumber", required = false) Long noticeNumber,
@@ -48,7 +40,6 @@ public class SikhuchungController {
             }
             model.addAttribute("notice", notice);
         }
-
         return "sikhuchung/noticewrite";
     }
 
@@ -66,24 +57,17 @@ public class SikhuchungController {
         } catch (Exception e) {
             // TODO => 시스템에 문제가 발생하였다는 메시지를 전달
         }
-
         return "redirect:/sikhuchung/noticelist.do";
     }
 
     // 공지사항 리스트
->>>>>>> yj
     @GetMapping(value = "/sikhuchung/noticelist.do")
     public String openNoticeList(@ModelAttribute("params") NoticeDTO params, Model model) {
         List<NoticeDTO> noticeList = sikhuchungService.getNoticeList(params);
         model.addAttribute("noticeList", noticeList);
-
         return "sikhuchung/noticelist";
     }
 
-<<<<<<< HEAD
-    // 로그인 화면이동 -- 현균
-    @GetMapping(value = "/sikhuchung/login")
-=======
     // 공지사항 상세리스트
     @GetMapping(value = "/sikhuchung/noticeview.do")
     public String openNoticeDetail(@RequestParam(value = "noticeNumber", required = false) Long noticeNumber,
@@ -92,7 +76,6 @@ public class SikhuchungController {
             // TODO => 올바르지 않은 접근이라는 메시지를 전달하고, 게시글 리스트로 리다이렉트
             return "redirect:/sikhuchung/noticelist.do";
         }
-
         NoticeDTO notice = sikhuchungService.getNoticeDetail(noticeNumber);
         if (notice == null || "Y".equals(notice.getNoticeDelete())) {
             // TODO => 없는 게시글이거나, 이미 삭제된 게시글이라는 메시지를 전달하고, 게시글 리스트로 리다이렉트
@@ -111,7 +94,6 @@ public class SikhuchungController {
             // TODO => 올바르지 않은 접근이라는 메시지를 전달하고, 게시글 리스트로 리다이렉트
             return "redirect:/sikhuchung/noticelist.do";
         }
-
         try {
             boolean isDeleted = sikhuchungService.deleteNotice(noticeNumber);
             if (isDeleted == false) {
@@ -146,8 +128,7 @@ public class SikhuchungController {
     }
 
     // 로그인 화면이동
-    @GetMapping(value = "/sikhuchung/login.do")
->>>>>>> yj
+    @GetMapping(value = "/sikhuchung/login")
     public String login() {
         return "sikhuchung/login";
     }

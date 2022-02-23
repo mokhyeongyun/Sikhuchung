@@ -68,7 +68,6 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return noticeList;
     }
 
-<<<<<<< HEAD
     /* 회원가입 */
     @Transactional
     @Override
@@ -83,12 +82,10 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.idCheck(userId);
     }
 
-=======
     @Override
     public boolean hitPlus(Long noticeNumber) {
         return sikhuchungMapper.hitPlus(noticeNumber);
     }
 
     /* 후기 */
->>>>>>> yj
 }

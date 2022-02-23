@@ -94,7 +94,6 @@
         WHERE
             notice_delete = 'N'
     </select>
-<<<<<<< HEAD
 
     <!-- 회원가입 -->
     <insert id="saveUser" parameterType="UserVO">
@@ -104,7 +103,6 @@
     <select id="idCheck" resultType="int">
         select count(*) from s_user where user_id = #{userid}
     </select>
-=======
     
     <update id="hitPlus" parameterType="long">
         UPDATE s_notice
@@ -116,5 +114,4 @@
     
     <!-- 후기 -->
     
->>>>>>> yj
 </mapper>
