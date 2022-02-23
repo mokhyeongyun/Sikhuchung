@@ -6,13 +6,18 @@ import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.UserVO;
 
 public interface SikhuchungService {
-    public boolean registerService(NoticeDTO params);
+    /* 공지사항 */
+    public boolean registerNotice(NoticeDTO params);
 
-    public NoticeDTO getNoticeDetail(int noticeNumber);
+    public NoticeDTO getNoticeDetail(Long noticeNumber);
 
-    public boolean deleteNotice(int noticeNumber);
+    public boolean deleteNotice(Long noticeNumber);
 
-    public List<NoticeDTO> getNoticeList();
+    public List<NoticeDTO> getNoticeList(NoticeDTO params);
+
+    public boolean hitPlus(Long noticeNumber);
+
+    /* 후기 */
 
     /* 회원가입 */
     public void joinUser(UserVO userVO);

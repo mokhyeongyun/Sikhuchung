@@ -42,5 +42,4 @@ class SikhuchungApplicationTests {
             e.printStackTrace();
         }
     }
-
 }

@@ -9,16 +9,24 @@ import com.sikhuchung.domain.UserVO;
 
 @Mapper
 public interface SikhuchungMapper {
+    /* 공지사항 */
     public int insertNotice(NoticeDTO params);
 
-    public NoticeDTO selectNoticeDetail(int noticeNumber);
+    public NoticeDTO selectNoticeDetail(Long noticeNumber);
 
     public int updateNotice(NoticeDTO params);
 
-    public int deleteNotice(int noticeNumber);
+    public int deleteNotice(Long noticeNumber);
 
-    public List<NoticeDTO> selectNoticeList();
+    public List<NoticeDTO> selectNoticeList(NoticeDTO params);
 
+    public int selectNoticeTotalCount(NoticeDTO params);
+
+    public boolean hitPlus(Long noticeNumberLong);
+
+    /* 후기 */
+
+<<<<<<< HEAD
     public int selectNoticeTotalCount();
 
     /* 회원가입 */
@@ -26,4 +34,6 @@ public interface SikhuchungMapper {
 
     /* id중복확인 */
     public int idCheck(String userId);
+=======
+>>>>>>> yj
 }

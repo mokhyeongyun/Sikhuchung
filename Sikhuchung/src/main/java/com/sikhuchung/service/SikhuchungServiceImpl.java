@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
+import com.sikhuchung.paging.PaginationInfo;
 
 @Service
 public class SikhuchungServiceImpl implements SikhuchungService {
@@ -17,11 +18,12 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     @Autowired
     private SikhuchungMapper sikhuchungMapper;
 
+    /* 공지사항 */
     @Override
-    public boolean registerService(NoticeDTO params) {
+    public boolean registerNotice(NoticeDTO params) {
         int queryResult = 0;
 
-        if (params.getNoticeNumber() == 0) {
+        if (params.getNoticeNumber() == null) {
             queryResult = sikhuchungMapper.insertNotice(params);
         } else {
             queryResult = sikhuchungMapper.updateNotice(params);
@@ -31,12 +33,12 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     }
 
     @Override
-    public NoticeDTO getNoticeDetail(int noticeNumber) {
+    public NoticeDTO getNoticeDetail(Long noticeNumber) {
         return sikhuchungMapper.selectNoticeDetail(noticeNumber);
     }
 
     @Override
-    public boolean deleteNotice(int noticeNumber) {
+    public boolean deleteNotice(Long noticeNumber) {
         int queryResult = 0;
 
         NoticeDTO notice = sikhuchungMapper.selectNoticeDetail(noticeNumber);
@@ -49,18 +51,24 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     }
 
     @Override
-    public List<NoticeDTO> getNoticeList() {
+    public List<NoticeDTO> getNoticeList(NoticeDTO params) {
         List<NoticeDTO> noticeList = Collections.emptyList();
 
-        int noticeTotalCount = sikhuchungMapper.selectNoticeTotalCount();
+        int noticeTotalCount = sikhuchungMapper.selectNoticeTotalCount(params);
+
+        PaginationInfo paginationInfo = new PaginationInfo(params);
+        paginationInfo.setTotalRecordCount(noticeTotalCount);
+
+        params.setPaginationInfo(paginationInfo);
 
         if (noticeTotalCount > 0) {
-            noticeList = sikhuchungMapper.selectNoticeList();
+            noticeList = sikhuchungMapper.selectNoticeList(params);
         }
 
         return noticeList;
     }
 
+<<<<<<< HEAD
     /* 회원가입 */
     @Transactional
     @Override
@@ -75,4 +83,12 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.idCheck(userId);
     }
 
+=======
+    @Override
+    public boolean hitPlus(Long noticeNumber) {
+        return sikhuchungMapper.hitPlus(noticeNumber);
+    }
+
+    /* 후기 */
+>>>>>>> yj
 }
