@@ -475,6 +475,13 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 	overflow: hidden;
 }
 /*******************************아이디 찾기 ****************/
+.findIdMsgFail{
+	color : red;
+}
+.findIdMsgTrue{
+	color : #339f4b;
+	font-weight: bold;
+}
 .find_id_box {
 	width: 460px;
 	margin: auto;
@@ -617,6 +624,15 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 	font-size: 12px;
 	font-weight: bold;
 	margin-top: 20px;
+}
+.findPwMsgFail{
+    color : red;
+    font-size: 12px;
+}
+.findPwMsgTrue{
+	font-size: 12px;
+    color : #339f4b;
+    font-weight: bold;
 }
 /************************* 회원가입************************/
 .join_base_wrap .member_cont {

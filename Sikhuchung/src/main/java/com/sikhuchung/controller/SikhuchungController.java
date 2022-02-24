@@ -183,17 +183,41 @@ public class SikhuchungController {
             return "success"; // 중복 아이디 x
         }
     }
-    // 아이디찾기 화면 이동 -- 현균
 
+    // 아이디찾기 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/find_id.do")
     public String findId() {
         return "sikhuchung/find_id";
+    }
+
+    // 아이디찾기 진행 -- 현균
+    @PostMapping(value = "/sikhuchung/find_id.do")
+    public String findIdPOST(UserVO userVO, Model model) throws Exception {
+        if (sikhuchungService.findIdCheck(userVO) == null) {
+            model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
+            return "/sikhuchung/find_id";
+        } else {
+            model.addAttribute("user", sikhuchungService.findIdCheck(userVO));
+            return "sikhuchung/find_id";
+        }
     }
 
     // 비밀번호찾기 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/find_pw.do")
     public String findPw() {
         return "sikhuchung/find_pw";
+    }
+
+    // 비밀번호찾기 진행 -- 현균
+    @PostMapping(value = "/sikhuchung/find_pw.do")
+    public String findPwPOST(UserVO userVO, Model model) throws Exception {
+        if (sikhuchungService.findPwCheck(userVO) == null) {
+            model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
+            return "/sikhuchung/find_pw";
+        } else {
+            model.addAttribute("user", sikhuchungService.findPwCheck(userVO));
+            return "sikhuchung/find_pw";
+        }
     }
 
     // 마이페이지-주문목록 화면 이동 -- 현균

@@ -36,4 +36,10 @@ public interface SikhuchungMapper {
 
     /* 로그인 */
     public int userLogin(UserVO userVO);
+
+    /* 아이디 찾기 */
+    public String findIdCheck(UserVO userVO);
+
+    /* 비밀번호 찾기 */
+    public String findPwCheck(UserVO userVO);
 }

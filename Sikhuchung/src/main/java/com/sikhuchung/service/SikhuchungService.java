@@ -28,4 +28,10 @@ public interface SikhuchungService {
     // 로그인
     public int userLogin(UserVO userVO) throws Exception;
 
+    // 아이디찾기
+    public String findIdCheck(UserVO userVO) throws Exception;
+
+    // 비밀번호찾기
+    public String findPwCheck(UserVO userVO) throws Exception;
+
 }

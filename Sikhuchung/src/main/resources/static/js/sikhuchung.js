@@ -299,26 +299,27 @@ function loginNullCheck() {
 };
 /****************************************************** 아이디찾기 유효성 -현균*************************/
 // 아이디찾기 빈값 체크 유효성
-function findIdNullCheck() {
+function findIdCheck() {
     let name = document.getElementById("name");
     let email = document.getElementById("email");
 
-
     if (name.value == "") {
         alert("이름을 입력해 주세요");
-        id.focus();
+        name.focus();
         return false;
     } else if (email.value == "") {
         alert("이메일을 입력해 주세요");
-        password.focus();
+        email.focus();
         return false;
     } else {
         document.formFindId.submit();
     }
 }
+
+
 /***************************************************** 비밀번호찾기 유효성 -현균***************************/
 // 비밀번호찾기 빈값 체크 유효성
-function findPwNullCheck() {
+function findPwCheck() {
     let id = document.getElementById("id");
     let name = document.getElementById("name");
 

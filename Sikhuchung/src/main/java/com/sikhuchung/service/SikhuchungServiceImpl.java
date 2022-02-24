@@ -88,6 +88,18 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.userLogin(userVO);
     }
 
+    /* 아이디 찾기 */
+    @Override
+    public String findIdCheck(UserVO userVO) throws Exception {
+        return sikhuchungMapper.findIdCheck(userVO);
+    }
+
+    /* 비밀번호 찾기 */
+    @Override
+    public String findPwCheck(UserVO userVO) throws Exception {
+        return sikhuchungMapper.findPwCheck(userVO);
+    }
+
     @Override
     public boolean hitPlus(Long noticeNumber) {
         return sikhuchungMapper.hitPlus(noticeNumber);
