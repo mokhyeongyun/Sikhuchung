@@ -6,7 +6,7 @@
             <input type="text" name="sessionId" th:value="${session.user}">
             <div th:if="${session.user} == null" class="headerTag">
             <a class="headerATag" th:href="@{/sikhuchung/login.do}">로그인</a>
-            <a class="headerATag" th:href="@{/sikhuchung/login.do}">회원가입</a>
+            <a class="headerATag" th:href="@{/sikhuchung/join.do}">회원가입</a>
             <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
             </div>
             <div th:if="${session.user} != null" class="headerTag">
