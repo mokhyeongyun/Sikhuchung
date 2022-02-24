@@ -8,3 +8,137 @@ body {
   margin: 0;
   padding: 0;
 }
+/* Regist item */
+/* 상단 제목 */
+.regist_title_area {
+  margin: 2em 0px;
+  display: flex;
+  flex-direction: column;
+}
+.regist_title_kor {
+  padding-top: 10px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "GMARKET-SANS300";
+  font-weight: lighter;
+  font-size: 40px;
+}
+.regist_title_eng {
+  padding-bottom: 10px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cafe24 Ssurround air";
+  font-weight: lighter;
+  font-size: 20px;
+}
+
+/* 데이터 입력 표 */
+.regist_info_table {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.regist_info_tr {
+  height: 90px;
+  display: flex;
+  align-items: flex-end;
+}
+.regist_info_label {
+  width: 200px;
+  height: auto;
+  font-family: "Cafe24 Ssurround air";
+  font-weight: 500;
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+}
+.regist_info_content {
+  width: 300px;
+  height: auto;
+  font-family: "Cafe24 Ssurround air";
+  font-weight: 500;
+  font-size: 26px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 선택 상자 */
+.regist_info_select_box {
+  position: relative;
+  width: 296px;
+  height: 36px;
+  border-radius: 10px;
+  border: 2px solid rgb(240, 169, 128);
+}
+.regist_info_select_box .regist_info_select {
+  width: inherit;
+  height: inherit;
+  background: transparent;
+  border: 0 none;
+  outline: 0 none;
+  padding: 0 5px;
+  position: relative;
+  z-index: 3;
+}
+.regist_info_select_box .regist_info_select option {
+  background: rgb(223, 239, 255);
+  color: rgb(0, 0, 0);
+  font-family: "GMARKET-SANS300";
+  font-weight: lighter;
+  font-size: 14px;
+}
+.regist_info_box {
+  height: 36px;
+  padding: 0px 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(240, 169, 128);
+}
+.regist_info_content input:focus {
+  outline: solid 3px rgb(231, 141, 141);
+}
+
+/* 경고문 출력 p */
+.regist_info_p {
+  margin: auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  font-family: "GMARKET-SANS300";
+  font-weight: lighter;
+  font-size: 16px;
+}
+.regist_info_p p {
+  padding: 0;
+  margin: 0;
+}
+
+/* 버튼 */
+.regist_btn_area {
+  margin: 40px 0px;
+  display: flex;
+  justify-content: center;
+}
+.regist_btn_area button {
+  height: 3em;
+  width: 8em;
+  font-family: "GMARKET-SANS300";
+  font-weight: 300;
+  font-size: 18px;
+}
+.regist_btn_left {
+  margin-right: 7em;
+  border-radius: 16px;
+  border: 3px solid rgb(240, 158, 148);
+  background-color: rgba(248, 223, 223, 0.596);
+}
+.regist_btn_right {
+  margin-left: 7em;
+  border-radius: 16px;
+  border: 3px solid rgb(148, 185, 240);
+  background-color: rgba(223, 232, 248, 0.596);
+}
