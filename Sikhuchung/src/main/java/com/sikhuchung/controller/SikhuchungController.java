@@ -157,6 +157,13 @@ public class SikhuchungController {
 
     }
 
+    // 로그아웃 --현균
+    @GetMapping("/sikhuchung/logout.do")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "sikhuchung/main"; // 주소 요청으로 변경
+    }
+
     // 회원가입 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/join.do")
     public String joinForm() {

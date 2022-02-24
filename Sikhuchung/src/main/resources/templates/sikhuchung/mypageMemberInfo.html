@@ -23,6 +23,7 @@
 				<div class="member_cont">
                   <div class="important">* 표시는 반드시 입력하셔야 하는 항목입니다.</div>
                     <form id="formMemberUpdate" name="formMemberUpdate" action="/sikhuchung/mypageMemberInfo.do" method="get">
+                    <input type="text" name="sessionId" th:value="${session.user}">
                         <div class="base_join_box">
                             <div class="base_join_sec">
                                 <table>

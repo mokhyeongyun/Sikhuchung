@@ -1015,6 +1015,18 @@ button.payment_btn{
 	width:80%;
 	margin:auto;
 }
-
+/*헤더 태그*/
+.headerTag {
+    text-align: right;
+    color: white;
+}
+.headerATag{
+	margin-right:20px;
+	font-size : 13px;
+	font-weight: none;
+	color: white;
+	text-decoration:none;
+	cursor:pointer;
+}
 
 /* 필립 css 끝 */
