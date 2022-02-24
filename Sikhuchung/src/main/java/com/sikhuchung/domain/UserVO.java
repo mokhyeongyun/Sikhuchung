@@ -1,18 +1,16 @@
 package com.sikhuchung.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class UserVO {
 
-    private String uid;
-    private String upw;
-    private String uname;
-    private String uemail;
-    private int utel;
-    private String ugrade;
-    private String ujoindate;
+    private String user_id;
+    private String user_pw;
+    private String user_name;
+    private String user_email;
+    private String user_tel;
+    private String user_grade;
+    private String user_joindate;
 
 }

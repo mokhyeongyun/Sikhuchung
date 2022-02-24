@@ -3,6 +3,7 @@
 <th:block layout:fragment="title">
 	<title>find_id</title>
 </th:block>
+
 <th:block layout:fragment="contents">
 			<div class="content_box">
 				<div class="member_wrap">
@@ -10,18 +11,19 @@
 						<h2>아이디찾기</h2>
 					</div>
 					<div class="member_cont">
-						<form id="formFindId" name="formFindId" method="get" action="/sikhuchung/find_id.do" novalidate="novalidate">
+						<form id="formFindId" name="formFindId" method="post" action="/sikhuchung/find_id.do" novalidate="novalidate">
 							<div class="find_id_box">
 								<div class="find_id_sec">
 									<h3>회원 아이디찾기</h3>
 									<div class="login_input"> 
 										<div>
-											<input type="text" id="name" name="uname" placeholder="이름"> 
-										    <input type="text" id="email" name="uemail" class="input_email" placeholder="가입메일주소" >
+											<input type="text" class="name" id="name" name="user_name" placeholder="이름"> 
+										    <input type="text" id="email" name="user_email" class="email" placeholder="가입메일주소" >
 										</div>
-									    <button type="button" class="btn_member_id" onclick="findIdNullCheck()">아이디 찾기</button>
+									    <button type="button" class="btn_member_id" onclick="findIdCheck()">아이디 찾기</button>
 									</div>
-									<p>일치하는 회원정보가 없습니다. 다시 입력해 주세요.</p>
+									<p th:if="${msg} == '일치하는 회원정보가 없습니다.'"  th:text="${msg}" class="findIdMsgFail"></p>
+									<p th:if="${user} != null"  th:text="|회원님의 아이디 :  ${user}|" class="findIdMsgTrue"></p>
 								</div>
 								<div class="btn_member_sec">
 									<ul>

@@ -101,6 +101,7 @@ setInterval(() => {
 /******************************************************** 회원가입 유효성 -현균*************************8 */
 //아이디 중복검사
 function idDuplicateCheck() {
+    var reg_id = /^[a-z0-9]{4,15}$/; //ID는 영어, 숫자만 사용하여 4~15자 사이로 입력해주세요.
     let idCheckResult = document.getElementById("idCheckResult");
     let id = $('.uid');
     let userId = $('.uid').val(); // .uid에 입력되는 값
@@ -109,6 +110,9 @@ function idDuplicateCheck() {
     } // '컨트롤에 넘길 데이터 이름' : '데이터(.uid에 입력되는 값)'
     if (userId == "") {
         alert("아이디 입력 후 중복확인 버튼을 눌러주세요.");
+        id.focus();
+    } else if (!reg_id.test(userId)) {
+        alert("아이디는 영어, 숫자만 사용하여 4~15자 사이로 입력해주세요.")
         id.focus();
     } else {
         $.ajax({
@@ -260,46 +264,62 @@ function telCheck() {
 }
 /************************************************** 로그인 유효성 -현균***********************************/
 // 로그인 빈값 체크 유효성
+
 function loginNullCheck() {
     let id = document.getElementById("id");
     let password = document.getElementById("pw");
-
-
-    if (id.value == "") {
+    let userId = $('.id').val(); // .uid에 입력되는 값
+    let userPass = $('.pw').val(); // .uid에 입력되는 값
+    var param = {user_id:userId, user_pw:userPass}
+     // '컨트롤에 넘길 데이터 이름' : '데이터(.uid에 입력되는 값)'
+    if (userId == "") {
         alert("아이디를 입력해 주세요");
         id.focus();
-        return false;
-    } else if (password.value == "") {
+    } else if (userPass == "") {
         alert("비밀번호를 입력해 주세요");
         password.focus();
-        return false;
     } else {
-        alert("로그인이 완료되었습니다.");
-        document.formLogin.submit();
+        $.ajax({
+            type:"post",
+            url: "/sikhuchung/login.do",
+            data: param,
+            success: function(result) {
+              /*  console.log("성공 여부" + result);*/
+               if (result != 'fail') {  //성공
+                    alert("로그인에 성공하였습니다.\n메인페이지로 이동합니다.")
+                    location.href='/sikhuchung/main.do';
+                    return true;
+                } else {
+                    $('.id_chk').css("display", "inline-block");
+                    return false;
+                }
+            }
+        });
     }
-}
+};
 /****************************************************** 아이디찾기 유효성 -현균*************************/
 // 아이디찾기 빈값 체크 유효성
-function findIdNullCheck() {
+function findIdCheck() {
     let name = document.getElementById("name");
     let email = document.getElementById("email");
 
-
     if (name.value == "") {
         alert("이름을 입력해 주세요");
-        id.focus();
+        name.focus();
         return false;
     } else if (email.value == "") {
         alert("이메일을 입력해 주세요");
-        password.focus();
+        email.focus();
         return false;
     } else {
         document.formFindId.submit();
     }
 }
+
+
 /***************************************************** 비밀번호찾기 유효성 -현균***************************/
 // 비밀번호찾기 빈값 체크 유효성
-function findPwNullCheck() {
+function findPwCheck() {
     let id = document.getElementById("id");
     let name = document.getElementById("name");
 
@@ -375,3 +395,42 @@ function userQuitNullCheck() {
         document.formUserQuit.submit();
     }
 }
+/* 필립 js 시작 */
+function paymentFormCheck(){
+    let order_user,order_phone; /*이 부분이 없어도 정상 실행됌*/
+    
+    order_user=document.getElementById("order_user");
+    order_phone=document.getElementById("order_phone");
+    order_email=document.getElementById("order_email");
+    get_user=document.getElementById("get_user");
+    get_address=document.getElementById("get_address");
+    get_phone=document.getElementById("get_phone");
+    
+    if(order_user.value==""){
+        alert("주문하시는 분을 기입해주세요.")
+        order_user.focus();
+        return false;
+    }else if(order_phone.value==""){
+        alert("주문자 정보의 휴대폰 번호를 기입해주세요.")
+        order_phone.focus();
+        return false;
+    }else if(order_email.value==""){
+        alert("이메일을 기입해주세요.")
+        order_email.focus();
+        return false;
+    }else if(get_user.value==""){
+        alert("받으실 분을 기입해주세요.");
+        get_user.focus();
+        return false;
+    }else if(get_address.value==""){
+        alert("받으실 곳을 기입해주세요.");
+        get_address.focus();
+        return false;
+    }else if(get_phone.value==""){
+        alert("배송정보의 휴대폰 번호를 기입해주세요.")
+    }
+    
+}
+
+
+/* 필립 js 끝 */

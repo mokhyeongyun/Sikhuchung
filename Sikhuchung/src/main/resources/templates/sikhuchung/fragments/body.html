@@ -2,25 +2,27 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <body th:fragment="main-body">
     <!-- header -->
-            
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top navbar-light" id="mainNav">
+            <input type="text" name="sessionId" th:value="${session.user}">
+            <div th:if="${session.user} == null" class="headerTag">
+            <a class="headerATag" th:href="@{/sikhuchung/login.do}">로그인</a>
+            <a class="headerATag" th:href="@{/sikhuchung/join.do}">회원가입</a>
+            <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
+            </div>
+            <div th:if="${session.user} != null" class="headerTag">
+            <a class="headerATag" th:href="@{/sikhuchung/logout.do}">로그아웃</a>
+            <a class="headerATag" th:href="@{/sikhuchung/mypageOrderInfo.do}">마이페이지</a>
+            <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
+            </div>
             <div class="container">
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#portfolio}">제철과일</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#about}">별난과일</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#contact}">간편과일</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#contact}">선물과일</a></li>
-                </ul>
-                </div>
                 <a class="navbar-brand" th:href="@{/sikhuchung/sikhuchungTest.do}">식 후 청</a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#portfolio}">제철과일</a></li>
+                <ul class="navbar-nav">
+                    <li class="nav-item mx-0 mx-lg-1" ><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#portfolio}">제철과일</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#about}">별난과일</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#contact}">간편과일</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{#contact}">선물과일</a></li>
@@ -79,6 +81,7 @@
        
        
        
+    <script th:src="@{/js/jquery.min.js}"></script>
     <script th:src="@{../js/sikhuchung.js}"></script>
     </body>
     
