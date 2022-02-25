@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.ProductVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 
 @Service
@@ -58,5 +59,16 @@ public class SikhuchungServiceImpl implements SikhuchungService {
 
         return noticeList;
     }
+    
+    @Override
+    public List<ProductVO> getProductList() {
+    	List<ProductVO> productList = sikhuchungMapper.selectProductList();
+    	return productList;
+    }
 
+    @Override
+    public ProductVO getProductData(int productNumber) {
+    	ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
+    	return productData;
+    }
 }

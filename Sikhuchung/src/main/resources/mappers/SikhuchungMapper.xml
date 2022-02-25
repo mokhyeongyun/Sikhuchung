@@ -80,5 +80,20 @@
         WHERE
             notice_delete = 'N'
     </select>
+    
+    <!-- 메인화면 썸네일 리스트 불러오기 -->
+    <select id="selectProductList" resultType="ProductVO">
+    	SELECT
+    		product_number, product_name, product_price, product_thumbnail
+    	FROM
+    		s_product	
+    </select>
+    
+    <select id="selectProductData" parameterType="int" resultType="ProductVO">
+    	SELECT
+    		product_number, product_category, product_name, product_price, product_origin, product_delivery, product_stock ,product_info ,product_delete,product_thumbnail ,product_register_date ,product_register, product_update_date ,product_updater
+    	FROM
+    		s_product where product_number = #{productNumber}
+    </select>
 
 </mapper>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.ProductVO;
 
 @Mapper
 public interface SikhuchungMapper {
@@ -19,4 +20,8 @@ public interface SikhuchungMapper {
     public List<NoticeDTO> selectNoticeList();
 
     public int selectNoticeTotalCount();
+    
+    public List<ProductVO> selectProductList();
+    
+    public ProductVO selectProductData(int productNumber);
 }
