@@ -42,4 +42,16 @@ public interface SikhuchungMapper {
 
     /* 비밀번호 찾기 */
     public String findPwCheck(UserVO userVO);
+
+    // 마이페이지 회원정보수정 비밀번호체크
+    public int memberInfoPwCheck(UserVO userVO);
+
+    // 마이페이지 회원정보수정 보여주기
+    public UserVO memberInfo(UserVO userVO);
+
+    // 마이페이지 회원정보수정 진행
+    public void memberInfoUpdate(UserVO userVO);
+
+    // 마이페이지 회원탈퇴 진행
+    public void memberQuit(UserVO userVO);
 }

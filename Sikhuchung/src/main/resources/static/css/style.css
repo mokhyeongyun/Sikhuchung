@@ -849,6 +849,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 	border: 1px solid #dadada;
 	font-size: 12px;
 }
+.memberQuitMsg{
+	display : none;
+	color : red;
+	font-size:12px;
+}
 /****************마이페이지 주문목록***************/
 .mypage_order_info {
 	width: 80%;

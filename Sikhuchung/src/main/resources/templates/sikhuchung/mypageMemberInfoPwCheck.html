@@ -19,7 +19,8 @@
 		<div class="contents">
 			<div class="mypage_cont">
 				<div class="my_page_password">
-					<form name="formPwCertify" id="formPwCertify" action="/sikhuchung/mypageMemberInfoPwCheck.do" method="get" novalidate="novalidate">
+					<form name="formPwCertify" id="formPwCertify" action="/sikhuchung/mypageMemberInfoPwCheck.do" method="post" novalidate="novalidate">
+					 <input type="text" name="userId" th:value="${session.user}">
 						<div class="mypage_zone_tit">
 							<h2>회원정보 변경</h2>
 						</div>
@@ -28,7 +29,8 @@
 							</strong>
 						</p>
 						<div class="mypage_pwcheck">
-							<span>비밀번호</span> <input type="password" id="pw" name="upw">
+							<p th:text="${msg}" class="findIdMsgFail"></p>
+							<span>비밀번호</span> <input type="password" id="pw" name="userPw">
 						</div>
 						<div class="btn_pwcheck_box">
 							<a class="btn_pwcheck_cancel">취소</a>

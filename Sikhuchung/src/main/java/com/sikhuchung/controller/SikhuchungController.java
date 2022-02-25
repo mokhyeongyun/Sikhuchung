@@ -141,8 +141,8 @@ public class SikhuchungController {
     @PostMapping(value = "/sikhuchung/login.do")
     @ResponseBody
     public String userLogin(UserVO userVO, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
-        System.out.println(userVO.getUser_id());
-        System.out.println(userVO.getUser_pw());
+        System.out.println(userVO.getUserId());
+        System.out.println(userVO.getUserPw());
         HttpSession session = req.getSession();
         int result = sikhuchungService.userLogin(userVO);
 
@@ -151,7 +151,7 @@ public class SikhuchungController {
             rttr.addFlashAttribute("msg", false);
             return "fail";
         } else {
-            session.setAttribute("user", userVO.getUser_id());
+            session.setAttribute("user", userVO.getUserId());
             return "true";
         }
 
@@ -229,26 +229,105 @@ public class SikhuchungController {
 
     // 마이페이지-주문목록 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/mypageOrderInfo.do")
-    public String mypageOrderInfo() {
-        return "sikhuchung/mypageOrderInfo";
+    public String mypageOrderInfo(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            // System.out.println("세션있음");
+            return "sikhuchung/mypageOrderInfo";
+        }
     }
 
     // 마이페이지-회원정보변경 비밀번호확인 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/mypageMemberInfoPwCheck.do")
-    public String mypageMemberInfoPwCheck() {
-        return "sikhuchung/mypageMemberInfoPwCheck";
+    public String mypageMemberInfoPwCheck(HttpServletRequest req) throws Exception {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            // System.out.println("세션있음");
+            return "sikhuchung/mypageMemberInfoPwCheck";
+        }
+    }
+
+    // 마이페이지-회원정보변경 비밀번호확인 화면 진행 -- 현균
+    @PostMapping(value = "/sikhuchung/mypageMemberInfoPwCheck.do")
+    public String memberInfoPwCheck(UserVO userVO, Model model) throws Exception {
+        int result = sikhuchungService.memberInfoPwCheck(userVO);
+        UserVO userInfo = sikhuchungService.memberInfo(userVO);
+        if (result == 0) {
+            model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+            return "/sikhuchung/mypageMemberInfoPwCheck";
+        } else {
+            model.addAttribute("check", "true");
+            model.addAttribute("userId", userInfo.getUserId());
+            model.addAttribute("userPw", userInfo.getUserPw());
+            model.addAttribute("userName", userInfo.getUserName());
+            model.addAttribute("userEmail", userInfo.getUserEmail());
+            model.addAttribute("userTel", userInfo.getUserTel());
+            return "/sikhuchung/mypageMemberInfo";
+        }
     }
 
     // 마이페이지-회원정보변경 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/mypageMemberInfo.do")
-    public String mypageMemberInfo() {
-        return "sikhuchung/mypageMemberInfo";
+    public String mypageMemberInfo(HttpServletRequest req, Model model) {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            // System.out.println("세션있음");
+            if (model.getAttribute("check") == null) { // 비밀번호 확인 미완료
+                return "sikhuchung/mypageMemberInfoPwCheck";
+            } else {
+                return "sikhuchung/mypageMemberInfo";
+            }
+        }
+    }
+
+    // 마이페이지-회원정보변경 진행 -- 현균
+    @PostMapping(value = "/sikhuchung/mypageMemberInfo.do")
+    public String memberInfoUpdate(UserVO uservo, HttpServletRequest req, Model model) {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            // System.out.println("세션있음");
+            sikhuchungService.memberInfoUpdate(uservo);
+            return "sikhuchung/mypageOrderInfo";
+        }
     }
 
     // 마이페이지-회원탈퇴 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/mypageMemberQuit.do")
-    public String mypageMemberQuit() {
-        return "sikhuchung/mypageMemberQuit";
+    public String mypageMemberQuit(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            // System.out.println("세션있음");
+            return "sikhuchung/mypageMemberQuit";
+        }
+    }
+
+    // 마이페이지-회원탈퇴 진행 -- 현균
+    @PostMapping(value = "/sikhuchung/mypageMemberQuit.do")
+    @ResponseBody
+    public String MemberQuit(UserVO userVO, HttpServletRequest req, HttpSession session, Model model) throws Exception {
+        int result = sikhuchungService.memberInfoPwCheck(userVO);
+        if (result == 0) {
+            return "fail";
+        } else {
+            sikhuchungService.memberQuit(userVO);
+            session.invalidate();
+            return "true";
+        }
     }
 
     // 장바구나 화면

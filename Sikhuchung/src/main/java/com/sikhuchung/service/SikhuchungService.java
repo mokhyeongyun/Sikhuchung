@@ -34,4 +34,16 @@ public interface SikhuchungService {
     // 비밀번호찾기
     public String findPwCheck(UserVO userVO) throws Exception;
 
+    // 마이페이지 회원정보수정 비밀번호체크
+    public int memberInfoPwCheck(UserVO userVO) throws Exception;
+
+    // 마이페이지 회원정보수정 보여주기
+    public UserVO memberInfo(UserVO userVO);
+
+    // 회원정보변경
+    public void memberInfoUpdate(UserVO userVO);
+
+    // 회원탈퇴
+    public void memberQuit(UserVO userVO) throws Exception;
+
 }

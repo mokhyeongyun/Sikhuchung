@@ -97,7 +97,7 @@
 
     <!-- 회원가입 -->
     <insert id="saveUser" parameterType="UserVO">
-        INSERT INTO s_user VALUES(#{user_id},#{user_pw},#{user_name},#{user_email},#{user_tel},#{user_grade},SYSDATE)
+        INSERT INTO s_user VALUES(#{userId},#{userPw},#{userName},#{userEmail},#{userTel},#{userGrade},SYSDATE)
     </insert>
     <!-- id중복확인 -->
     <select id="idCheck" resultType="int">
@@ -105,16 +105,33 @@
     </select>
     <!-- 로그인 -->
     <select id="userLogin" resultType="int"  parameterType="UserVO">
-        select count(*) from s_user where user_id = #{user_id} and user_pw = #{user_pw}
+        select count(*) from s_user where user_id = #{userId} and user_pw = #{userPw}
     </select>
     <!-- 아이디찾기 -->
     <select id="findIdCheck" resultType="String" parameterType="UserVO">
-        select user_id from s_user where user_name = #{user_name} and user_email= #{user_email}
+        select user_id from s_user where user_name = #{userName} and user_email= #{userEmail}
     </select>
     <!-- 비밀번호찾기 -->
     <select id="findPwCheck" resultType="String" parameterType="UserVO">
-        select user_pw from s_user where user_id = #{user_id} and user_name= #{user_name}
+        select user_pw from s_user where user_id = #{userId} and user_name= #{userName}
     </select>
+    <!-- 회원정보 변경 비밀번호 확인 -->
+    <select id="memberInfoPwCheck" resultType="int" parameterType="UserVO">
+        select count(*) from s_user where user_id = #{userId} and user_pw = #{userPw}
+    </select>
+    <!-- 회원정보 보여주기 -->
+    <select id="memberInfo" resultType="UserVO" parameterType="UserVO">
+         select user_id, user_pw, user_name, user_email, user_tel, user_grade, user_joindate from s_user where user_id = #{userId} and user_pw = #{userPw}
+    </select>
+    <!-- 회원정보 변경 -->
+    <update id="memberInfoUpdate" parameterType="UserVO">
+        update s_user set user_pw=#{userPw}, user_name=#{userName}, user_email=#{userEmail}, user_tel=#{userTel} where user_id=#{userId}
+    </update>
+    <!-- 회원탈퇴 -->
+    <delete id="memberQuit" parameterType="UserVO">
+        delete from s_user where user_id = #{userId} and user_pw = #{userPw} 
+    </delete>
+
     
     <update id="hitPlus" parameterType="long">
         UPDATE s_notice
