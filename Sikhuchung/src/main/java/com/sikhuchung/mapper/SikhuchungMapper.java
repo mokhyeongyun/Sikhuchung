@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.UserVO;
 
 @Mapper
@@ -54,4 +55,7 @@ public interface SikhuchungMapper {
 
     // 마이페이지 회원탈퇴 진행
     public void memberQuit(UserVO userVO);
+
+    // 마이페이지 주문목록 리스트
+    public List<OrderDetailDTO> getOrderList(String user);
 }

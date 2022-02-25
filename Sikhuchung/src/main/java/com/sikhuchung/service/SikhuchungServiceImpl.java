@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 import com.sikhuchung.paging.PaginationInfo;
@@ -122,6 +123,12 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     @Override
     public void memberQuit(UserVO userVO) throws Exception {
         sikhuchungMapper.memberQuit(userVO);
+    }
+
+    // 마이페이지 주문목록
+    @Override
+    public List<OrderDetailDTO> getOrderList(String user) throws Exception {
+        return sikhuchungMapper.getOrderList(user);
     }
 
     @Override

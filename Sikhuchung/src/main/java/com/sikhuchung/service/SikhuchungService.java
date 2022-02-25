@@ -3,6 +3,7 @@ package com.sikhuchung.service;
 import java.util.List;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.UserVO;
 
 public interface SikhuchungService {
@@ -45,5 +46,8 @@ public interface SikhuchungService {
 
     // 회원탈퇴
     public void memberQuit(UserVO userVO) throws Exception;
+
+    // 마이페이지 주문목록
+    public List<OrderDetailDTO> getOrderList(String user) throws Exception;
 
 }

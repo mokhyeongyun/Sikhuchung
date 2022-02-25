@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
 
@@ -227,15 +228,27 @@ public class SikhuchungController {
         }
     }
 
+    /*
+     * // 공지사항 리스트
+     * 
+     * @GetMapping(value = "/sikhuchung/noticelist.do") public String
+     * openNoticeList(@ModelAttribute("params") NoticeDTO params, Model model) {
+     * List<NoticeDTO> noticeList = sikhuchungService.getNoticeList(params);
+     * model.addAttribute("noticeList", noticeList); return "sikhuchung/noticelist";
+     * }
+     */
     // 마이페이지-주문목록 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/mypageOrderInfo.do")
-    public String mypageOrderInfo(HttpServletRequest req) {
+    public String mypageOrderInfo(Model model, HttpServletRequest req) throws Exception {
         HttpSession session = req.getSession();
+        String user = (String) session.getAttribute("user");
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
             return "sikhuchung/login";
         } else {
-            // System.out.println("세션있음");
+            List<OrderDetailDTO> orderList = sikhuchungService.getOrderList(user);
+            model.addAttribute("orderList", orderList);
+            model.addAttribute("length", orderList.size());
             return "sikhuchung/mypageOrderInfo";
         }
     }

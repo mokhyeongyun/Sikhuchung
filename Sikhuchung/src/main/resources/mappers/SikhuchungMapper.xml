@@ -94,6 +94,7 @@
         WHERE
             notice_delete = 'N'
     </select>
+    
 
     <!-- 회원가입 -->
     <insert id="saveUser" parameterType="UserVO">
@@ -131,6 +132,13 @@
     <delete id="memberQuit" parameterType="UserVO">
         delete from s_user where user_id = #{userId} and user_pw = #{userPw} 
     </delete>
+    <!-- 주문목록 리스트 -->
+    <select id="getOrderList" parameterType="String" resultType="OrderDetailDTO">
+        SELECT order_detail_number, order_detail_count, order_detail_result ,TO_CHAR(order_date, 'YYYY-MM-DD') order_date, product_price, product_name
+            FROM s_order_detail sor, s_order so, s_product sp
+            WHERE sor.product_number = sp.product_number and sor.order_number = so.order_number
+            AND so.user_id=#{user}
+    </select>
 
     
     <update id="hitPlus" parameterType="long">
