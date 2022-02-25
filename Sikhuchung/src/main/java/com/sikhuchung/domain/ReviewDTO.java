@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ReviewDTO {
-    Long reviewNumber, orderDetailNumber;
-    String reviewTitle, reviewContent, reviewDate, reviewRate, reviewUpdateDate, reviewDelete;
+    private Long reviewNumber, orderDetailNumber;
+    private String userId, reviewTitle, reviewContent, reviewDate, reviewRate, reviewUpdateDate, reviewDelete;
 }

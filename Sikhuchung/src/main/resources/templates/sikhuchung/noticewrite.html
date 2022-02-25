@@ -7,34 +7,72 @@
   <th:block layout:fragment="contents">
         <div class="card-content">
             <h2>공지사항 글쓰기</h2>
-            <form class="form-horizontal" th:action="@{/sikhuchung/register.do}" th:object="${notice}" method="post">
+            <form class="form-horizontal" id="writeForm" th:action="@{/sikhuchung/register.do}" th:object="${notice}" method="post">
                 <!--/* update의 경우 서버로 전달할 게시글 번호 (PK) */-->
                 <input type="hidden" th:if="*{noticeNumber != null and noticeNumber > 0}" th:field="*{noticeNumber}" />
                 <div class="form-group">
                     <label for="userId" class="col-sm-2 control-label">작성자</label>
                     <div class="col-sm-10">
-                        <input type="text" th:field="*{userId}" class="form-control" placeholder="이름을 입력해 주세요." />
+                        <input type="text" th:field="*{userId}" class="form-control" id="userId" placeholder="이름을 입력해 주세요." />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="noticeTitle" class="col-sm-2 control-label">제목</label>
                     <div class="col-sm-10">
-                        <input type="text" th:field="*{noticeTitle}" class="form-control" placeholder="제목을 입력해 주세요." />
+                        <input type="text" th:field="*{noticeTitle}" class="form-control" id="noticeTitle" placeholder="제목을 입력해 주세요." />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="noticeContent" class="col-sm-2 control-label">내용</label>
                     <div class="col-sm-10">
-                        <textarea th:field="*{noticeContent}" class="form-control" placeholder="내용을 입력해 주세요."></textarea>
+                        <textarea th:field="*{noticeContent}" class="form-control" id="noticeContent" placeholder="내용을 입력해 주세요."></textarea>
                     </div>
                 </div>
 
                 <div class="btn_wrap2 text-center">
-                    <a th:href="@{/sikhuchung/noticelist.do}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
-                    <button type="submit" class="btn btn-primary waves-effect waves-light">저장하기</button>
+                    <a th:href="|@{/sikhuchung/noticelist.do}*{makeQueryString(currentPageNo)}|" class="btn btn-default waves-effect waves-light">뒤로가기</a>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light" onclick="registerBoard()">저장하기</button>
                 </div>
             </form>
         </div>
         <!-- /.card-content -->
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+	        function registerBoard() {
+            	let userId = document.getElementById("userId");
+            	let noticeTitle = document.getElementById("noticeTitle");
+            	let noticeContent = document.getElementById("noticeContent");
+            	
+	        	if (userId.value == "") {
+	        		alert("작성자를 입력해 주세요");
+	        		userId.focus();
+	        	} else if (noticeTitle.value == "") {
+	        		alert("제목을 입력해 주세요");
+                    noticeTitle.focus();
+	        	} else if (noticeContent.value == "") {
+                    alert("내용을 입력해 주세요");
+                    noticeContent.focus();
+                } else {
+                	return true;
+                }
+	            
+	
+	            var noticeNumber = /*[[ ${notice.noticeNumber} ]]*/"";
+	            if (isEmpty(noticeNumber) == false) {
+	                var queryString = /*[[ ${params.makeQueryString(params.currentPageNo)} ]]*/"";
+	
+	                /*[- 쿼리 스트링을 오브젝트 형태로 변환 -]*/
+	                queryString = new URLSearchParams(queryString);
+	                queryString.forEach(function(value, key) {
+	                    if (isEmpty(value) == false) {
+	                        $(form).append('<input type="hidden" name="' + key + '" value="' + value + '" />');
+	                    }
+	                });
+	            }
+	        }
+	        /*[- end of function -]*/
+	        
+	        /*]]>*/
+        </script>
     </th:block>
 </html>
