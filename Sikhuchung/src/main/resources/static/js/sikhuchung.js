@@ -377,7 +377,11 @@ function userQuitNullCheck() {
 }
 /* 필립 js 시작 */
 function paymentFormCheck(){
-    let order_user,order_phone; /*이 부분이 없어도 정상 실행됌*/
+    let order_user,order_phone,order_email,get_user,get_address,get_phone;
+    var name_c = /^[가-힣a-zA-Z]{2,20}$/;
+    var phone_c = /^[0-9]{11,}$/;
+    var email_c = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,20})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+    
     
     order_user=document.getElementById("order_user");
     order_phone=document.getElementById("order_phone");
@@ -403,14 +407,79 @@ function paymentFormCheck(){
         get_user.focus();
         return false;
     }else if(get_address.value==""){
-        alert("받으실 곳을 기입해주세요.");
+        alert("배송 주소를 기입해주세요.");
         get_address.focus();
         return false;
     }else if(get_phone.value==""){
         alert("배송정보의 휴대폰 번호를 기입해주세요.")
+        get_phone.focus();
+        return false;
+    }else if(!name_c.test(order_user.value)){
+        alert("주문하시는 분의 이름은 2~20자 사이의 한글과 영어만 입력 가능합니다.");
+        order_user.focus();
+        return false;
+    }else if(!phone_c.test(order_phone.value)){
+        alert("휴대폰 번호는 최소 11자리 이상의 숫자만 입력 가능합니다.");
+        order_phone.focus();
+        return false;
+    }else if(!email_c.test(order_email.value)){
+        alert("이메일 형식이 잘못되었습니다.");
+        order_email.focus();
+        return false;
+    }else if(!name_c.test(get_user.value)){
+        alert("받으실 분의 이름은 2~20자 사이의 한글과 영어만 입력가능합니다.")
+        get_user.focus();
+        return false;
+    }else if(!phone_c.test(get_phone.value)){
+        alert("배송 정보의 휴대폰 번호는 최소 11자리 이상의 숫자만 입력 가능합니다.")
+        get_phone.focus();
+        return false;
     }
-    
+    /*주소 js 안 넣음*/
 }
+
+
+
+/* 우편번호 */
+function openZipSearch() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
+            $('[name=addr1]').val(data.address);
+            $('[name=addr2]').val(data.buildingName);
+        }
+    }).open();
+}
+
+
+/* 체크박스 */
+function checkSelectAll()  {
+  // 전체 체크박스
+  const checkboxes 
+    = document.querySelectorAll('input[name="select_product"]');
+  // 선택된 체크박스
+  const checked 
+    = document.querySelectorAll('input[name="select_product"]:checked');
+  // select all 체크박스
+  const selectAll 
+    = document.querySelector('input[name="select_all"]');
+  if(checkboxes.length === checked.length)  {
+    selectAll.checked = true;
+  }else {
+    selectAll.checked = false;
+  }
+}
+function selectAll(selectAll)  {
+  const checkboxes 
+     = document.getElementsByName('select_product');
+  
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked
+  })
+}
+
+
+
 
 
 /* 필립 js 끝 */
