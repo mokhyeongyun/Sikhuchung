@@ -61,6 +61,27 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     }
     
     @Override
+    public List<ProductVO> getPresentList() {
+    	List<ProductVO> productList = sikhuchungMapper.selectPresentList();
+    	return productList;
+    }
+    
+    @Override
+    public List<ProductVO> getSimpleList() {
+    	List<ProductVO> productList = sikhuchungMapper.selectSimpleList();
+    	return productList;
+    }
+    @Override
+    public List<ProductVO> getSeasonList() {
+    	List<ProductVO> productList = sikhuchungMapper.selectSeasonList();
+    	return productList;
+    }
+    @Override
+    public List<ProductVO> getWeirdList() {
+    	List<ProductVO> productList = sikhuchungMapper.selectWeirdList();
+    	return productList;
+    }
+    @Override
     public List<ProductVO> getProductList() {
     	List<ProductVO> productList = sikhuchungMapper.selectProductList();
     	return productList;

@@ -23,5 +23,10 @@ public interface SikhuchungMapper {
     
     public List<ProductVO> selectProductList();
     
+    public List<ProductVO> selectPresentList();
+    public List<ProductVO> selectSimpleList();
+    public List<ProductVO> selectSeasonList();
+    public List<ProductVO> selectWeirdList();
+    
     public ProductVO selectProductData(int productNumber);
 }

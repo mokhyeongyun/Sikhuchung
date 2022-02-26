@@ -61,7 +61,14 @@ public class SikhuchungController {
     public String main(ProductVO productVO, Model model) {
     	List<ProductVO> productList = sikhuchungService.getProductList();
     	model.addAttribute("product", productList);
-    	System.out.println("main이 실행되었습니다.");
+    	List<ProductVO> seasonList = sikhuchungService.getSeasonList();
+    	model.addAttribute("season", seasonList);
+    	List<ProductVO> weirdList = sikhuchungService.getWeirdList();
+    	model.addAttribute("weird", weirdList);
+    	List<ProductVO> simpleList = sikhuchungService.getSimpleList();
+    	model.addAttribute("simple", simpleList);
+    	List<ProductVO> presentList = sikhuchungService.getPresentList();
+    	model.addAttribute("present", presentList);
         return "/sikhuchung/main";
     }
     
@@ -85,6 +92,32 @@ public class SikhuchungController {
     	}
     	
     }
+    
+//    // 특별 과일 -- 재훈
+//    @GetMapping(value = "/sikhuchung/main.do")
+//    public String season(ProductVO productVO, Model model) {
+//    	List<ProductVO> productList = sikhuchungService.getSeasonList();
+//    	model.addAttribute("product", productList);
+//        return "/sikhuchung/main";
+//    }
+//    @GetMapping(value = "/sikhuchung/main.do")
+//    public String weird(ProductVO productVO, Model model) {
+//    	List<ProductVO> productList = sikhuchungService.getWeirdList();
+//    	model.addAttribute("product", productList);
+//        return "/sikhuchung/main";
+//    }
+//    @GetMapping(value = "/sikhuchung/main.do")
+//    public String simple(ProductVO productVO, Model model) {
+//    	List<ProductVO> productList = sikhuchungService.getSimpleList();
+//    	model.addAttribute("product", productList);
+//        return "/sikhuchung/main";
+//    }
+//    @GetMapping(value = "/sikhuchung/main.do")
+//    public String present(ProductVO productVO, Model model) {
+//    	List<ProductVO> productList = sikhuchungService.getPresentList();
+//    	model.addAttribute("product", productList);
+//        return "/sikhuchung/main";
+//    }
     
     // 상품 추가 -- 재훈
     @GetMapping(value = "/sikhuchung/item_regist.do")

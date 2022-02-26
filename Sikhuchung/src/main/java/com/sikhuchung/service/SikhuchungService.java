@@ -16,6 +16,11 @@ public interface SikhuchungService {
     
     public List<ProductVO> getProductList();
     
+    public List<ProductVO> getPresentList();
+    public List<ProductVO> getSimpleList();
+    public List<ProductVO> getSeasonList();
+    public List<ProductVO> getWeirdList(); 
+    
     public ProductVO getProductData(int productNumber);
 
 }
