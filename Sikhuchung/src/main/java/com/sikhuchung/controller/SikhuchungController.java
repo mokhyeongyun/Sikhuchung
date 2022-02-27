@@ -318,6 +318,7 @@ public class SikhuchungController {
     public String item_regist() {
         return "sikhuchung/item_regist";
     }
+    
     // 상품 수정 -- 재훈
     @GetMapping(value = "/sikhuchung/item_modify.do")
     public String item_modify() {

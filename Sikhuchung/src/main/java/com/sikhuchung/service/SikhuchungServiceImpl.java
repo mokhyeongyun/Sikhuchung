@@ -106,14 +106,14 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.hitPlus(noticeNumber);
     }
     
-    // 메인 화면 -- 재훈
+    /* 메인 화면 -- 재훈 */
     @Override
     public List<ProductVO> getProductList() {
     	List<ProductVO> productList = sikhuchungMapper.selectProductList();
     	return productList;
     }
     
-    // 메인화면 제철, 간편, 별난, 선물 -- 재훈
+    /* 메인화면 제철, 간편, 별난, 선물 -- 재훈 */
     @Override
     public List<ProductVO> getPresentList() {
     	List<ProductVO> productList = sikhuchungMapper.selectPresentList();
@@ -135,7 +135,7 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     	return productList;
     }
     
-    // 상세화면 -- 재훈
+    /* 상세화면 -- 재훈 */
     @Override
     public ProductVO getProductData(int productNumber) {
     	ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
