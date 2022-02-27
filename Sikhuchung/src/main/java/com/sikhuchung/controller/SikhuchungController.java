@@ -93,32 +93,6 @@ public class SikhuchungController {
     	
     }
     
-//    // 특별 과일 -- 재훈
-//    @GetMapping(value = "/sikhuchung/main.do")
-//    public String season(ProductVO productVO, Model model) {
-//    	List<ProductVO> productList = sikhuchungService.getSeasonList();
-//    	model.addAttribute("product", productList);
-//        return "/sikhuchung/main";
-//    }
-//    @GetMapping(value = "/sikhuchung/main.do")
-//    public String weird(ProductVO productVO, Model model) {
-//    	List<ProductVO> productList = sikhuchungService.getWeirdList();
-//    	model.addAttribute("product", productList);
-//        return "/sikhuchung/main";
-//    }
-//    @GetMapping(value = "/sikhuchung/main.do")
-//    public String simple(ProductVO productVO, Model model) {
-//    	List<ProductVO> productList = sikhuchungService.getSimpleList();
-//    	model.addAttribute("product", productList);
-//        return "/sikhuchung/main";
-//    }
-//    @GetMapping(value = "/sikhuchung/main.do")
-//    public String present(ProductVO productVO, Model model) {
-//    	List<ProductVO> productList = sikhuchungService.getPresentList();
-//    	model.addAttribute("product", productList);
-//        return "/sikhuchung/main";
-//    }
-    
     // 상품 추가 -- 재훈
     @GetMapping(value = "/sikhuchung/item_regist.do")
     public String item_regist() {

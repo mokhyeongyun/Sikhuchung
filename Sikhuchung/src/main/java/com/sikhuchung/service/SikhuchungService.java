@@ -14,13 +14,16 @@ public interface SikhuchungService {
 
     public List<NoticeDTO> getNoticeList();
     
+    // 메인화면 -- 재훈
     public List<ProductVO> getProductList();
     
+    // 메인화면 제철, 간편, 별난, 선물 -- 재훈
     public List<ProductVO> getPresentList();
     public List<ProductVO> getSimpleList();
     public List<ProductVO> getSeasonList();
     public List<ProductVO> getWeirdList(); 
     
+    // 상세화면 -- 재훈
     public ProductVO getProductData(int productNumber);
 
 }

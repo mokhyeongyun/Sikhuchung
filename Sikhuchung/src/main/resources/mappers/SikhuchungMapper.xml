@@ -81,7 +81,7 @@
             notice_delete = 'N'
     </select>
     
-    <!-- 메인화면 썸네일 리스트 불러오기 -->
+    <!-- 메인화면 리스트 불러오기 -->
     <select id="selectProductList" resultType="ProductVO">
     	SELECT
     		product_number, product_name, product_price, product_thumbnail
@@ -89,7 +89,7 @@
     		s_product	
     </select>
    
-    <!-- 선물 리스트 불러오기 -->
+    <!-- 메인화면 선물 불러오기 -->
     <select id="selectPresentList" resultType="ProductVO">
     	SELECT 
     		product_number, product_name, product_price,product_thumbnail 
@@ -98,7 +98,7 @@
     	WHERE
     		product_category = '선물'
     </select>
-    <!-- 간편 리스트 불러오기 -->
+    <!-- 메인화면 간편 불러오기 -->
     <select id="selectSimpleList" resultType="ProductVO">
     	SELECT 
     		product_number, product_name, product_price,product_thumbnail 
@@ -107,7 +107,7 @@
     	WHERE
     		product_category = '간편'
     </select>
-    <!-- 제철 리스트 불러오기 -->
+    <!-- 메인화면 제철 불러오기 -->
     <select id="selectSeasonList" resultType="ProductVO">
     	SELECT 
     		product_number, product_name, product_price,product_thumbnail 
@@ -116,7 +116,7 @@
     	WHERE
     		product_category = '제철'
     </select> 
-    <!-- 별난 리스트 불러오기 -->
+    <!-- 메인화면 별난 불러오기 -->
     <select id="selectWeirdList" resultType="ProductVO">
     	SELECT 
     		product_number, product_name, product_price,product_thumbnail 
@@ -126,7 +126,7 @@
     		product_category = '별난'
     </select>
     
-    <!--  상세 설명 데이터 불러오기 -->
+    <!-- 상세화면 불러오기 -->
     <select id="selectProductData" parameterType="int" resultType="ProductVO">
     	SELECT
     		product_number, product_category, product_name, product_price, product_origin, product_delivery, product_stock ,product_info ,product_delete,product_thumbnail ,product_register_date ,product_register, product_update_date ,product_updater
