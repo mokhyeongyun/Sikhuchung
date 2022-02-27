@@ -95,7 +95,6 @@
             notice_delete = 'N'
     </select>
     
-<<<<<<< HEAD
     <!-- 메인화면 리스트 불러오기 -->
     <select id="selectProductList" resultType="ProductVO">
     	SELECT
@@ -148,8 +147,6 @@
     	FROM
     		s_product where product_number = #{productNumber}
     </select>
-=======
->>>>>>> mok
 
     <!-- 회원가입 -->
     <insert id="saveUser" parameterType="UserVO">

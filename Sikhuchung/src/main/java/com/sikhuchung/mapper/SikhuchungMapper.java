@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.OrderDetailDTO;
-import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
+import com.sikhuchung.domain.UserVO;
 
 @Mapper
 public interface SikhuchungMapper {
@@ -44,20 +44,21 @@ public interface SikhuchungMapper {
 
     /* 비밀번호 찾기 */
     public String findPwCheck(UserVO userVO);
-<<<<<<< HEAD
-    
+
     /* 메인화면 -- 재훈 */
     public List<ProductVO> selectProductList();
-    
+
     /* 메인화면 제철, 간편, 별난, 선물 -- 재훈 */
     public List<ProductVO> selectPresentList();
+
     public List<ProductVO> selectSimpleList();
+
     public List<ProductVO> selectSeasonList();
+
     public List<ProductVO> selectWeirdList();
-    
+
     /* 상세화면 -- 재훈 */
     public ProductVO selectProductData(int productNumber);
-=======
 
     // 마이페이지 회원정보수정 비밀번호체크
     public int memberInfoPwCheck(UserVO userVO);
@@ -73,5 +74,4 @@ public interface SikhuchungMapper {
 
     // 마이페이지 주문목록 리스트
     public List<OrderDetailDTO> getOrderList(String user);
->>>>>>> mok
 }

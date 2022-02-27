@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.OrderDetailDTO;
-import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
+import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
 
 @Controller
@@ -353,58 +353,52 @@ public class SikhuchungController {
         return "sikhuchung/orderlist";
     }
 
-    // 메인화면 이동
-    @GetMapping(value = "/sikhuchung/main.do")
-    public String main() {
-        return "sikhuchung/main";
-    }
-
     // 메인화면 -- 재훈
     @GetMapping(value = "/sikhuchung/main.do")
     public String main(ProductVO productVO, Model model) {
-    	List<ProductVO> productList = sikhuchungService.getProductList();
-    	model.addAttribute("product", productList);
-    	List<ProductVO> seasonList = sikhuchungService.getSeasonList();
-    	model.addAttribute("season", seasonList);
-    	List<ProductVO> weirdList = sikhuchungService.getWeirdList();
-    	model.addAttribute("weird", weirdList);
-    	List<ProductVO> simpleList = sikhuchungService.getSimpleList();
-    	model.addAttribute("simple", simpleList);
-    	List<ProductVO> presentList = sikhuchungService.getPresentList();
-    	model.addAttribute("present", presentList);
+        List<ProductVO> productList = sikhuchungService.getProductList();
+        model.addAttribute("product", productList);
+        List<ProductVO> seasonList = sikhuchungService.getSeasonList();
+        model.addAttribute("season", seasonList);
+        List<ProductVO> weirdList = sikhuchungService.getWeirdList();
+        model.addAttribute("weird", weirdList);
+        List<ProductVO> simpleList = sikhuchungService.getSimpleList();
+        model.addAttribute("simple", simpleList);
+        List<ProductVO> presentList = sikhuchungService.getPresentList();
+        model.addAttribute("present", presentList);
         return "/sikhuchung/main";
     }
-    
+
     // 상세 정보 -- 재훈
     @GetMapping(value = "/sikhuchung/detail.do")
     public String detail(int productNumber, Model model) {
-    	ProductVO productvo = sikhuchungService.getProductData(productNumber);
-    	if(productvo.getProductDelete().equals("N")) {    		
-    		// 썸네일, 이름, 가격, 분류, 원산지, 배송방법, 재고, 상세설명img
-    		model.addAttribute("thumbnail", productvo.getProductThumbnail());
-    		model.addAttribute("name", productvo.getProductName());
-    		model.addAttribute("price", productvo.getProductPrice());
-    		model.addAttribute("category", productvo.getProductCategory());
-    		model.addAttribute("origin", productvo.getProductOrigin());
-    		model.addAttribute("delivery", productvo.getProductDelivery());
-    		model.addAttribute("stock", productvo.getProductStock());
-    		model.addAttribute("info", productvo.getProductInfo());
-    		return "sikhuchung/detail";
-    	} else {
-    		return "redirect:/sikhuchung/main.do";
-    	}
-    	
+        ProductVO productvo = sikhuchungService.getProductData(productNumber);
+        if (productvo.getProductDelete().equals("N")) {
+            // 썸네일, 이름, 가격, 분류, 원산지, 배송방법, 재고, 상세설명img
+            model.addAttribute("thumbnail", productvo.getProductThumbnail());
+            model.addAttribute("name", productvo.getProductName());
+            model.addAttribute("price", productvo.getProductPrice());
+            model.addAttribute("category", productvo.getProductCategory());
+            model.addAttribute("origin", productvo.getProductOrigin());
+            model.addAttribute("delivery", productvo.getProductDelivery());
+            model.addAttribute("stock", productvo.getProductStock());
+            model.addAttribute("info", productvo.getProductInfo());
+            return "sikhuchung/detail";
+        } else {
+            return "redirect:/sikhuchung/main.do";
+        }
+
     }
-    
+
     // 상품 추가 -- 재훈
     @GetMapping(value = "/sikhuchung/item_regist.do")
     public String item_regist() {
         return "sikhuchung/item_regist";
     }
-    
+
     // 상품 수정 -- 재훈
     @GetMapping(value = "/sikhuchung/item_modify.do")
     public String item_modify() {
         return "sikhuchung/item_modify";
-    }   
+    }
 }

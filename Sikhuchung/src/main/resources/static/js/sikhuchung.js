@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 function Slider(target, type) {
     // 상태
     let index = 1;
@@ -100,7 +98,6 @@ setInterval(() => {
     s1.next();
     s2.next();
 }, 1000);
->>>>>>> mok
 /******************************************************** 회원가입 유효성 -현균*************************8 */
 //아이디 중복검사
 function idDuplicateCheck() {
