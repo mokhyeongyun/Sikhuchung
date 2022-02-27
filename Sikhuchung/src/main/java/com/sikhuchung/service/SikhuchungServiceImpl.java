@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
@@ -88,4 +89,17 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     }
 
     /* 후기 */
+
+    /* 장바구니 */
+    @Override
+    public List<CartVO> cartlist(String userid) {
+        return sikhuchungMapper.cartlist(userid);
+    }
+
+    /* 주문창 */
+    @Override
+    public CartVO orderlist(String paymentlist) {
+        return sikhuchungMapper.orderlist(paymentlist);
+
+    }
 }

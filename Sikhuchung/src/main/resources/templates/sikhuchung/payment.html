@@ -23,16 +23,14 @@
           </thead>
           
           <tbody>
-             <th:block th:each="num: ${#numbers.sequence(1,5)}">
-                <tr>
-                    <td>사진</td>
-                    <td>제품명</td>
-                    <td><input type="text" name="" value="" size="3" readonly>개</td>
-                    <td>금액</td>
-                    <td>할인</td>
-                    <td>합계</td>
+             <tr th:each="row:${orderlist}"> 
+                    <td th:text="${row.productThumbnail}"></td>
+                    <td th:text="${row.productName}">제품명</td>
+                    <td><input type="text" name="" value="" size="3" maxlength="3" th:value="${row.cartCount}" readonly>개</td>
+                    <td th:text="${row.productPrice}"></td>
+                    <td th:text="${row.cartCount}"></td>
+                    <td th:text="${row.getPriceAmount()}"></td>
                 </tr>
-            </th:block>
           </tbody>
         </table>
       

@@ -1,6 +1,9 @@
 package com.sikhuchung.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
@@ -201,22 +205,40 @@ public class SikhuchungController {
         return "sikhuchung/mypageMemberQuit";
     }
 
-    // 장바구나 화면
-    @GetMapping(value = "/sikhuchung/cart.do")
-    public String cart() {
-        return "sikhuchung/cart";
-    }
-
-    // 결제창 화면
+    // 결제창 화면 -- 필립
     @GetMapping(value = "/sikhuchung/payment.do")
     public String payment() {
         return "sikhuchung/payment";
     }
 
-    // 주문목록 화면
+    // 장바구니 -> 결제창
+    @PostMapping(value = "sikhuchung/payment.do")
+    public String paymentlist(HttpServletRequest request, Model model) throws Exception {
+
+        String[] paymentlist = request.getParameterValues("select_product");
+        // System.out.println(paymentlist[0]);
+        List<CartVO> orderlist = new ArrayList<CartVO>();
+        for (int i = 0; i < paymentlist.length; i++) {
+            CartVO order = sikhuchungService.orderlist(paymentlist[i]);
+            orderlist.add(order);
+        }
+        model.addAttribute("orderlist", orderlist);
+        return "sikhuchung/payment";
+    }
+
+    // 주문목록 화면 -- 필립
     @GetMapping(value = "/sikhuchung/orderlist.do")
     public String orderlist() {
         return "sikhuchung/orderlist";
+    }
+
+    // 장바구니 화면 -- 필립
+    @GetMapping(value = "/sikhuchung/cart.do")
+    public String cart(Model model) throws Exception {
+        String userid = "test";
+        List<CartVO> cartlist = sikhuchungService.cartlist(userid);
+        model.addAttribute("cartlist", cartlist);
+        return "sikhuchung/cart";
     }
 
 }

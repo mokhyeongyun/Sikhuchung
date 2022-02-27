@@ -479,6 +479,41 @@ function selectAll(selectAll)  {
 }
 
 
+function pwCertifyNullCheck() {
+    let pw = document.getElementById("pw");
+    if (pw.value == "") {
+        alert("비밀번호를 입력해 주세요");
+        pw.focus();
+        return false;
+    } else {
+        document.formPwCertify.submit();
+    }
+}
+
+
+/* 체크박스 값 가져오기 */
+function getCheckboxValue()  {
+  // 선택된 목록 가져오기
+  const query = 'input[name="select_product"]:checked';
+  const selectedEls = 
+      document.querySelectorAll(query);
+  
+  // 선택된 목록에서 value 찾기
+  let result = '';
+  selectedEls.forEach((el) => {
+    result += el.value + ',';
+  });
+  
+  // 출력
+  document.getElementById('result').innerText
+    = result;
+    
+    
+    
+}
+
+
+
 
 
 
