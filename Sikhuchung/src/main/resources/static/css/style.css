@@ -2,23 +2,26 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
     margin: 0;
     padding: 0;
 }
+a {
+	text-decoration-line: none;
+}
 
 /* Main Page */
-/* 슬라이드 배너 */
-.slideshow_container {
-  height: 200px;
-  width: 100%;
-  align-items: center;
-  padding: 10px;
-  margin: auto;
+/* 버튼 목록 */
+.main_button_area {
+	display: flex;
+	justify-content: space-evenly;
 }
-.slider {
-  height: 200px;
-  width: 90%;
-  margin: auto;
-}
-.box {
-  width: 100%;
+.main_button_area button {
+	width: 8em;
+	height: 3em;
+	color: black;
+	font-family: "Cafe24 Ssurround air";
+	font-weight: bold;
+	font-size: 16px;
+	background-color: whitesmoke;
+	border: 1px solid gray;
+	border-radius: 10px;
 }
 
 /* 전체 과일 제목 */
@@ -50,27 +53,55 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 
 /* 전체 과일 리스트 */
 .total_list {
-  height: 100%;
+  height: 45em;
   width: 100%;
+  overflow: auto;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
+.total_list::-webkit-scrollbar {
+	width: 10px;
+}
+.total_list::-webkit-scrollbar-thumb {
+	border-radius: 100px;
+	background-image: linear-gradient(136deg, rgb(229 121 180 / 50%) 0%, rgb(133 157 225 / 50%) 99%);
+}
 .img_list {
   height: auto;
-  width: 15em;
+  width: 18em;
   padding: 10px 20px;
   margin: auto;
 }
+.list_a {
+	display: flex;
+	justify-content: center;
+}
 .list_img {
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: 15em;
+  padding-bottom: 4px
 }
 .img_list p {
   padding: 0%;
   margin: auto;
   font-family: "Cafe24 Ssurround air";
   font-size: 14px;
+}
+.sub_total_list {
+  height: 23em;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.sub_total_list::-webkit-scrollbar {
+	width: 10px;
+}
+.sub_total_list::-webkit-scrollbar-thumb {
+	border-radius: 100px;
+	background-image: linear-gradient(136deg, rgb(229 121 180 / 50%) 0%, rgb(133 157 225 / 50%) 99%);
 }
 
 /* Detail Screen */
@@ -93,20 +124,18 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
   padding-top: 2em;
   margin: auto;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 /* 상세 화면 사진 */
 .detail_info_img_area {
   height: 400px;
   width: auto;
-  padding-right: 50px;
 }
 
 /* 표 */
 .detail_info_table_area {
   width: 360px;
-  padding-left: 20px;
 }
 .detail_info_table {
   margin: auto;
@@ -143,13 +172,11 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .detail_info_select_box {
   position: relative;
   width: 150px;
-  height: 24px;
   border-radius: 16px;
   border: 2px solid rgb(240, 169, 128);
 }
 .detail_info_select_box .detail_info_select {
-  width: inherit;
-  height: inherit;
+  width: 135px;
   background: transparent;
   border: 0 none;
   outline: 0 none;
@@ -188,8 +215,6 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
   margin: auto;
   padding: 0;
   display: flex;
-  flex-direction: column;
-  justify-items: center;
 }
 .detail_info_img {
   height: auto;
