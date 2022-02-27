@@ -228,15 +228,6 @@ public class SikhuchungController {
         }
     }
 
-    /*
-     * // 공지사항 리스트
-     * 
-     * @GetMapping(value = "/sikhuchung/noticelist.do") public String
-     * openNoticeList(@ModelAttribute("params") NoticeDTO params, Model model) {
-     * List<NoticeDTO> noticeList = sikhuchungService.getNoticeList(params);
-     * model.addAttribute("noticeList", noticeList); return "sikhuchung/noticelist";
-     * }
-     */
     // 마이페이지-주문목록 화면 이동 -- 현균
     @GetMapping(value = "/sikhuchung/mypageOrderInfo.do")
     public String mypageOrderInfo(Model model, HttpServletRequest req) throws Exception {
