@@ -95,6 +95,7 @@
             notice_delete = 'N'
     </select>
     
+<<<<<<< HEAD
     <!-- 메인화면 리스트 불러오기 -->
     <select id="selectProductList" resultType="ProductVO">
     	SELECT
@@ -147,10 +148,12 @@
     	FROM
     		s_product where product_number = #{productNumber}
     </select>
+=======
+>>>>>>> mok
 
     <!-- 회원가입 -->
     <insert id="saveUser" parameterType="UserVO">
-        INSERT INTO s_user VALUES(#{user_id},#{user_pw},#{user_name},#{user_email},#{user_tel},#{user_grade},SYSDATE)
+        INSERT INTO s_user VALUES(#{userId},#{userPw},#{userName},#{userEmail},#{userTel},#{userGrade},SYSDATE)
     </insert>
     
     <!-- id중복확인 -->
@@ -160,18 +163,42 @@
     
     <!-- 로그인 -->
     <select id="userLogin" resultType="int"  parameterType="UserVO">
-        select count(*) from s_user where user_id = #{user_id} and user_pw = #{user_pw}
+        select count(*) from s_user where user_id = #{userId} and user_pw = #{userPw}
     </select>
     
     <!-- 아이디찾기 -->
     <select id="findIdCheck" resultType="String" parameterType="UserVO">
-        select user_id from s_user where user_name = #{user_name} and user_email= #{user_email}
+        select user_id from s_user where user_name = #{userName} and user_email= #{userEmail}
     </select>
     
     <!-- 비밀번호찾기 -->
     <select id="findPwCheck" resultType="String" parameterType="UserVO">
-        select user_pw from s_user where user_id = #{user_id} and user_name= #{user_name}
+        select user_pw from s_user where user_id = #{userId} and user_name= #{userName}
     </select>
+    <!-- 회원정보 변경 비밀번호 확인 -->
+    <select id="memberInfoPwCheck" resultType="int" parameterType="UserVO">
+        select count(*) from s_user where user_id = #{userId} and user_pw = #{userPw}
+    </select>
+    <!-- 회원정보 보여주기 -->
+    <select id="memberInfo" resultType="UserVO" parameterType="UserVO">
+         select user_id, user_pw, user_name, user_email, user_tel, user_grade, user_joindate from s_user where user_id = #{userId} and user_pw = #{userPw}
+    </select>
+    <!-- 회원정보 변경 -->
+    <update id="memberInfoUpdate" parameterType="UserVO">
+        update s_user set user_pw=#{userPw}, user_name=#{userName}, user_email=#{userEmail}, user_tel=#{userTel} where user_id=#{userId}
+    </update>
+    <!-- 회원탈퇴 -->
+    <delete id="memberQuit" parameterType="UserVO">
+        delete from s_user where user_id = #{userId} and user_pw = #{userPw} 
+    </delete>
+    <!-- 주문목록 리스트 -->
+    <select id="getOrderList" parameterType="String" resultType="OrderDetailDTO">
+        SELECT order_detail_number, order_detail_count, order_detail_result ,TO_CHAR(order_date, 'YYYY-MM-DD') order_date, product_price, product_name
+            FROM s_order_detail sor, s_order so, s_product sp
+            WHERE sor.product_number = sp.product_number and sor.order_number = so.order_number
+            AND so.user_id=#{user}
+    </select>
+
     
     <update id="hitPlus" parameterType="long">
         UPDATE s_notice

@@ -18,7 +18,8 @@
 		<div class="contents">
 			<div class="mypage_cont">
 				<div class="my_page_password">
-					<form id="formUserQuit" name="formUserQuit" action="/sikhuchung/mypageMemberQuit.do" method="get">
+					<form id="formUserQuit" name="formUserQuit" action="/sikhuchung/mypageMemberQuit.do" method="post">
+					<input type="text" class="id" id="id" name="userId" th:value="${session.user}">
 						<div>
 							<div class="mypage_zone_tit">
 								<h2>회원탈퇴</h2>
@@ -39,14 +40,16 @@
 
 								<div class="mypage_table_type">
 									<div class="mypage_pwcheck">
-										<span>비밀번호</span> <input type="password" id="password" name="upw">
+										<span>비밀번호</span> <input type="password" class="password" id="password" name="userPw">
+										<div>
+									<p class="memberQuitMsg">비밀번호가 일치하지 않습니다.</p>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="btn_pwcheck_box">
-							<a href="" class="btn_pwcheck_cancel">이전으로</a>
 							<button type="button" class="btn_pwcheck_certify" onclick="userQuitNullCheck()">탈퇴</button>
 						</div>
 					</form>

@@ -1,3 +1,106 @@
+<<<<<<< HEAD
+=======
+function Slider(target, type) {
+    // 상태
+    let index = 1;
+    let isMoved = true;
+    const speed = 1000; // ms
+
+    // 방향
+    const transform = "transform " + speed / 1000 + "s";
+    let translate = (i) => "translateX(-" + 100 * i + "%)";
+    if (type === "V") {
+        translate = (i) => "translateY(-" + 100 * i + "%)";
+    }
+
+    // 슬라이더
+    const slider = document.querySelector(target);
+    const sliderRects = slider.getClientRects()[0];
+    slider.style["overflow"] = "hidden";
+
+    // 슬라이더 화면 컨테이너
+    const container = document.createElement("div");
+    container.style["display"] = "flex";
+    container.style["flex-direction"] = type === "V" ? "column" : "row";
+    container.style["width"] = sliderRects.width + "px";
+    container.style["height"] = sliderRects.height + "px";
+    container.style["transform"] = translate(index);
+
+    // 슬라이더 화면 목록
+    let boxes = [].slice.call(slider.children);
+    boxes = [].concat(boxes[boxes.length - 1], boxes, boxes[0]);
+
+    // 슬라이더 화면 스타일
+    const size = boxes.length;
+    for (let i = 0; i < size; i++) {
+        const box = boxes[i];
+        box.style["flex"] = "none";
+        box.style["flex-wrap"] = "wrap";
+        box.style["height"] = "100%";
+        box.style["width"] = "100%";
+        container.appendChild(box.cloneNode(true));
+    }
+
+    // 처음/마지막 화면 눈속임 이벤트
+    container.addEventListener("transitionstart", function() {
+        isMoved = false;
+        setTimeout(() => {
+            isMoved = true;
+        }, speed);
+    });
+    container.addEventListener("transitionend", function() {
+        // 처음으로 순간이동
+        if (index === size - 1) {
+            index = 1;
+            container.style["transition"] = "none";
+            container.style["transform"] = translate(index);
+        }
+        // 끝으로 순간이동
+        if (index === 0) {
+            index = size - 2;
+            container.style["transition"] = "none";
+            container.style["transform"] = translate(index);
+        }
+    });
+
+    // 슬라이더 붙이기
+    slider.innerHTML = "";
+    slider.appendChild(container);
+
+    return {
+        move: function(i) {
+            if (isMoved === true) {
+                index = i;
+                container.style["transition"] = transform;
+                container.style["transform"] = translate(index);
+            }
+        },
+        next: function() {
+            if (isMoved === true) {
+                index = (index + 1) % size;
+                container.style["transition"] = transform;
+                container.style["transform"] = translate(index);
+            }
+        },
+        prev: function() {
+            if (isMoved === true) {
+                index = index === 0 ? index + size : index;
+                index = (index - 1) % size;
+                container.style["transition"] = transform;
+                container.style["transform"] = translate(index);
+            }
+        },
+    };
+}
+
+const s1 = new Slider("#slider1", "H");
+const s2 = new Slider("#slider2", "V");
+
+setInterval(() => {
+    s1.next();
+    s2.next();
+}, 1000);
+>>>>>>> mok
 /******************************************************** 회원가입 유효성 -현균*************************8 */
 //아이디 중복검사
 function idDuplicateCheck() {
@@ -170,8 +273,8 @@ function loginNullCheck() {
     let password = document.getElementById("pw");
     let userId = $('.id').val(); // .uid에 입력되는 값
     let userPass = $('.pw').val(); // .uid에 입력되는 값
-    var param = {user_id:userId, user_pw:userPass}
-     // '컨트롤에 넘길 데이터 이름' : '데이터(.uid에 입력되는 값)'
+    var param = { userId: userId, userPw: userPass }
+    // '컨트롤에 넘길 데이터 이름' : '데이터(.uid에 입력되는 값)'
     if (userId == "") {
         alert("아이디를 입력해 주세요");
         id.focus();
@@ -180,14 +283,14 @@ function loginNullCheck() {
         password.focus();
     } else {
         $.ajax({
-            type:"post",
+            type: "post",
             url: "/sikhuchung/login.do",
             data: param,
             success: function(result) {
-              /*  console.log("성공 여부" + result);*/
-               if (result != 'fail') {  //성공
+                /*  console.log("성공 여부" + result);*/
+                if (result != 'fail') {  //성공
                     alert("로그인에 성공하였습니다.\n메인페이지로 이동합니다.")
-                    location.href='/sikhuchung/main.do';
+                    location.href = '/sikhuchung/main.do';
                     return true;
                 } else {
                     $('.id_chk').css("display", "inline-block");
@@ -237,7 +340,29 @@ function findPwCheck() {
     }
 }
 /***************************************************** 회원정보변경 유효성 -현균***************************/
-
+// 회원가입 빈값 체크 유효성
+function userUpdateNullCheck() {
+    if (!pwCheck1()) { //비밀번호 검사
+        return false;
+    } else if (!pwCheck2()) { //비밀번호 확인 검사
+        return false;
+    } else if (!nameCheck()) { //이름 검사
+        return false;
+    } else if (!emailCheck()) { //이메일 검사
+        return false;
+    } else if (!telCheck()) { //전화번호 검사
+        return false;
+    } else { //유효성 검사 완료시 회원가입 진행
+        var answer = confirm("회원정보를 변경 하시겠습니까?");
+        if (answer) {
+            alert("회원정보가 변경되었습니다.");
+            document.formMemberUpdate.submit();
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 // 회원정보변경 비밀번호 확인 빈값 체크 유효성
 function pwCertifyNullCheck() {
     let pw = document.getElementById("pw");
@@ -249,87 +374,77 @@ function pwCertifyNullCheck() {
         document.formPwCertify.submit();
     }
 }
-// 회원정보변경 빈값 체크 유효성
-function userUpdateNullCheck() {
-    let password = document.getElementById("password");
-    let passwordCheck = document.getElementById("passwordCheck");
-    let name = document.getElementById("name");
-    let email = document.getElementById("email");
-    let tel = document.getElementById("tel");
 
-
-    if (password.value == "") {
-        alert("비밀번호를 입력해 주세요");
-        password.focus();
-        return false;
-    } else if (passwordCheck.value == "") {
-        alert("비밀번호를 입력해 주세요");
-        passwordCheck.focus();
-        return false;
-    } else if (name.value == "") {
-        alert("이름을 입력해 주세요");
-        name.focus();
-        return false;
-    } else if (email.value == "") {
-        alert("이메일을 입력해 주세요");
-        email.focus();
-        return false;
-    } else if (tel.value == "") {
-        alert("휴대폰번호를 입력해 주세요");
-        tel.focus();
-        return false;
-    } else {
-        alert("회원가입이 완료되었습니다.");
-        document.formMemberUpdate.submit();
-    }
-}
 /***************************************************** 회원탈퇴 유효성 -현균***************************/
 // 회원탈퇴 비밀번호 확인 빈값 체크 유효성
 function userQuitNullCheck() {
+    let userId = $('.id').val(); // .uid에 입력되는 값
+    let userPass = $('.password').val(); // .uid에 입력되는 값
+    var param = { userId: userId, userPw: userPass }
     let pw = document.getElementById("password");
     if (pw.value == "") {
         alert("비밀번호를 입력해 주세요");
         pw.focus();
         return false;
     } else {
-        document.formUserQuit.submit();
+        var answer = confirm("회원정보를 변경 하시겠습니까?");
+        if (answer) {
+            $.ajax({
+                type: "post",
+                url: "/sikhuchung/mypageMemberQuit.do",
+                data: param,
+                success: function(result) {
+                    /*  console.log("성공 여부" + result);*/
+                    if (result != 'fail') {  //성공
+                        alert("회원탈퇴처리 되었습니다.\n메인페이지로 이동합니다.")
+                        location.href = '/sikhuchung/main.do';
+                        return true;
+                    } else {
+                        $('.memberQuitMsg').css("display", "inline-block");
+                        return false;
+                    }
+                }
+            });
+        } else {
+            return false;
+        }
     }
 }
 /* 필립 js 시작 */
-function paymentFormCheck(){
-    let order_user,order_phone; /*이 부분이 없어도 정상 실행됌*/
-    
-    order_user=document.getElementById("order_user");
-    order_phone=document.getElementById("order_phone");
-    order_email=document.getElementById("order_email");
-    get_user=document.getElementById("get_user");
-    get_address=document.getElementById("get_address");
-    get_phone=document.getElementById("get_phone");
-    
-    if(order_user.value==""){
+function paymentFormCheck() {
+    let order_user, order_phone; /*이 부분이 없어도 정상 실행됌*/
+
+    order_user = document.getElementById("order_user");
+    order_phone = document.getElementById("order_phone");
+    order_email = document.getElementById("order_email");
+    get_user = document.getElementById("get_user");
+    get_address = document.getElementById("get_address");
+    get_phone = document.getElementById("get_phone");
+
+    if (order_user.value == "") {
         alert("주문하시는 분을 기입해주세요.")
         order_user.focus();
         return false;
-    }else if(order_phone.value==""){
+    } else if (order_phone.value == "") {
         alert("주문자 정보의 휴대폰 번호를 기입해주세요.")
         order_phone.focus();
         return false;
-    }else if(order_email.value==""){
+    } else if (order_email.value == "") {
         alert("이메일을 기입해주세요.")
         order_email.focus();
         return false;
-    }else if(get_user.value==""){
+    } else if (get_user.value == "") {
         alert("받으실 분을 기입해주세요.");
         get_user.focus();
         return false;
-    }else if(get_address.value==""){
+    } else if (get_address.value == "") {
         alert("받으실 곳을 기입해주세요.");
         get_address.focus();
         return false;
-    }else if(get_phone.value==""){
+    } else if (get_phone.value == "") {
         alert("배송정보의 휴대폰 번호를 기입해주세요.")
     }
-    
+
 }
 
 

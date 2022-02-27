@@ -22,7 +22,7 @@
 				</div>
 				<div class="member_cont">
                   <div class="important">* 표시는 반드시 입력하셔야 하는 항목입니다.</div>
-                    <form id="formMemberUpdate" name="formMemberUpdate" action="/sikhuchung/mypageMemberInfo.do" method="get">
+                    <form id="formMemberUpdate" name="formMemberUpdate" action="/sikhuchung/mypageMemberInfo.do" method="post">
                     <input type="text" name="sessionId" th:value="${session.user}">
                         <div class="base_join_box">
                             <div class="base_join_sec">
@@ -36,7 +36,7 @@
                                             <th><span class="">* 아이디</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="text" id="id" name="uid" readonly>
+                                                    <input type="text" id="uid" name="userId" readonly th:value="${userId}">
                                                 </div>
                                             </td>
 
@@ -45,41 +45,45 @@
                                             <th><span class="">* 비밀번호</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="password" id="password" name="upw" autocomplete="off" placeholder="">
+                                                    <input type="password" id="upw" name="userPw" autocomplete="off" placeholder="">
                                                 </div>
+                                                <p class="sign_p pw_msg" id="pwMsg">영어,특수문자,숫자 1개이상 포함하여 4~20자 사이로 입력해주세요.</p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th><span class="">* 비밀번호 확인</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="password" name="upwCheck" id="passwordCheck" autocomplete="off">
+                                                    <input type="password" name="upwCheck" id="upwCheck"  autocomplete="off">
                                                 </div>
+                                                <p class="sign_p pw_check_msg" id="pwCheckMsg"></p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th><span class="">* 이름</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="text" name="uname" id="name" maxlength="30">
+                                                    <input type="text" name="userName" id="uname"  th:value="${userName}" maxlength="30">
                                                 </div>
+                                                <p class="sign_p name_msg" id="nameMsg">2~20자 사이의 한글과 영어만 입력가능합니다.</p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th><span class="">* 이메일</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="text" name="uemail" id="email" value=""> 
+                                                    <input type="text" name="userEmail" id="uemail" th:value="${userEmail}"> 
                                                 </div>
-                                                <div class=""></div>  <!-- 유효성메세지 -->
+                                                <p class="sign_p email_msg" id="emailMsg">예)sikhuchung@naver.com</p>
                                             </td>
                                         </tr>
                                         <tr>
                                             <th><span class="">* 휴대폰번호</span></th>
                                             <td>
                                                 <div>
-                                                    <input type="text" id="tel" name="utel" maxlength="12" placeholder="- 없이 입력하세요.">
+                                                    <input type="text" id="utel" name="userTel" th:value="${userTel}" maxlength="12" placeholder="- 없이 입력하세요.">
                                                 </div>
+                                                <p class="sign_p tel_msg" id="telMsg">최소 11자리 이상의 숫자만 입력 가능합니다.</p>
                                             </td>
                                         </tr>
 

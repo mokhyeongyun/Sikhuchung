@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
@@ -73,7 +74,7 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     @Transactional
     @Override
     public void joinUser(UserVO userVO) {
-        userVO.setUser_grade("USER");
+        userVO.setUserGrade("USER");
         sikhuchungMapper.saveUser(userVO);
     }
 
@@ -99,6 +100,36 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     @Override
     public String findPwCheck(UserVO userVO) throws Exception {
         return sikhuchungMapper.findPwCheck(userVO);
+    }
+
+    // 마이페이지 회원정보수정 비밀번호체크
+    @Override
+    public int memberInfoPwCheck(UserVO userVO) throws Exception {
+        return sikhuchungMapper.memberInfoPwCheck(userVO);
+    }
+
+    // 마이페이지 회원정보수정 보여주기
+    @Override
+    public UserVO memberInfo(UserVO userVO) {
+        return sikhuchungMapper.memberInfo(userVO);
+    }
+
+    // 마이페이지 회원정보수정 진행
+    @Override
+    public void memberInfoUpdate(UserVO userVO) {
+        sikhuchungMapper.memberInfoUpdate(userVO);
+    }
+
+    // 마이페이지 회원탈퇴 진행
+    @Override
+    public void memberQuit(UserVO userVO) throws Exception {
+        sikhuchungMapper.memberQuit(userVO);
+    }
+
+    // 마이페이지 주문목록
+    @Override
+    public List<OrderDetailDTO> getOrderList(String user) throws Exception {
+        return sikhuchungMapper.getOrderList(user);
     }
 
     @Override

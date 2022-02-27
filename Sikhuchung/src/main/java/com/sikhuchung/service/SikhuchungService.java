@@ -3,6 +3,7 @@ package com.sikhuchung.service;
 import java.util.List;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
 
@@ -45,5 +46,20 @@ public interface SikhuchungService {
 
     // 비밀번호찾기
     public String findPwCheck(UserVO userVO) throws Exception;
+
+    // 마이페이지 회원정보수정 비밀번호체크
+    public int memberInfoPwCheck(UserVO userVO) throws Exception;
+
+    // 마이페이지 회원정보수정 보여주기
+    public UserVO memberInfo(UserVO userVO);
+
+    // 회원정보변경
+    public void memberInfoUpdate(UserVO userVO);
+
+    // 회원탈퇴
+    public void memberQuit(UserVO userVO) throws Exception;
+
+    // 마이페이지 주문목록
+    public List<OrderDetailDTO> getOrderList(String user) throws Exception;
 
 }

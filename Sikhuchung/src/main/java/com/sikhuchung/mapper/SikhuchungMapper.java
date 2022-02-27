@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
 
@@ -43,6 +44,7 @@ public interface SikhuchungMapper {
 
     /* 비밀번호 찾기 */
     public String findPwCheck(UserVO userVO);
+<<<<<<< HEAD
     
     /* 메인화면 -- 재훈 */
     public List<ProductVO> selectProductList();
@@ -55,4 +57,21 @@ public interface SikhuchungMapper {
     
     /* 상세화면 -- 재훈 */
     public ProductVO selectProductData(int productNumber);
+=======
+
+    // 마이페이지 회원정보수정 비밀번호체크
+    public int memberInfoPwCheck(UserVO userVO);
+
+    // 마이페이지 회원정보수정 보여주기
+    public UserVO memberInfo(UserVO userVO);
+
+    // 마이페이지 회원정보수정 진행
+    public void memberInfoUpdate(UserVO userVO);
+
+    // 마이페이지 회원탈퇴 진행
+    public void memberQuit(UserVO userVO);
+
+    // 마이페이지 주문목록 리스트
+    public List<OrderDetailDTO> getOrderList(String user);
+>>>>>>> mok
 }
