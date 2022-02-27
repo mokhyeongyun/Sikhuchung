@@ -375,6 +375,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 .member_cont {
 	padding: 0px 20px 70px;
 }
+.login_box{
+	margin-top: 80px;
+}
 
 .member_cont .member_login_box h3 {
 	font-weight: normal;
@@ -1033,5 +1036,21 @@ button.payment_btn{
 	text-decoration:none;
 	cursor:pointer;
 }
+/*footer 글자*/
+.lead2 {
+	font-size : 13px;
+	font-weight: 300;
+}
+.hul{
+	list-style:none;
+}
+.hli{
+	color:white;
+	float:left;
+	margin-left:30px;
+	margin-right:30px;
+	
+}
+
 
 /* 필립 css 끝 */
