@@ -122,12 +122,18 @@
         where user_id=#{userid} and sc.product_number=sp.product_number
     </select>
     
+    
     <!-- 주문창 -->
     <select id="orderlist" resultType="CartVO" parameterType="String">
         select cart_number,user_id,cart_count,cart_indate,product_name,product_thumbnail,product_price
         from s_cart sc ,s_product sp
         where sc.product_number=sp.product_number and cart_number=#{paymentlist}
     </select>
+    
+    <delete id="deletecart" parameterType="int">
+        DELETE FROM s_cart
+        WHERE  cart_number=#{checkNum}
+    </delete>
     
     
     

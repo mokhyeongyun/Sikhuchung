@@ -102,4 +102,10 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.orderlist(paymentlist);
 
     }
+
+    /* 장바구니 삭제 */
+    @Override
+    public void deletecart(int checkNum) {
+        sikhuchungMapper.deletecart(checkNum);
+    }
 }

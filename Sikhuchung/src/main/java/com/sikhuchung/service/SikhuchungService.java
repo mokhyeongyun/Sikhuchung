@@ -32,4 +32,7 @@ public interface SikhuchungService {
     /* 주문창 */
     public CartVO orderlist(String paymentlist) throws Exception;
 
+    /* 장바구니 선택 삭제 */
+    public void deletecart(int checkNum) throws Exception;
+
 }

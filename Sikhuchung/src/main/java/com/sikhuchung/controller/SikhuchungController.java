@@ -211,6 +211,21 @@ public class SikhuchungController {
         return "sikhuchung/payment";
     }
 
+    // 상세주문목록 화면 -- 필립
+    @GetMapping(value = "/sikhuchung/orderlist.do")
+    public String orderlist() {
+        return "sikhuchung/orderlist";
+    }
+
+    // 장바구니 화면 -- 필립
+    @GetMapping(value = "/sikhuchung/cart.do")
+    public String cart(Model model) throws Exception {
+        String userid = "test";
+        List<CartVO> cartlist = sikhuchungService.cartlist(userid);
+        model.addAttribute("cartlist", cartlist);
+        return "sikhuchung/cart";
+    }
+
     // 장바구니 -> 결제창
     @PostMapping(value = "sikhuchung/payment.do")
     public String paymentlist(HttpServletRequest request, Model model) throws Exception {
@@ -226,19 +241,20 @@ public class SikhuchungController {
         return "sikhuchung/payment";
     }
 
-    // 주문목록 화면 -- 필립
-    @GetMapping(value = "/sikhuchung/orderlist.do")
-    public String orderlist() {
-        return "sikhuchung/orderlist";
-    }
+    // 장바구니(삭제)
+    @ResponseBody // 주소로 받환되지 않고 적은값 그대로 반환
+    @PostMapping(value = "/sikhuchung/cartdelete.do")
+    public int cartDelete(HttpServletRequest request, @RequestParam(value = "checkBoxArr[]") List<String> checkBoxArr)
+            throws Exception {
+        int result = 0;
+        int checkNum;
 
-    // 장바구니 화면 -- 필립
-    @GetMapping(value = "/sikhuchung/cart.do")
-    public String cart(Model model) throws Exception {
-        String userid = "test";
-        List<CartVO> cartlist = sikhuchungService.cartlist(userid);
-        model.addAttribute("cartlist", cartlist);
-        return "sikhuchung/cart";
+        for (String str : checkBoxArr) {
+            checkNum = Integer.parseInt(str);
+            // System.out.println(checkNum);
+            sikhuchungService.deletecart(checkNum);
+        }
+        return result;
     }
 
 }

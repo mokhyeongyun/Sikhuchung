@@ -39,4 +39,7 @@ public interface SikhuchungMapper {
 
     /* 결제창 */
     public CartVO orderlist(String paymentlist);
+
+    /* 장바구니 삭제 */
+    public void deletecart(int checkNum);
 }

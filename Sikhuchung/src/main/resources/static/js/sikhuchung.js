@@ -507,11 +507,29 @@ function getCheckboxValue()  {
   // 출력
   document.getElementById('result').innerText
     = result;
-    
-    
-    
 }
 
+/* 장바구니 선택 삭제*/
+function deleteCart(){
+  var checkBoxArr = []; 
+  $("input:checkbox[name='select_product']:checked").each(function() {
+  checkBoxArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+  console.log(checkBoxArr);
+})
+
+  $.ajax({
+      type  : "POST",
+      url    : "/sikhuchung/cartdelete.do",
+      data: {
+      checkBoxArr : checkBoxArr
+      },
+      success: function(result){
+        console.log(result);
+        alert("삭제가 완료되었습니다.");
+        location.href = '/sikhuchung/cart.do';
+      }
+   });
+}
 
 
 
