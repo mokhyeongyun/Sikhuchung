@@ -17,6 +17,7 @@ a {
 .main_button_area {
 	display: flex;
 	justify-content: space-evenly;
+	padding: 2em 0em;
 }
 .main_button_area button {
 	width: 8em;
@@ -111,7 +112,7 @@ a {
 }
 
 /* Detail Screen */
-/* 버튼 구역 */
+/* 수정 삭제 구역 */
 .detail_info_btn {
   height: 2em;
   width: auto;
@@ -159,6 +160,13 @@ a {
   align-items: center;
   padding-bottom: 10px;
 }
+/* 테이블 버튼 줄 */
+.detail_info_tr_btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 10px;
+}
 .detail_info_td_label {
   height: auto;
   width: 120px;
@@ -177,12 +185,12 @@ a {
 /* 선택 상자 */
 .detail_info_select_box {
   position: relative;
-  width: 150px;
+  width: 220px;
   border-radius: 16px;
   border: 2px solid rgb(240, 169, 128);
 }
 .detail_info_select_box .detail_info_select {
-  width: 135px;
+  width: 205px;
   background: transparent;
   border: 0 none;
   outline: 0 none;
@@ -196,6 +204,39 @@ a {
   font-family: "GMARKET-SANS300";
   font-weight: lighter;
   font-size: 14px;
+}
+
+/* 결제, 장바구니 버튼 */
+.detail_info_button a {
+	font-size: 1em;
+	font-family: "Cafe24 Ssurround air";
+}
+.detail_info_button  button {
+	height: 2.2em;
+	width: 8em;
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+ 	color: #090909;
+ 	font-size: 18px;
+ 	border-radius: 0.5em;
+ 	background: #f1f0f0;
+ 	border: 1px solid #f1f0f0;
+ 	transition: all .3s;
+ 	box-shadow: 6px 6px 12px #ebc4c4,
+             	-6px -6px 12px #ffffff;
+}
+.detail_info_button button:active {
+ color: black;
+ box-shadow: inset 4px 4px 12px #b4d2eb,
+             inset -4px -4px 12px #ffffff;
+}
+.detail_info_bottom_btn_img {
+	height: 1.4em;
+	width: 1.4em;
+	margin-right: 0.4em;
 }
 
 /* 중앙 경계선 */
