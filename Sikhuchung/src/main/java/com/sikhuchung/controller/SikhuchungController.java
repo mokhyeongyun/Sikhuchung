@@ -409,7 +409,36 @@ public class SikhuchungController extends UiUtils {
         model.addAttribute("present", presentList);
         return "/sikhuchung/main";
     }
-
+    
+    // 제철 과일 리스트 -- 재훈
+    @GetMapping(value = "/sikhuchung/season.do")
+    public String season(ProductVO productVO, Model model) {
+    	List<ProductVO> seasonList = sikhuchungService.getSeasonList();
+    	model.addAttribute("season", seasonList);
+        return "/sikhuchung/season";
+    }
+ // 별난 과일 리스트 -- 재훈
+    @GetMapping(value = "/sikhuchung/weird.do")
+    public String weird(ProductVO productVO, Model model) {
+    	List<ProductVO> weirdList = sikhuchungService.getWeirdList();
+    	model.addAttribute("weird", weirdList);
+        return "/sikhuchung/weird";
+    }
+ // 간편 과일 리스트 -- 재훈
+    @GetMapping(value = "/sikhuchung/simple.do")
+    public String simple(ProductVO productVO, Model model) {
+    	List<ProductVO> simpleList = sikhuchungService.getSimpleList();
+    	model.addAttribute("simple", simpleList);
+        return "/sikhuchung/simple";
+    }
+ // 선물 과일 리스트 -- 재훈
+    @GetMapping(value = "/sikhuchung/present.do")
+    public String present(ProductVO productVO, Model model) {
+    	List<ProductVO> presentList = sikhuchungService.getPresentList();
+    	model.addAttribute("present", presentList);
+        return "/sikhuchung/present";
+    }
+    
     // 상세 정보 -- 재훈
     @GetMapping(value = "/sikhuchung/detail.do")
     public String detail(int productNumber, Model model) {

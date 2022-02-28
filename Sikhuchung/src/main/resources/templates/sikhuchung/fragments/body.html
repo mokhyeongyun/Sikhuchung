@@ -15,15 +15,13 @@
             <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
             </div>
             <div class="container">
-                <a class="navbar-brand" th:href="@{/sikhuchung/main.do}">식 후 청</a>
-             
-                <div>
-	                <ul class="hul">
-	                    <li class="hli" ><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/sikhuchung/main.do#season}">제철과일</a></li>
-	                    <li class="hli"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/sikhuchung/main.do#weird}">별난과일</a></li>
-	                    <li class="hli"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/sikhuchung/main.do#simple}">간편과일</a></li>
-	                    <li class="hli"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/sikhuchung/main.do#present}">선물과일</a></li>
-	                </ul>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/sikhuchung/season.do}">제철과일</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/sikhuchung/weird.do}">별난과일</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/sikhuchung/simple.do}">간편과일</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" th:href="@{/sikhuchung/present.do}">선물과일</a></li>
+                </ul>
                 </div>
             </div>
         </nav> 

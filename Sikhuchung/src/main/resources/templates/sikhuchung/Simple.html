@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="sikhuchung/layout/basic">
+<th:block layout:fragment="title">
+    <title>식후청</title>
+</th:block>
+<th:block layout:fragment="contents">
+    <h1 class="main_title">간편 과일</h1>    
+	    <div class="total_list">
+    		<div th:each="row : ${simple}" class="img_list">
+	    		<a th:href="|@{/sikhuchung/detail.do}?productNumber=${row.productNumber}|" class="list_a">
+    				<img th:src="${row.productThumbnail}" alt="" class="list_img">
+    			</a>
+            	<p th:text = "${row.productName}" class="list_p"></p>
+            	<p th:text = "${row.productPrice}" class="list_p"></p>
+			</div>
+    	</div>
+</th:block>
+</html>
