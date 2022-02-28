@@ -42,22 +42,5 @@
 		<div class="notice_search">
 		    <div th:replace="sikhuchung/fragments/common :: search"></div>
 		</div>
-	    <script th:inline="javascript">
-	            /*<![CDATA[*/
-	
-	            function movePage(uri, queryString) {
-	                location.href = uri + queryString;
-	            }
-	            
-	            function searchBoard(form) {
-	                if (form.searchKeyword.value == "") {
-	                    alert("검색어를 입력해 주세요.");
-	                    form.searchKeyword.focus();
-	                    return false;
-	                }
-	            }
-	            
-	            /*]]>*/
-	    </script>
   </th:block>
 </html>

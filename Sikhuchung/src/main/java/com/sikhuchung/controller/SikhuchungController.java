@@ -130,8 +130,36 @@ public class SikhuchungController extends UiUtils {
 
     // 후기 등록 -- 유진
     @GetMapping(value = "/sikhuchung/reviewwrite.do")
-    public String openReviewWrite() {
+    public String openReviewWrite(@RequestParam(value = "reviewNumber", required = false) Long reviewNumber,
+            Model model) {
+        if (reviewNumber == null) {
+            model.addAttribute("board", new ReviewDTO());
+        } else {
+            ReviewDTO review = sikhuchungService.getReviewDetail(reviewNumber);
+            if (review == null) {
+                return "redirect:/sikhuchung/reviewlist.do";
+            }
+            model.addAttribute("review", review);
+        }
         return "sikhuchung/reviewwrite";
+    }
+
+    // 후기 등록 처리 -- 유진
+    @PostMapping(value = "/sikhuchung/registerreview.do")
+    public String registerReview(final ReviewDTO params) {
+        try {
+            boolean isRegistered = sikhuchungService.registerReview(params);
+            if (isRegistered == false) {
+                // TODO => 게시글 등록에 실패하였다는 메시지를 전달
+            }
+        } catch (DataAccessException e) {
+            // TODO => 데이터베이스 처리 과정에 문제가 발생하였다는 메시지를 전달
+
+        } catch (Exception e) {
+            // TODO => 시스템에 문제가 발생하였다는 메시지를 전달
+        }
+
+        return "redirect:/sikhuchung/reviewlist.do";
     }
 
     // 후기 수정 -- 유진

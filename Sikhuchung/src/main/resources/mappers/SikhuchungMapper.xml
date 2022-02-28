@@ -178,7 +178,7 @@
             , #{reviewTitle}
             , #{reviewContent}
             , sysdate
-            , 4
+            , #{reviewRate}
             , 'N'
         )
     </insert>
@@ -200,7 +200,7 @@
               review_update_date = sysdate
             , review_title = #{reviewTitle}
             , review_content = #{reviewContent}
-            , review_rate = #{review_rate}
+            , review_rate = #{reviewRate}
         WHERE
             review_number = #{reviewNumber}
     </update>

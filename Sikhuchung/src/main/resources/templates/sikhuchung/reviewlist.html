@@ -7,19 +7,27 @@
   <th:block layout:fragment="contents">
     <div class="review_table">
     <h2>상품후기</h2>
-    <table class="table table-hover" id="contents">
+    <table class="table table-hover" id="example-table-1">
 	  <thead>
+	   <tr>
+        <th scope="col">번호</th>
+        <th scope="col">제목</th>
+        <th scope="col">별점</th>
+        <th scope="col">작성자</th>
+        <th scope="col">날짜</th>
+       </tr>
 	  </thead>
 	  <tbody>
-	    <tr th:if="${not #lists.isEmpty( reviewList )}" th:each="row : ${reviewList}">
-	      <td th:text="${row.reviewTitle}" class="flip" onclick="more()"></td>
-	      <td th:text="${row.reviewRate}"></td>
-	      <td th:text="${row.userId}"></td>
-	      <td th:text="${row.reviewDate}"></td>
-	    </tr>
-	    <tr id="panel">
-	       <td>내용</td>
-	    </tr>
+	    <div th:if="${not #lists.isEmpty( reviewList )}" th:each="row : ${reviewList}">
+		    <tr>
+		      <td th:text="${row.reviewNumber}"></td>
+		      <td th:text="${row.reviewContent}"></td>
+		      <td th:text="${row.reviewRate}" id="rate"></td>
+		      <td>작성자</td>
+		      <td th:text="${row.reviewDate}"></td>
+		    </tr>
+	    </div>
+		      <div class="panel" id="pan"></div>
 	    <tr th:unless="${not #lists.isEmpty( reviewList )}">
             <td colspan="5">조회된 결과가 없습니다.</td>
         </tr>
@@ -30,8 +38,44 @@
         <nav th:replace="sikhuchung/fragments/common :: pagination"></nav>
     </div>
     <script th:inline="javascript">
-    function more() {
-    	document.getElementById("panel").style.display = "block";
+    /*  function more(e) {
+*/    	/* if($(".panel").css("display") == "none"){
+    	    $(".panel").show();
+    	}else{
+    	    $(".panel").hide();
+    	} */
+    	
+    	
+    	// 테이블의 Row 클릭시 값 가져오기
+        $('#example-table-1 tr').click(function(){
+            // 현재 클릭된 Row(<tr>)
+            var tr = $(this);
+            var td = tr.children();
+         // tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+            // td.eq(index)를 통해 값을 가져올 수도 있다.
+            var reviewNumber = td.eq(0).text();
+            var reviewContent = td.eq(1).text();
+            var reviewRate = td.eq(2).text();
+            var userId = td.eq(3).text();
+            var reviewDate = td.eq(4).text();
+            var reviewContent2 = td.eq(5).text();
+            $('#pan').html(reviewContent);
+            
+           
+
+             });
+
+        
+        if($(".panel").css("display") == "none"){
+            $(".panel").show();
+        }else{
+            $(".panel").hide();
+        }
+        var panel = $('.panel').html();
+    window.onload = function star() {
+        if(document.getElementById("rate") = 2) {
+    	document.getElementById("rate").innerHTML = "⭐⭐";
+        }
     }
     </script>
   </th:block>

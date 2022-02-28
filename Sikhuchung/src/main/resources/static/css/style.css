@@ -921,7 +921,16 @@ div.btn_wrap3 {
 /***************후기***************/
 
 /*후기 리스트*/
-#panel {
+.panel {
 	display: none;
+}
+.review_table table {
+	table-layout : fixed;
+}
+.review_table table td:nth-child(2) {
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow : ellipsis;
+	
 }
 

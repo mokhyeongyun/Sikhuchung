@@ -375,3 +375,88 @@ function userQuitNullCheck() {
         document.formUserQuit.submit();
     }
 }
+
+/***************************** 공지사항 ***************************/
+/* 공지사항 리스트 */
+function movePage(uri, queryString) {
+    location.href = uri + queryString;
+}
+
+function searchBoard(form) {
+    if (form.searchKeyword.value == "") {
+        alert("검색어를 입력해 주세요.");
+        form.searchKeyword.focus();
+        return false;
+    }
+}
+/* 공지사항 글쓰기 */
+function registerNotice(form) {
+    var result = (
+        isValid(form.userId, "작성자", form.userId)
+        && isValid(form.noticeTitle, "제목", form.noticeTitle)
+        && isValid(form.noticeContent, "내용", form.noticeContent)
+    );
+    if ( result == false ) {
+        return false;
+    }
+    
+var noticeNumber = /*[[ ${notice.noticeNumber} ]]*/"";
+    if (isEmpty(noticeNumber) == false) {
+        var queryString = /*[[ ${params.makeQueryString(params.currentPageNo)} ]]*/"";
+    
+        /*[- 쿼리 스트링을 오브젝트 형태로 변환 -]*/
+        queryString = new URLSearchParams(queryString);
+        queryString.forEach(function(value, key) {
+        if (isEmpty(value) == false) {
+            $(form).append('<input type="hidden" name="' + key + '" value="' + value + '" />');
+        }
+        });
+    }
+}
+/*[- end of function -]*/
+/* 공지사항 삭제 */
+function deleteNotice(noticeNumber, queryString) {
+
+    if (confirm(noticeNumber + "번 게시글을 삭제할까요?")) {
+        var uri = /*[[ @{/sikhuchung/delete.do} ]]*/"";
+        var html = "";
+
+        html += '<form name="dataForm" action="'+uri+'" method="post">';
+        html += '<input type="hidden" name="noticeNumber" value="'+noticeNumber+'" />';
+                    
+        queryString = new URLSearchParams(queryString);
+        queryString.forEach(function(value, key) {
+        if (noticeNumber.value == false) {
+            html += '<input type="hidden" name="' + key + '" value="' + value + '" />';
+        }
+        });
+                    
+        html += '</form>';
+
+        $("body").append(html);
+        document.dataForm.submit();
+    }
+}
+
+/***************************** 후기 ***************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

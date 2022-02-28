@@ -7,18 +7,18 @@
   <th:block layout:fragment="contents">
     <div class="review-content">
         <h2>후기 등록</h2>
-        <form class="form-horizontal">
-            <input type="hidden"/>
+        <form class="form-horizontal" th:action="@{/sikhuchung/registerreview.do}" th:object="${review}" method="post" onsubmit="return registerReview(this)">
+            <input type="hidden" />
                 <div class="form-group">
-                    <label for="writer" class="col-sm-2 control-label">작성자</label>
+                    <label for="" class="col-sm-2 control-label">작성자</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" readonly="readonly" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="writer" class="col-sm-2 control-label">상품명</label>
+                    <label for="productName" class="col-sm-2 control-label">상품명</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" readonly="readonly" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -36,7 +36,7 @@
                 <div class="form-group">
                     <label for="writer" class="col-sm-2 control-label">내용</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="내용을 입력해 주세요." />
+                        <textarea class="form-control" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="btn_wrap2 text-center">
