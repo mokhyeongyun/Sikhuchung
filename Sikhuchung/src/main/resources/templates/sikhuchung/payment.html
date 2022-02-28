@@ -25,11 +25,11 @@
           <tbody>
              <tr th:each="row:${orderlist}"> 
                     <td th:text="${row.productThumbnail}" name="payment_product"></td>
-                    <td th:text="${row.productName}">제품명</td>
-                    <td><input type="text" name="" value="" size="3" maxlength="3" th:value="${row.cartCount}" readonly>개</td>
-                    <td th:text="${row.productPrice}"></td>
-                    <td th:text="${row.cartCount}"></td>
-                    <td th:text="${row.getPriceAmount()}"></td>
+                    <td th:text="${row.productName}" id="payment_name"></td>
+                    <td><input type="text" id="payment_count" name="" value="" size="3" maxlength="3" th:value="${row.cartCount}" readonly>개</td>
+                    <td th:text="${row.productPrice}" id="payment_price"></td>
+                    <td th:text="${row.cartCount}" id="payment_sale"></td>
+                    <td th:text="${row.getPriceAmount()}" id="payment_amount"></td>
                 </tr>
           </tbody>
         </table>

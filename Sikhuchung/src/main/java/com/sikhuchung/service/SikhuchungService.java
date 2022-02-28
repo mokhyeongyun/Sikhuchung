@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderVO;
 import com.sikhuchung.domain.UserVO;
 
 public interface SikhuchungService {
@@ -29,10 +30,13 @@ public interface SikhuchungService {
     /* 장바구니 - 필립 */
     public List<CartVO> cartlist(String userid) throws Exception;
 
-    /* 주문창 */
-    public CartVO orderlist(String paymentlist) throws Exception;
+    /* 장바구니 -> 결제창 - 필립 */
+    public CartVO paymentlist(String paymentlist) throws Exception;
 
-    /* 장바구니 선택 삭제 */
+    /* 결제창 -> 주문목록 */
+    public OrderVO orderlist(String orders) throws Exception;
+
+    /* 장바구니 선택 삭제 - 필립 */
     public void deletecart(int checkNum) throws Exception;
 
 }

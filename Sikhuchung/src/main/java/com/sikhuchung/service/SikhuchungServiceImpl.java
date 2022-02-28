@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderVO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 import com.sikhuchung.paging.PaginationInfo;
@@ -96,11 +97,16 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.cartlist(userid);
     }
 
-    /* 주문창 */
+    /* 결제창 */
     @Override
-    public CartVO orderlist(String paymentlist) {
-        return sikhuchungMapper.orderlist(paymentlist);
+    public CartVO paymentlist(String paymentlist) {
+        return sikhuchungMapper.paymentlist(paymentlist);
+    }
 
+    /* 주문목록 */
+    @Override
+    public OrderVO orderlist(String orderlist) {
+        return sikhuchungMapper.orderlist(orderlist);
     }
 
     /* 장바구니 삭제 */

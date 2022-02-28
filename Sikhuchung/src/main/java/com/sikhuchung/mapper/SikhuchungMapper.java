@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
+import com.sikhuchung.domain.OrderVO;
 import com.sikhuchung.domain.UserVO;
 
 @Mapper
@@ -38,7 +39,10 @@ public interface SikhuchungMapper {
     public List<CartVO> cartlist(String userid);
 
     /* 결제창 */
-    public CartVO orderlist(String paymentlist);
+    public CartVO paymentlist(String paymentlist);
+
+    /* 주문 목록 */
+    public OrderVO orderlist(String orderlist);
 
     /* 장바구니 삭제 */
     public void deletecart(int checkNum);

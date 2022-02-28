@@ -20,11 +20,12 @@
               <th scope="col">상품금액</th>
               <th scope="col">할인</th>
               <th scope="col">합계금액</th>
+              <th scope="col">주문일자</th>
             </tr>
             
           </thead>
           <tbody>
-                <tr th:if="${not #lists.isEmpty( cartlist )}" th:each="row:${cartlist}"> 
+                <tr th:if="${not #lists.isEmpty( orderlist )}" th:each="row:${orderlist}"> 
                     <td><input type="checkbox" name="select_product" th:value="${row.cartNumber}" onclick="checkSelectAll()" checked></td>
                     <td th:text="${row.productThumbnail}"></td>
                     <td th:text="${row.productName}">제품명</td>
@@ -32,13 +33,13 @@
                     <td th:text="${row.productPrice}"></td>
                     <td th:text="${row.cartCount}"></td>
                     <td th:text="${row.getPriceAmount()}"></td>
+                    <td th:text="${row.getPriceAmount()}"></td>
                 </tr>
-                <tr th:unless="${not #lists.isEmpty( cartlist )}">
-                    <td colspan="7">기록된 주문이 없습니다.</td>
+                <tr th:unless="${not #lists.isEmpty( orderlist )}">
+                    <td colspan="8">기록된 주문이 없습니다.</td>
                 </tr>
                 <tr class="btn_list">
-                    <td colspan=5><button class="gray_button">선택 목록 삭제</button></td>
-                    <td class="btn_right"><button type="submit" class="gray_button">전체 목록 삭제</button></td>
+                    <td colspan=7><button class="gray_button">선택 목록 삭제</button></td>
                 </tr>
                 
           </tbody>

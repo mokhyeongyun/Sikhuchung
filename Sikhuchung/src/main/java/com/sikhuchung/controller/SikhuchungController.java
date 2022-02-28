@@ -234,7 +234,7 @@ public class SikhuchungController {
         // System.out.println(paymentlist[0]);
         List<CartVO> orderlist = new ArrayList<CartVO>();
         for (int i = 0; i < paymentlist.length; i++) {
-            CartVO order = sikhuchungService.orderlist(paymentlist[i]);
+            CartVO order = sikhuchungService.paymentlist(paymentlist[i]);
             orderlist.add(order);
         }
         model.addAttribute("orderlist", orderlist);
@@ -242,19 +242,19 @@ public class SikhuchungController {
     }
 
     // 결제창 -> 주문목록
-    @PostMapping(value = "sikhuchung/orderlist.do")
-    public String orderlist(HttpServletRequest request, Model model) throws Exception {
-        String[] orders = request.getParameterValues("payment_product");
-        System.out.println(orders[0]);
-        List<CartVO> orderlist = new ArrayList<CartVO>();
-        for (int i = 0; i < orders.length; i++) {
-            CartVO order = sikhuchungService.orderlist(orders[i]);
-            orderlist.add(order);
-        }
-        model.addAttribute("orderlist", orderlist);
-        return "sikhuchung/orderlist";
-
-    }
+//    @PostMapping(value = "sikhuchung/orderlist.do")
+//    public String orderlist(HttpServletRequest request, Model model) throws Exception {
+//        String[] orders = request.getParameterValues("payment_product");
+//        System.out.println(orders[0]);
+//        List<OrderVO> orderlist = new ArrayList<OrderVO>();
+//        for (int i = 0; i < orders.length; i++) {
+//            OrderVO order = sikhuchungService.orderlist(orders[i]);
+//            orderlist.add(order);
+//        }
+//        model.addAttribute("orderlist", orderlist);
+//        return "sikhuchung/orderlist";
+//
+//    }
 
     // 장바구니(삭제)
     @ResponseBody // 주소로 받환되지 않고 적은값 그대로 반환
