@@ -78,12 +78,12 @@
                 <tr>
                     <td>배송 주소</td>
                     <td>
-                    <input type="text" name="zip" style="width:80px; height:26px;"/>
+                    <input type="text" id="addr0" name="zip" style="width:80px; height:26px;"/>
                     <button type="button" style="width:60px; height:32px;" onclick="openZipSearch()">검색</button>
                     <br>
-					<input type="text" name="addr1" style="width:300px; height:30px;" readonly/>
+					<input type="text" id="addr1" name="addr1" style="width:300px; height:30px;" readonly/>
 					<br>
-					<input type="text" name="addr2" style="width:300px; height:30px;"/>
+					<input type="text" id="addr2" name="addr2" style="width:300px; height:30px;"/>
 					</td>
                 </tr>
                 <tr>
@@ -169,8 +169,7 @@
         </table>
       </form>
         <div class="payment_btn_box">
-            <button class="payment_btn" onclick="paymentFormCheck()">결제하기</button>
-<!--             <a href="/sikhuchung/cart.do"><button class="payment_btn">결제하기</button></a> -->
+            <button type="submit" class="payment_btn" onclick="paymentFormCheck()">결제하기</button>
         </div>
     </div>
     

@@ -376,66 +376,119 @@ function userQuitNullCheck() {
     }
 }
 /* 필립 js 시작 */
-function paymentFormCheck(){
-    let order_user,order_phone,order_email,get_user,get_address,get_phone;
-    var name_c = /^[가-힣a-zA-Z]{2,20}$/;
-    var phone_c = /^[0-9]{11,}$/;
-    var email_c = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,20})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-    
-    
-    order_user=document.getElementById("order_user");
-    order_phone=document.getElementById("order_phone");
-    order_email=document.getElementById("order_email");
-    get_user=document.getElementById("get_user");
-    get_address=document.getElementById("get_address");
-    get_phone=document.getElementById("get_phone");
-    
-    if(order_user.value==""){
-        alert("주문하시는 분을 기입해주세요.")
-        order_user.focus();
+// 결제 체크 유효성
+function paymentFormCheck() {
+    if (!ordernameCheck()) { // 주문자 이름 검사
         return false;
-    }else if(order_phone.value==""){
-        alert("주문자 정보의 휴대폰 번호를 기입해주세요.")
-        order_phone.focus();
+    }else if (!paymentEmailCheck()) { //이메일 검사
         return false;
-    }else if(order_email.value==""){
-        alert("이메일을 기입해주세요.")
-        order_email.focus();
+    }else if (!orderTelCheck()) { //주문자 전화번호 검사
         return false;
-    }else if(get_user.value==""){
-        alert("받으실 분을 기입해주세요.");
-        get_user.focus();
+    }else if(!getnameCheck()){ //받는 분 이름 검사
         return false;
-    }else if(get_address.value==""){
-        alert("배송 주소를 기입해주세요.");
-        get_address.focus();
+    }else if(!addrCheck()){ //주소 검사
         return false;
-    }else if(get_phone.value==""){
-        alert("배송정보의 휴대폰 번호를 기입해주세요.")
-        get_phone.focus();
+    }else if(!getTelCheck()){ //받는 분 전화번호 검사
         return false;
-    }else if(!name_c.test(order_user.value)){
-        alert("주문하시는 분의 이름은 2~20자 사이의 한글과 영어만 입력 가능합니다.");
-        order_user.focus();
-        return false;
-    }else if(!phone_c.test(order_phone.value)){
-        alert("휴대폰 번호는 최소 11자리 이상의 숫자만 입력 가능합니다.");
-        order_phone.focus();
-        return false;
-    }else if(!email_c.test(order_email.value)){
-        alert("이메일 형식이 잘못되었습니다.");
-        order_email.focus();
-        return false;
-    }else if(!name_c.test(get_user.value)){
-        alert("받으실 분의 이름은 2~20자 사이의 한글과 영어만 입력가능합니다.")
-        get_user.focus();
-        return false;
-    }else if(!phone_c.test(get_phone.value)){
-        alert("배송 정보의 휴대폰 번호는 최소 11자리 이상의 숫자만 입력 가능합니다.")
-        get_phone.focus();
-        return false;
+    } else { //유효성 검사 완료시 회원가입 진행
+        alert("결제가 완료되었습니다.");
+        return true;
     }
-    /*주소 js 안 넣음*/
+}
+// 주문자 이름 유효성 체크
+function ordernameCheck() {
+    let order_user = document.getElementById("order_user");
+    var name_c = /^[가-힣a-zA-Z]{2,20}$/;
+    if (order_user.value == "") {
+        alert("주문하시는 분을 입력해 주세요");
+        order_user.focus();
+        return false;
+    } else if (!name_c.test(order_user.value)) {
+        alert("주문하시는 분은 2~20자 사이의 한글과 영어만 입력가능합니다.");
+        order_user.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+// 받는 분 이름 유효성 체크
+function getnameCheck() {
+    let get_user = document.getElementById("get_user");
+    var name_c = /^[가-힣a-zA-Z]{2,20}$/;
+    if (order_user.value == "") {
+        alert("받으실 분을 입력해 주세요");
+        get_user.focus();
+        return false;
+    } else if (!name_c.test(get_user.value)) {
+        alert("받으실 분은 2~20자 사이의 한글과 영어만 입력가능합니다.");
+        get_user.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+// 이메일 유효성 체크
+function paymentEmailCheck() {
+    let order_email = document.getElementById("order_email");
+    var email_c = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,20})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+    if (order_email.value == "") {
+        alert("이메일을 입력해 주세요");
+        order_email.focus();
+        return false;
+    } else if (!email_c.test(order_email.value)) {
+        alert("이메일형식이 잘못되었습니다.");
+        order_email.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+// 주문자 핸드폰번호 유효성 체크
+function orderTelCheck() {
+    let order_phone = document.getElementById("order_phone");
+    var phone_c = /^[0-9]{11,}$/;
+    if (order_phone.value == "") {
+        alert("주문자 정보의 휴대폰번호를 입력해 주세요");
+        order_phone.focus();
+        return false;
+    } else if (!phone_c.test(order_phone.value)) {
+        alert("주문자 정보의 휴대폰번호는 최소 11자리 이상의 숫자만 입력 가능합니다.");
+        order_phone.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+// 받는 분 핸드폰번호 유효성 체크
+function getTelCheck() {
+    let get_phone = document.getElementById("get_phone");
+    var phone_c = /^[0-9]{11,}$/;
+    if (get_phone.value == "") {
+        alert("배송정보의 휴대폰번호를 입력해 주세요");
+        get_phone.focus();
+        return false;
+    } else if (!phone_c.test(get_phone.value)) {
+        alert("배송정보의 휴대폰번호는 최소 11자리 이상의 숫자만 입력 가능합니다.");
+        get_phone.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+//주소 유효성 체크
+function addrCheck(){
+    let addr0 = document.getElementById("addr0");
+    let addr1 = document.getElementById("addr1");
+    let addr2 = document.getElementById("addr2");
+    
+    if(addr0.value==""||addr1.value==""||addr2.value==""){
+        alert("주소를 입력해주세요.")
+        addr0.focus();
+        return false;
+    } else {
+        return true;
+    }
+    
 }
 
 
