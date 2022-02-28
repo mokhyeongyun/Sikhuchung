@@ -407,7 +407,6 @@ function userQuitNullCheck() {
         }
     }
 }
-<<<<<<< HEAD
 /* 필립 js 시작 */
 function paymentFormCheck() {
     let order_user, order_phone; /*이 부분이 없어도 정상 실행됌*/
@@ -447,7 +446,6 @@ function paymentFormCheck() {
 
 
 /* 필립 js 끝 */
-=======
 
 /***************************** 공지사항 ***************************/
 /* 공지사항 리스트 */
@@ -533,4 +531,3 @@ function deleteNotice(noticeNumber, queryString) {
 
 
 
->>>>>>> yj

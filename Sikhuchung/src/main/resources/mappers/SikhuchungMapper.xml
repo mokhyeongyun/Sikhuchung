@@ -118,7 +118,6 @@
             s_notice
         WHERE
             notice_delete = 'N'
-<<<<<<< HEAD
     </select>
     
     <!-- 메인화면 리스트 불러오기 -->
@@ -182,7 +181,6 @@
     <!-- id중복확인 -->
     <select id="idCheck" resultType="int">
         select count(*) from s_user where user_id = #{userid}
-=======
                     <if test="searchKeyword != null and searchKeyword != ''">
                         <choose>
                             <when test="searchType != null and searchType != ''">
@@ -208,7 +206,6 @@
                             </otherwise>
                         </choose>
                     </if>
->>>>>>> yj
     </select>
     
     <!-- 로그인 -->
@@ -257,8 +254,6 @@
         WHERE
             notice_number = #{noticeNumber}    
     </update>
-<<<<<<< HEAD
-=======
     
     <!-- 후기 -->
     <sql id="reviewColumns">
@@ -341,16 +336,4 @@
             review_delete = 'N'
     </select>
     
-    <!-- 회원가입 -->
-    <insert id="saveUser" parameterType="UserVO">
-        INSERT INTO s_user VALUES(#{uid},#{upw},#{uname},#{uemail},#{utel},#{ugrade},SYSDATE)
-    </insert>
-    <!-- id중복확인 -->
-    <select id="idCheck" resultType="int">
-        select count(*) from s_user where user_id = #{userid}
-    </select>
-    
-    
-    
->>>>>>> yj
 </mapper>

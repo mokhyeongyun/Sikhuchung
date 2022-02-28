@@ -19,12 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sikhuchung.constant.Method;
 import com.sikhuchung.domain.NoticeDTO;
-<<<<<<< HEAD
 import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.ProductVO;
-=======
 import com.sikhuchung.domain.ReviewDTO;
->>>>>>> yj
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
 import com.sikhuchung.util.UiUtils;

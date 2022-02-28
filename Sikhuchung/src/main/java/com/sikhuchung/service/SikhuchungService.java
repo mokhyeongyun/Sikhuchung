@@ -3,16 +3,13 @@ package com.sikhuchung.service;
 import java.util.List;
 
 import com.sikhuchung.domain.NoticeDTO;
-<<<<<<< HEAD
 import com.sikhuchung.domain.OrderDetailDTO;
-=======
-import com.sikhuchung.domain.ReviewDTO;
->>>>>>> yj
-import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
+import com.sikhuchung.domain.ReviewDTO;
+import com.sikhuchung.domain.UserVO;
 
 public interface SikhuchungService {
-	
+
     /* 공지사항 */
     public boolean registerNotice(NoticeDTO params);
 
@@ -21,23 +18,24 @@ public interface SikhuchungService {
     public boolean deleteNotice(Long noticeNumber);
 
     public List<NoticeDTO> getNoticeList(NoticeDTO params);
-    
+
     /* 메인화면 -- 재훈 */
     public List<ProductVO> getProductList();
-    
-    /*  메인화면 제철, 간편, 별난, 선물 -- 재훈 */
+
+    /* 메인화면 제철, 간편, 별난, 선물 -- 재훈 */
     public List<ProductVO> getPresentList();
+
     public List<ProductVO> getSimpleList();
+
     public List<ProductVO> getSeasonList();
-    public List<ProductVO> getWeirdList(); 
-    
+
+    public List<ProductVO> getWeirdList();
+
     /* 상세화면 -- 재훈 */
     public ProductVO getProductData(int productNumber);
 
     public boolean hitPlus(Long noticeNumber);
 
-<<<<<<< HEAD
-=======
     /* 후기 */
     public boolean registerReview(ReviewDTO params);
 
@@ -47,7 +45,6 @@ public interface SikhuchungService {
 
     public List<ReviewDTO> getReviewList();
 
->>>>>>> yj
     /* 회원가입 */
     public void joinUser(UserVO userVO);
 

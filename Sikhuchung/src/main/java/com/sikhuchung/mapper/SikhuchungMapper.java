@@ -5,12 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.sikhuchung.domain.NoticeDTO;
-<<<<<<< HEAD
 import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.ProductVO;
-=======
 import com.sikhuchung.domain.ReviewDTO;
->>>>>>> yj
 import com.sikhuchung.domain.UserVO;
 
 @Mapper

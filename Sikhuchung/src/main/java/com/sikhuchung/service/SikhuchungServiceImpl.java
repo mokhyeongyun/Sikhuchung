@@ -8,13 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sikhuchung.domain.NoticeDTO;
-<<<<<<< HEAD
 import com.sikhuchung.domain.OrderDetailDTO;
-=======
-import com.sikhuchung.domain.ReviewDTO;
->>>>>>> yj
-import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
+import com.sikhuchung.domain.ReviewDTO;
+import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 import com.sikhuchung.paging.PaginationInfo;
 
@@ -74,9 +71,6 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return noticeList;
     }
 
-<<<<<<< HEAD
-    /* 회원가입 --현균 */
-=======
     @Override
     public boolean hitPlus(Long noticeNumber) {
         return sikhuchungMapper.hitPlus(noticeNumber);
@@ -128,7 +122,7 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     }
 
     /* 회원가입 */
->>>>>>> yj
+    /* 회원가입 --현균 */
     @Transactional
     @Override
     public void joinUser(UserVO userVO) {
@@ -142,7 +136,6 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.idCheck(userId);
     }
 
-<<<<<<< HEAD
     /* 로그인 */
     @Override
     public int userLogin(UserVO userVO) throws Exception {
@@ -191,46 +184,42 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.getOrderList(user);
     }
 
-    @Override
-    public boolean hitPlus(Long noticeNumber) {
-        return sikhuchungMapper.hitPlus(noticeNumber);
-    }
-    
     /* 메인 화면 -- 재훈 */
     @Override
     public List<ProductVO> getProductList() {
-    	List<ProductVO> productList = sikhuchungMapper.selectProductList();
-    	return productList;
+        List<ProductVO> productList = sikhuchungMapper.selectProductList();
+        return productList;
     }
-    
+
     /* 메인화면 제철, 간편, 별난, 선물 -- 재훈 */
     @Override
     public List<ProductVO> getPresentList() {
-    	List<ProductVO> productList = sikhuchungMapper.selectPresentList();
-    	return productList;
+        List<ProductVO> productList = sikhuchungMapper.selectPresentList();
+        return productList;
     }
+
     @Override
     public List<ProductVO> getSimpleList() {
-    	List<ProductVO> productList = sikhuchungMapper.selectSimpleList();
-    	return productList;
+        List<ProductVO> productList = sikhuchungMapper.selectSimpleList();
+        return productList;
     }
+
     @Override
     public List<ProductVO> getSeasonList() {
-    	List<ProductVO> productList = sikhuchungMapper.selectSeasonList();
-    	return productList;
+        List<ProductVO> productList = sikhuchungMapper.selectSeasonList();
+        return productList;
     }
+
     @Override
     public List<ProductVO> getWeirdList() {
-    	List<ProductVO> productList = sikhuchungMapper.selectWeirdList();
-    	return productList;
+        List<ProductVO> productList = sikhuchungMapper.selectWeirdList();
+        return productList;
     }
-    
+
     /* 상세화면 -- 재훈 */
     @Override
     public ProductVO getProductData(int productNumber) {
-    	ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
-    	return productData;
+        ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
+        return productData;
     }
-=======
->>>>>>> yj
 }
