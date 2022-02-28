@@ -12,4 +12,5 @@ public class CommonDTO extends Criteria {
 
     /** 페이징 정보 */
     private PaginationInfo paginationInfo;
+
 }

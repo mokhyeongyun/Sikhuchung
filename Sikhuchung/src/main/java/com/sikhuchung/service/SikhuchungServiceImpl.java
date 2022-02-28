@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sikhuchung.domain.NoticeDTO;
+<<<<<<< HEAD
 import com.sikhuchung.domain.OrderDetailDTO;
+=======
+import com.sikhuchung.domain.ReviewDTO;
+>>>>>>> yj
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
@@ -70,7 +74,61 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return noticeList;
     }
 
+<<<<<<< HEAD
     /* 회원가입 --현균 */
+=======
+    @Override
+    public boolean hitPlus(Long noticeNumber) {
+        return sikhuchungMapper.hitPlus(noticeNumber);
+    }
+
+    /* 후기 */
+    @Override
+    public boolean registerReview(ReviewDTO params) {
+        int queryResult = 0;
+
+        if (params.getReviewNumber() == null) {
+            queryResult = sikhuchungMapper.insertReview(params);
+        } else {
+            queryResult = sikhuchungMapper.updateReview(params);
+        }
+
+        return (queryResult == 1) ? true : false;
+    }
+
+    @Override
+    public ReviewDTO getReviewDetail(Long reviewNumber) {
+        return sikhuchungMapper.selectReviewDetail(reviewNumber);
+    }
+
+    @Override
+    public boolean deleteReview(Long reviewNumber) {
+        int queryResult = 0;
+
+        ReviewDTO review = sikhuchungMapper.selectReviewDetail(reviewNumber);
+
+        if (review != null && "N".equals(review.getReviewDelete())) {
+            queryResult = sikhuchungMapper.deleteReview(reviewNumber);
+        }
+
+        return (queryResult == 1) ? true : false;
+    }
+
+    @Override
+    public List<ReviewDTO> getReviewList() {
+        List<ReviewDTO> reviewList = Collections.emptyList();
+
+        int reviewTotalCount = sikhuchungMapper.selectReviewTotalCount();
+
+        if (reviewTotalCount > 0) {
+            reviewList = sikhuchungMapper.selectReviewList();
+        }
+
+        return reviewList;
+    }
+
+    /* 회원가입 */
+>>>>>>> yj
     @Transactional
     @Override
     public void joinUser(UserVO userVO) {
@@ -84,6 +142,7 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.idCheck(userId);
     }
 
+<<<<<<< HEAD
     /* 로그인 */
     @Override
     public int userLogin(UserVO userVO) throws Exception {
@@ -172,4 +231,6 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     	ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
     	return productData;
     }
+=======
+>>>>>>> yj
 }

@@ -65,7 +65,6 @@
     </update>
 
     <select id="selectNoticeList" parameterType="NoticeDTO" resultType="NoticeDTO">
-        <![CDATA[
         SELECT 
             notice_number
 	        , user_id
@@ -80,10 +79,36 @@
                 SELECT ROW_NUMBER() OVER (ORDER BY notice_number DESC, notice_date DESC) NUM
                     , A.*
                     FROM S_NOTICE A
+                    <where> 
+                    <if test="searchKeyword != null and searchKeyword != ''">
+			            <choose>
+			                <when test="searchType != null and searchType != ''">
+			                    <choose>
+			                        <when test="'title'.equals(searchType)">
+			                            AND notice_title LIKE '%' || #{searchKeyword} || '%'
+			                        </when>
+			                        <when test="'content'.equals(searchType)">
+			                            AND notice_content LIKE '%' || #{searchKeyword} || '%'
+			                        </when>
+			                        <when test="'writer'.equals(searchType)">
+			                            AND user_id LIKE '%' || #{searchKeyword} || '%'
+			                        </when>
+			                    </choose>
+			                </when>
+			                <otherwise>
+			                    AND
+			                        (
+			                               notice_title LIKE '%' || #{searchKeyword} || '%'
+			                            OR notice_content LIKE '%' || #{searchKeyword} || '%'
+			                            OR user_id LIKE '%' || #{searchKeyword} || '%'
+			                        )
+			                </otherwise>
+			            </choose>
+			        </if>
+			        </where>
                     ORDER BY notice_number DESC,notice_date DESC
                     )
              WHERE NUM BETWEEN #{paginationInfo.firstRecordIndex} AND #{paginationInfo.lastRecordIndex} AND notice_delete = 'N'
-        ]]>    
     </select>
 
     <select id="selectNoticeTotalCount" parameterType="NoticeDTO" resultType="int">
@@ -93,6 +118,7 @@
             s_notice
         WHERE
             notice_delete = 'N'
+<<<<<<< HEAD
     </select>
     
     <!-- 메인화면 리스트 불러오기 -->
@@ -156,6 +182,33 @@
     <!-- id중복확인 -->
     <select id="idCheck" resultType="int">
         select count(*) from s_user where user_id = #{userid}
+=======
+                    <if test="searchKeyword != null and searchKeyword != ''">
+                        <choose>
+                            <when test="searchType != null and searchType != ''">
+                                <choose>
+                                    <when test="'title'.equals(searchType)">
+                                        AND notice_title LIKE '%' || #{searchKeyword} || '%'
+                                    </when>
+                                    <when test="'content'.equals(searchType)">
+                                        AND notice_content LIKE '%' || #{searchKeyword} || '%'
+                                    </when>
+                                    <when test="'writer'.equals(searchType)">
+                                        AND user_id LIKE '%' || #{searchKeyword} || '%'
+                                    </when>
+                                </choose>
+                            </when>
+                            <otherwise>
+                                AND
+                                    (
+                                           notice_title LIKE '%' || #{searchKeyword} || '%'
+                                        OR notice_content LIKE '%' || #{searchKeyword} || '%'
+                                        OR user_id LIKE '%' || #{searchKeyword} || '%'
+                                    )
+                            </otherwise>
+                        </choose>
+                    </if>
+>>>>>>> yj
     </select>
     
     <!-- 로그인 -->
@@ -204,4 +257,100 @@
         WHERE
             notice_number = #{noticeNumber}    
     </update>
+<<<<<<< HEAD
+=======
+    
+    <!-- 후기 -->
+    <sql id="reviewColumns">
+          review_number
+        , order_detail_number
+        , review_title
+        , review_content
+        , TO_CHAR(review_date, 'yyyy-MM-dd') review_date
+        , review_rate
+        , review_update_date
+        , review_delete
+    </sql>
+    
+    <insert id="insertReview" parameterType="ReviewDTO">
+        INSERT INTO s_review (
+              review_number
+	        , review_title
+	        , review_content
+	        , TO_CHAR(review_date, 'yyyy-MM-dd') review_date
+	        , review_rate
+	        , review_delete
+        ) VALUES (
+              #{reviewNumber}
+            , #{reviewTitle}
+            , #{reviewContent}
+            , sysdate
+            , #{reviewRate}
+            , 'N'
+        )
+    </insert>
+
+    <select id="selectReviewDetail" parameterType="long" resultType="ReviewDTO">
+        SELECT
+            <include refid="reviewColumns" />
+        FROM
+            s_review
+        WHERE
+            review_delete = 'N'
+        AND
+            review_number = #{reviewNumber}
+    </select>
+
+    <update id="updateReview" parameterType="ReviewDTO">
+        UPDATE s_review
+        SET
+              review_update_date = sysdate
+            , review_title = #{reviewTitle}
+            , review_content = #{reviewContent}
+            , review_rate = #{reviewRate}
+        WHERE
+            review_number = #{reviewNumber}
+    </update>
+
+    <update id="deleteReview" parameterType="long">
+        UPDATE s_review
+        SET
+              review_delete = 'Y'
+        WHERE
+            review_number = #{reviewNumber}
+    </update>
+
+    <select id="selectReviewList" parameterType="ReviewDTO" resultType="ReviewDTO">
+        SELECT
+            <include refid="reviewColumns" />
+        FROM
+            s_review
+        WHERE
+            review_delete = 'N'
+        ORDER BY
+            review_number DESC,
+            review_date DESC
+    </select>
+
+    <select id="selectReviewTotalCount" parameterType="ReviewDTO" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            s_review
+        WHERE
+            review_delete = 'N'
+    </select>
+    
+    <!-- 회원가입 -->
+    <insert id="saveUser" parameterType="UserVO">
+        INSERT INTO s_user VALUES(#{uid},#{upw},#{uname},#{uemail},#{utel},#{ugrade},SYSDATE)
+    </insert>
+    <!-- id중복확인 -->
+    <select id="idCheck" resultType="int">
+        select count(*) from s_user where user_id = #{userid}
+    </select>
+    
+    
+    
+>>>>>>> yj
 </mapper>

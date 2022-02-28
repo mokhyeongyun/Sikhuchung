@@ -3,7 +3,11 @@ package com.sikhuchung.service;
 import java.util.List;
 
 import com.sikhuchung.domain.NoticeDTO;
+<<<<<<< HEAD
 import com.sikhuchung.domain.OrderDetailDTO;
+=======
+import com.sikhuchung.domain.ReviewDTO;
+>>>>>>> yj
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.domain.ProductVO;
 
@@ -32,6 +36,18 @@ public interface SikhuchungService {
 
     public boolean hitPlus(Long noticeNumber);
 
+<<<<<<< HEAD
+=======
+    /* 후기 */
+    public boolean registerReview(ReviewDTO params);
+
+    public ReviewDTO getReviewDetail(Long reviewNumber);
+
+    public boolean deleteReview(Long reviewNumber);
+
+    public List<ReviewDTO> getReviewList();
+
+>>>>>>> yj
     /* 회원가입 */
     public void joinUser(UserVO userVO);
 

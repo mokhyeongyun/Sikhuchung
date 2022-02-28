@@ -1,6 +1,7 @@
 package com.sikhuchung.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,44 +17,147 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sikhuchung.constant.Method;
 import com.sikhuchung.domain.NoticeDTO;
+<<<<<<< HEAD
 import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.ProductVO;
+=======
+import com.sikhuchung.domain.ReviewDTO;
+>>>>>>> yj
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
+import com.sikhuchung.util.UiUtils;
 
 @Controller
-public class SikhuchungController {
+public class SikhuchungController extends UiUtils {
 
     @Autowired
     private SikhuchungService sikhuchungService;
 
-    @GetMapping(value = "/sikhuchung/sikhuchungTest.do")
-    public String sikhuchungTest() {
-        return "sikhuchung/sikhuchungTest";
-    }
-
-    // 공지사항 글쓰기 이동
+    // 공지사항 글쓰기 이동 -- 유진
     @GetMapping(value = "/sikhuchung/noticewrite.do")
-    public String openNoticeWrite(@RequestParam(value = "noticeNumber", required = false) Long noticeNumber,
-            Model model) {
+    public String openNoticeWrite(@ModelAttribute("params") NoticeDTO params,
+            @RequestParam(value = "noticeNumber", required = false) Long noticeNumber, Model model) {
         if (noticeNumber == null) {
             model.addAttribute("notice", new NoticeDTO());
         } else {
             NoticeDTO notice = sikhuchungService.getNoticeDetail(noticeNumber);
             if (notice == null) {
-                return "redirect:/skihuchung/noticelist.do";
+                return showMessageWithRedirect("없는 게시글이거나 이미 삭제된 게시글입니다.", "/sikhuchung/noticelist.do", Method.GET,
+                        null, model);
             }
             model.addAttribute("notice", notice);
         }
         return "sikhuchung/noticewrite";
     }
 
-    // 공지사항 글쓰기 처리
+    // 공지사항 글쓰기 처리 -- 유진
     @PostMapping(value = "/sikhuchung/register.do")
-    public String registerNotice(NoticeDTO params) {
+    public String registerNotice(@ModelAttribute("params") final NoticeDTO params, Model model) {
+        Map<String, Object> pagingParams = getPagingParams(params);
         try {
             boolean isRegistered = sikhuchungService.registerNotice(params);
+            if (isRegistered == false) {
+                return showMessageWithRedirect("게시글 쓰기에 실패하였습니다.", "/sikhuchung/noticelist.do", Method.GET,
+                        pagingParams, model);
+            }
+        } catch (DataAccessException e) {
+            return showMessageWithRedirect("데이터베이스 처리 과정에 문제가 발생하였습니다.", "/sikhuchung/noticelist.do", Method.GET,
+                    pagingParams, model);
+
+        } catch (Exception e) {
+            return showMessageWithRedirect("시스템에 문제가 발생하였습니다.", "/sikhuchung/noticelist.do", Method.GET, pagingParams,
+                    model);
+        }
+        return showMessageWithRedirect("게시글 쓰기가 완료되었습니다.", "/sikhuchung/noticelist.do", Method.GET, pagingParams,
+                model);
+    }
+
+    // 공지사항 리스트 -- 유진
+    @GetMapping(value = "/sikhuchung/noticelist.do")
+    public String openNoticeList(@ModelAttribute("params") NoticeDTO params, Model model) {
+        List<NoticeDTO> noticeList = sikhuchungService.getNoticeList(params);
+        model.addAttribute("noticeList", noticeList);
+        return "sikhuchung/noticelist";
+    }
+
+    // 공지사항 상세리스트 -- 유진
+    @GetMapping(value = "/sikhuchung/noticeview.do")
+    public String openNoticeDetail(@ModelAttribute("params") NoticeDTO params,
+            @RequestParam(value = "noticeNumber", required = false) Long noticeNumber, Model model) {
+        if (noticeNumber == null) {
+            return showMessageWithRedirect("올바르지 않은 접근입니다.", "/sikhuchung/noticelist.do", Method.GET, null, model);
+
+        }
+        NoticeDTO notice = sikhuchungService.getNoticeDetail(noticeNumber);
+        if (notice == null || "Y".equals(notice.getNoticeDelete())) {
+            return showMessageWithRedirect("없는 게시글이거나 이미 삭제된 게시글입니다.", "/sikhuchung/noticelist.do", Method.GET, null,
+                    model);
+        }
+        model.addAttribute("notice", notice);
+
+        sikhuchungService.hitPlus(noticeNumber);
+        return "sikhuchung/noticeview";
+    }
+
+    // 공지사항 삭제 -- 유진
+    @PostMapping(value = "/sikhuchung/delete.do")
+    public String deleteNotice(@ModelAttribute("params") NoticeDTO params,
+            @RequestParam(value = "noticeNumber", required = false) Long noticeNumber, Model model) {
+        if (noticeNumber == null) {
+            return showMessageWithRedirect("올바르지 않은 접근입니다.", "/skihuchung/noticelist.do", Method.GET, null, model);
+        }
+        Map<String, Object> pagingParams = getPagingParams(params);
+        try {
+            boolean isDeleted = sikhuchungService.deleteNotice(noticeNumber);
+            if (isDeleted == false) {
+                return showMessageWithRedirect("게시글 삭제에 실패하였습니다.", "/sikhuchung/noticelist.do", Method.GET,
+                        pagingParams, model);
+            }
+        } catch (DataAccessException e) {
+            return showMessageWithRedirect("데이터베이스 처리 과정에 문제가 발생하였습니다.", "/skihuchung/noticelist.do", Method.GET,
+                    pagingParams, model);
+
+        } catch (Exception e) {
+            return showMessageWithRedirect("시스템에 문제가 발생하였습니다.", "/sikhuchung/noticelist.do", Method.GET, pagingParams,
+                    model);
+        }
+
+        return showMessageWithRedirect("게시글 삭제가 완료되었습니다.", "/sikhuchung/noticelist.do", Method.GET, pagingParams,
+                model);
+    }
+
+    // 후기 리스트 -- 유진
+    @GetMapping(value = "/sikhuchung/reviewlist.do")
+    public String openReviewList(Model model) {
+        List<ReviewDTO> reviewList = sikhuchungService.getReviewList();
+        model.addAttribute("reviewList", reviewList);
+
+        return "sikhuchung/reviewlist";
+    }
+
+    // 후기 등록 -- 유진
+    @GetMapping(value = "/sikhuchung/reviewwrite.do")
+    public String openReviewWrite(@RequestParam(value = "reviewNumber", required = false) Long reviewNumber,
+            Model model) {
+        if (reviewNumber == null) {
+            model.addAttribute("board", new ReviewDTO());
+        } else {
+            ReviewDTO review = sikhuchungService.getReviewDetail(reviewNumber);
+            if (review == null) {
+                return "redirect:/sikhuchung/reviewlist.do";
+            }
+            model.addAttribute("review", review);
+        }
+        return "sikhuchung/reviewwrite";
+    }
+
+    // 후기 등록 처리 -- 유진
+    @PostMapping(value = "/sikhuchung/registerreview.do")
+    public String registerReview(final ReviewDTO params) {
+        try {
+            boolean isRegistered = sikhuchungService.registerReview(params);
             if (isRegistered == false) {
                 // TODO => 게시글 등록에 실패하였다는 메시지를 전달
             }
@@ -63,71 +167,11 @@ public class SikhuchungController {
         } catch (Exception e) {
             // TODO => 시스템에 문제가 발생하였다는 메시지를 전달
         }
-        return "redirect:/sikhuchung/noticelist.do";
+
+        return "redirect:/sikhuchung/reviewlist.do";
     }
 
-    // 공지사항 리스트
-    @GetMapping(value = "/sikhuchung/noticelist.do")
-    public String openNoticeList(@ModelAttribute("params") NoticeDTO params, Model model) {
-        List<NoticeDTO> noticeList = sikhuchungService.getNoticeList(params);
-        model.addAttribute("noticeList", noticeList);
-        return "sikhuchung/noticelist";
-    }
-
-    // 공지사항 상세리스트
-    @GetMapping(value = "/sikhuchung/noticeview.do")
-    public String openNoticeDetail(@RequestParam(value = "noticeNumber", required = false) Long noticeNumber,
-            Model model) {
-        if (noticeNumber == null) {
-            // TODO => 올바르지 않은 접근이라는 메시지를 전달하고, 게시글 리스트로 리다이렉트
-            return "redirect:/sikhuchung/noticelist.do";
-        }
-        NoticeDTO notice = sikhuchungService.getNoticeDetail(noticeNumber);
-        if (notice == null || "Y".equals(notice.getNoticeDelete())) {
-            // TODO => 없는 게시글이거나, 이미 삭제된 게시글이라는 메시지를 전달하고, 게시글 리스트로 리다이렉트
-            return "redirect:/sikhuchung/noticelist.do";
-        }
-        model.addAttribute("notice", notice);
-
-        sikhuchungService.hitPlus(noticeNumber);
-        return "sikhuchung/noticeview";
-    }
-
-    // 공지사항 삭제
-    @PostMapping(value = "/sikhuchung/delete.do")
-    public String deleteNotice(@RequestParam(value = "noticeNumber", required = false) Long noticeNumber) {
-        if (noticeNumber == null) {
-            // TODO => 올바르지 않은 접근이라는 메시지를 전달하고, 게시글 리스트로 리다이렉트
-            return "redirect:/sikhuchung/noticelist.do";
-        }
-        try {
-            boolean isDeleted = sikhuchungService.deleteNotice(noticeNumber);
-            if (isDeleted == false) {
-                // TODO => 게시글 삭제에 실패하였다는 메시지를 전달
-            }
-        } catch (DataAccessException e) {
-            // TODO => 데이터베이스 처리 과정에 문제가 발생하였다는 메시지를 전달
-
-        } catch (Exception e) {
-            // TODO => 시스템에 문제가 발생하였다는 메시지를 전달
-        }
-
-        return "redirect:/sikhuchung/noticelist.do";
-    }
-
-    // 후기 리스트
-    @GetMapping(value = "/sikhuchung/reviewlist.do")
-    public String openReviewList() {
-        return "sikhuchung/reviewlist";
-    }
-
-    // 후기 등록
-    @GetMapping(value = "/sikhuchung/reviewwrite.do")
-    public String openReviewWrite() {
-        return "sikhuchung/reviewwrite";
-    }
-
-    // 후기 수정
+    // 후기 수정 -- 유진
     @GetMapping(value = "/sikhuchung/reviewupdate.do")
     public String openReviewUpdate() {
         return "sikhuchung/reviewupdate";

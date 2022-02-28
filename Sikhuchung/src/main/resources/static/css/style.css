@@ -964,6 +964,8 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fiel
 	border-bottom: 1px solid #dbdbdb;
 	border-left: 1px dotted #ededed;
 }
+/****************공지사항***************/
+
 /*공지사항 리스트*/
 div.notice_table td.text-left a {
 	text-decoration: none;
@@ -1010,8 +1012,21 @@ div.btn_wrap3 {
     margin: 100px 400px;
 }
 
-/*후기*/
+/***************후기***************/
 
+/*후기 리스트*/
+.panel {
+	display: none;
+}
+.review_table table {
+	table-layout : fixed;
+}
+.review_table table td:nth-child(2) {
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow : ellipsis;
+	
+}
 
 /* 필립 css 시작 */
 
