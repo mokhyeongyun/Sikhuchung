@@ -392,6 +392,7 @@ function paymentFormCheck() {
         return false;
     } else { //유효성 검사 완료시 회원가입 진행
         alert("결제가 완료되었습니다.");
+        document.paymentCheck.submit();
         return true;
     }
 }

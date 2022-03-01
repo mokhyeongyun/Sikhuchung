@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
-import com.sikhuchung.domain.OrderVO;
+import com.sikhuchung.domain.OrderDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 import com.sikhuchung.paging.PaginationInfo;
@@ -103,9 +103,19 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.paymentlist(paymentlist);
     }
 
-    /* 주문목록 */
+    /* 주문목록 -> 메인 */
     @Override
-    public OrderVO orderlist(String orderlist) {
+    public OrderDTO orderlist(String orderlist) {
+        return sikhuchungMapper.orderlist(orderlist);
+    }
+
+    @Override
+    public OrderDTO orderlist1(String orderlist) {
+        return sikhuchungMapper.orderlist(orderlist);
+    }
+
+    @Override
+    public OrderDTO orderlist2(String orderlist) {
         return sikhuchungMapper.orderlist(orderlist);
     }
 

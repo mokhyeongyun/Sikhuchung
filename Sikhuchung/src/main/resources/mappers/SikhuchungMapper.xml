@@ -123,7 +123,7 @@
     </select>
     
     
-    <!-- 결제창 -->
+    <!-- 장바구니 -> 결제창 -->
     <select id="paymentlist" resultType="CartVO" parameterType="String">
         select cart_number,user_id,cart_count,cart_indate,product_name,product_thumbnail,product_price
         from s_cart sc ,s_product sp
@@ -135,15 +135,19 @@
         WHERE  cart_number=#{checkNum}
     </delete>
     
-    <!-- 주문목록 -->
+    <!-- 결제창 -> 메인 -->
     <insert id="orderlist" parameterType="CartVO">
         insert into s_order values (sequ_order_number.nextval,'test',#{addr0},#{addr1},#{addr2}
         ,#{get_user},#{get_phone},sysdate)
     </insert>
     
     
+    <select id="orderlist1" resultType="OrderDTO" parameterType="String">
+        select order_number,user_id,order_address1,order_address2,order_address3
+        ,order_recipient_name,order_recipient_tel,order_date from s_order
+    </select>
     
-    <select id="orderlist" resultType="OrderVO" parameterType="String">
+    <select id="orderlist2" resultType="OrderDTO" parameterType="String">
         select order_number,user_id,order_address1,order_address2,order_address3
         ,order_recipient_name,order_recipient_tel,order_date from s_order
     </select>
