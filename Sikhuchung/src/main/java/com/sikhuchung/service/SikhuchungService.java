@@ -34,11 +34,9 @@ public interface SikhuchungService {
     public CartVO paymentlist(String paymentlist) throws Exception;
 
     /* 결제창 -> 메인 */
-    public OrderDTO orderlist(String orders) throws Exception;
+    public void order(OrderDTO orderDto) throws Exception;
 
-    public OrderDTO orderlist1(String orders) throws Exception;
-
-    public OrderDTO orderlist2(String orders) throws Exception;
+//    public OrderDTO orderlist(String orders) throws Exception;
 
     /* 장바구니 선택 삭제 - 필립 */
     public void deletecart(int checkNum) throws Exception;

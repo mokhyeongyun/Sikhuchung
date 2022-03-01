@@ -136,13 +136,20 @@
     </delete>
     
     <!-- 결제창 -> 메인 -->
-    <insert id="orderlist" parameterType="CartVO">
-        insert into s_order values (sequ_order_number.nextval,'test',#{addr0},#{addr1},#{addr2}
-        ,#{get_user},#{get_phone},sysdate)
+    <insert id="order" parameterType="OrderDTO">
+    insert into s_order values (sequ_order_number.nextval,'test',#{orderAddress1},#{orderAddress2},#{orderAddress3}
+,#{orderRecipientName},#{orderRecipientTel},sysdate)
     </insert>
     
     
-    <select id="orderlist1" resultType="OrderDTO" parameterType="String">
+    
+    
+    <!-- <insert id="orderlist" parameterType="CartVO">
+        insert into s_order values (sequ_order_number.nextval,'test',#{addr0},#{addr1},#{addr2}
+        ,#{get_user},#{get_phone},sysdate)
+    </insert> -->
+    
+    <!-- <select id="orderlist1" resultType="OrderDTO" parameterType="String">
         select order_number,user_id,order_address1,order_address2,order_address3
         ,order_recipient_name,order_recipient_tel,order_date from s_order
     </select>
@@ -150,7 +157,7 @@
     <select id="orderlist2" resultType="OrderDTO" parameterType="String">
         select order_number,user_id,order_address1,order_address2,order_address3
         ,order_recipient_name,order_recipient_tel,order_date from s_order
-    </select>
+    </select> -->
     
     
     

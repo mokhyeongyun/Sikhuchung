@@ -105,19 +105,14 @@ public class SikhuchungServiceImpl implements SikhuchungService {
 
     /* 주문목록 -> 메인 */
     @Override
-    public OrderDTO orderlist(String orderlist) {
-        return sikhuchungMapper.orderlist(orderlist);
+    public void order(OrderDTO orderDto) {
+        sikhuchungMapper.order(orderDto);
     }
 
-    @Override
-    public OrderDTO orderlist1(String orderlist) {
-        return sikhuchungMapper.orderlist(orderlist);
-    }
-
-    @Override
-    public OrderDTO orderlist2(String orderlist) {
-        return sikhuchungMapper.orderlist(orderlist);
-    }
+//    @Override
+//    public OrderDTO orderlist(String orderlist) {
+//        return sikhuchungMapper.orderlist(orderlist);
+//    }
 
     /* 장바구니 삭제 */
     @Override

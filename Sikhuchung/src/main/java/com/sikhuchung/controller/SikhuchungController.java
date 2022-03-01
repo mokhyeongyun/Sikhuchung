@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.OrderDTO;
+import com.sikhuchung.domain.PaymentDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
 
@@ -244,42 +245,44 @@ public class SikhuchungController {
 
     // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄)
     @PostMapping(value = "/sikhuchung/cart.do")
-    public String orderlist(HttpServletRequest request, OrderDTO orderDto, 결제테이블DTO) throws Exception {
+    public String orderlist(HttpServletRequest request, OrderDTO orderDto, PaymentDTO paymentDto) throws Exception {
 //        System.out.println("테스트"); // 여기까지는 넘어옴
 
         sikhuchungService.order(orderDto); // 주문테이블 생성
 
-        int o_num = sikhuchungService.ordernumber(orderDto); // o_num -> 주문번호
-
-        sikhuchungService.pay(o_num, 결제테이블DTO); // 결제테이블
-
-        String[] orders = request.getParameterValues("cartNumber");
+//        int o_num = sikhuchungService.ordernumber(orderDto); // o_num -> 주문번호
+//
+//        sikhuchungService.pay(o_num, paymentDto); // 결제테이블
+//
+//        String[] orders = request.getParameterValues("cartNumber");
 //        for (int i = 0; i < orders.length; i++) {
-//            sikhuchungService.orderlist(orders[i], o_num); // 주문상세테이블
+//            String product_num = sikhuchungService.product_num(orders[i]); // product_num -> 상품번호
+//            String pay_count = sikhuchungService.pay_count(orders[i]); // pay_count -> 구매갯수
+//            sikhuchungService.orderlist(product_num, pay_count, o_num); // 주문상
 //        }
-        for (int i = 0; i < orders.length; i++) {
-            String 상품번호 = sikhuchungService.상품번호(orders[i]);
-            String 수량 = sikhuchungService.수량(orders[i]);
-            sikhuchungService.orderlist(상품번호, 수량, o_num); // 주문상
-        }
         return "redirect:/sikhuchung/cart.do";
     }
-    // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄)
+//    // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄)
 //    @PostMapping(value = "/sikhuchung/cart.do")
-//    public String orderlist(HttpServletRequest request) throws Exception {
-//        System.out.println("테스트"); // 여기까지는 넘어옴
-//        String[] orders = request.getParameterValues("payment_product"); // 여기서 orders 값이 안 들어감
-//        String[] test = request.getParameterValues("payment_product");
-//        for (int i = 0; i < test.length; i++) {
-//            System.out.println(test[i]);
-//        }
+//    public String orderlist(HttpServletRequest request, OrderDTO orderDto, 결제테이블DTO) throws Exception {
+////        System.out.println("테스트"); // 여기까지는 넘어옴
+//        
+//        sikhuchungService.order(orderDto); // 주문테이블 생성
+//        
+//        int o_num = sikhuchungService.ordernumber(orderDto); // o_num -> 주문번호
+//        
+//        sikhuchungService.pay(o_num, 결제테이블DTO); // 결제테이블
+//        
+//        String[] orders = request.getParameterValues("cartNumber");
+////        for (int i = 0; i < orders.length; i++) {
+////            sikhuchungService.orderlist(orders[i], o_num); // 주문상세테이블
+////        }
 //        for (int i = 0; i < orders.length; i++) {
-//            sikhuchungService.orderlist(orders[i]);
-//            sikhuchungService.orderlist1(orders[i]);
-//            sikhuchungService.orderlist2(orders[i]);
-//            System.out.println(orders[i]);
+//            String 상품번호 = sikhuchungService.상품번호(orders[i]);
+//            String 수량 = sikhuchungService.수량(orders[i]);
+//            sikhuchungService.orderlist(상품번호, 수량, o_num); // 주문상
 //        }
-//        return "sikhuchung/cart";
+//        return "redirect:/sikhuchung/cart.do";
 //    }
 
     // 장바구니(삭제)

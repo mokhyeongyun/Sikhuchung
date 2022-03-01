@@ -10,6 +10,6 @@ public class OrderDTO {
     private String orderAddress2;
     private String orderAddress3;
     private String orderRecipientName;
-    private int orderRecipientTel;
+    private String orderRecipientTel;
     private String orderDate;
 }

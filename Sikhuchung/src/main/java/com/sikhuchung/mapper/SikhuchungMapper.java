@@ -42,11 +42,9 @@ public interface SikhuchungMapper {
     public CartVO paymentlist(String paymentlist);
 
     /* 결제창 -> 메인 */
-    public OrderDTO orderlist(String orderlist);
+    public void order(OrderDTO orderDto);
 
-    public OrderDTO orderlist1(String orderlist);
-
-    public OrderDTO orderlist2(String orderlist);
+//    public OrderDTO orderlist(String orderlist);
 
     /* 장바구니 삭제 */
     public void deletecart(int checkNum);

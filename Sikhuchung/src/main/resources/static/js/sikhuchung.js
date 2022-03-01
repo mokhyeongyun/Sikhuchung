@@ -498,9 +498,9 @@ function addrCheck(){
 function openZipSearch() {
     new daum.Postcode({
         oncomplete: function(data) {
-            $('[name=zip]').val(data.zonecode); // 우편번호 (5자리)
-            $('[name=addr1]').val(data.address);
-            $('[name=addr2]').val(data.buildingName);
+            $('[name=orderAddress1]').val(data.zonecode); // 우편번호 (5자리)
+            $('[name=orderAddress2]').val(data.address);
+            $('[name=orderAddress3]').val(data.buildingName);
         }
     }).open();
 }
