@@ -36,6 +36,8 @@ public interface SikhuchungService {
 
     /* 상세화면 -- 재훈 */
     public ProductVO getProductData(int productNumber);
+    
+    public void getItem(CartVO cartvo);
 
     public boolean hitPlus(Long noticeNumber);
 

@@ -225,6 +225,11 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
         return productData;
     }
+    
+    @Override
+    public void getItem(CartVO cartvo) {
+    	sikhuchungMapper.item(cartvo);
+    }
 
     /* 장바구니 */
     @Override

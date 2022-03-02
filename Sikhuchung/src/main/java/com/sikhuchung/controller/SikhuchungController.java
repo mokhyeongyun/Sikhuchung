@@ -436,10 +436,6 @@ public class SikhuchungController extends UiUtils {
 
         sikhuchungService.order(orderDto); // 주문테이블 삽입 성공
 
-//        int ordernumber = sikhuchungService.ordernumber22(); // ordernumber 가져오기
-
-//        System.out.println(ordernumber);// ordernumber 넘버 가져오기
-
         sikhuchungService.orderDetailDTO(orderDetailDto); // 주문 상세 테이블 삽입
 
         sikhuchungService.paymentDTO(paymentDto); // 결제 테이블
@@ -533,6 +529,7 @@ public class SikhuchungController extends UiUtils {
         ProductVO productvo = sikhuchungService.getProductData(productNumber);
         if (productvo.getProductDelete().equals("N")) {
             // 썸네일, 이름, 가격, 분류, 원산지, 배송방법, 재고, 상세설명img
+        	model.addAttribute("productNumber", productvo.getProductNumber());
             model.addAttribute("thumbnail", productvo.getProductThumbnail());
             model.addAttribute("name", productvo.getProductName());
             model.addAttribute("price", productvo.getProductPrice());
@@ -558,5 +555,12 @@ public class SikhuchungController extends UiUtils {
     @GetMapping(value = "/sikhuchung/item_modify.do")
     public String item_modify() {
         return "sikhuchung/item_modify";
+    }
+    
+    // 장바구니 등록 -- 재훈
+    @PostMapping(value="/sikhuchung/test.do")
+    public String detail(CartVO cartvo) {
+    	sikhuchungService.getItem(cartvo);
+    	return "redirect:/sikhuchung/cart.do";
     }
 }
