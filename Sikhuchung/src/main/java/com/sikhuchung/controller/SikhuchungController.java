@@ -59,77 +59,82 @@ public class SikhuchungController {
     // 메인화면 -- 재훈
     @GetMapping(value = "/sikhuchung/main.do")
     public String main(ProductVO productVO, Model model) {
-    	List<ProductVO> productList = sikhuchungService.getProductList();
-    	model.addAttribute("product", productList);
-    	List<ProductVO> seasonList = sikhuchungService.getSeasonList();
-    	model.addAttribute("season", seasonList);
-    	List<ProductVO> weirdList = sikhuchungService.getWeirdList();
-    	model.addAttribute("weird", weirdList);
-    	List<ProductVO> simpleList = sikhuchungService.getSimpleList();
-    	model.addAttribute("simple", simpleList);
-    	List<ProductVO> presentList = sikhuchungService.getPresentList();
-    	model.addAttribute("present", presentList);
+        List<ProductVO> productList = sikhuchungService.getProductList();
+        model.addAttribute("product", productList);
+        List<ProductVO> seasonList = sikhuchungService.getSeasonList();
+        model.addAttribute("season", seasonList);
+        List<ProductVO> weirdList = sikhuchungService.getWeirdList();
+        model.addAttribute("weird", weirdList);
+        List<ProductVO> simpleList = sikhuchungService.getSimpleList();
+        model.addAttribute("simple", simpleList);
+        List<ProductVO> presentList = sikhuchungService.getPresentList();
+        model.addAttribute("present", presentList);
         return "/sikhuchung/main";
     }
-    
+
     // 제철 과일 리스트 -- 재훈
     @GetMapping(value = "/sikhuchung/season.do")
     public String season(ProductVO productVO, Model model) {
-    	List<ProductVO> seasonList = sikhuchungService.getSeasonList();
-    	model.addAttribute("season", seasonList);
+        List<ProductVO> seasonList = sikhuchungService.getSeasonList();
+        model.addAttribute("season", seasonList);
         return "/sikhuchung/season";
     }
- // 별난 과일 리스트 -- 재훈
+
+    // 별난 과일 리스트 -- 재훈
     @GetMapping(value = "/sikhuchung/weird.do")
     public String weird(ProductVO productVO, Model model) {
-    	List<ProductVO> weirdList = sikhuchungService.getWeirdList();
-    	model.addAttribute("weird", weirdList);
+        List<ProductVO> weirdList = sikhuchungService.getWeirdList();
+        model.addAttribute("weird", weirdList);
         return "/sikhuchung/weird";
     }
- // 간편 과일 리스트 -- 재훈
+
+    // 간편 과일 리스트 -- 재훈
     @GetMapping(value = "/sikhuchung/simple.do")
     public String simple(ProductVO productVO, Model model) {
-    	List<ProductVO> simpleList = sikhuchungService.getSimpleList();
-    	model.addAttribute("simple", simpleList);
+        List<ProductVO> simpleList = sikhuchungService.getSimpleList();
+        model.addAttribute("simple", simpleList);
         return "/sikhuchung/simple";
     }
- // 선물 과일 리스트 -- 재훈
+
+    // 선물 과일 리스트 -- 재훈
     @GetMapping(value = "/sikhuchung/present.do")
     public String present(ProductVO productVO, Model model) {
-    	List<ProductVO> presentList = sikhuchungService.getPresentList();
-    	model.addAttribute("present", presentList);
+        List<ProductVO> presentList = sikhuchungService.getPresentList();
+        model.addAttribute("present", presentList);
         return "/sikhuchung/present";
     }
-    
+
     // 상세 정보 -- 재훈
     @GetMapping(value = "/sikhuchung/detail.do")
     public String detail(int productNumber, Model model) {
-    	ProductVO productvo = sikhuchungService.getProductData(productNumber);
-    	if(productvo.getProductDelete().equals("N")) {    		
-    		// 썸네일, 이름, 가격, 분류, 원산지, 배송방법, 재고, 상세설명img
-    		model.addAttribute("thumbnail", productvo.getProductThumbnail());
-    		model.addAttribute("name", productvo.getProductName());
-    		model.addAttribute("price", productvo.getProductPrice());
-    		model.addAttribute("category", productvo.getProductCategory());
-    		model.addAttribute("origin", productvo.getProductOrigin());
-    		model.addAttribute("delivery", productvo.getProductDelivery());
-    		model.addAttribute("stock", productvo.getProductStock());
-    		model.addAttribute("info", productvo.getProductInfo());
-    		return "sikhuchung/detail";
-    	} else {
-    		return "redirect:/sikhuchung/main.do";
-    	}
-    	
+        ProductVO productvo = sikhuchungService.getProductData(productNumber);
+        if (productvo.getProductDelete().equals("N")) {
+            // 썸네일, 이름, 가격, 분류, 원산지, 배송방법, 재고, 상세설명img
+            model.addAttribute("ProductNumber", productvo.getProductNumber());
+            model.addAttribute("thumbnail", productvo.getProductThumbnail());
+            model.addAttribute("name", productvo.getProductName());
+            model.addAttribute("price", productvo.getProductPrice());
+            model.addAttribute("category", productvo.getProductCategory());
+            model.addAttribute("origin", productvo.getProductOrigin());
+            model.addAttribute("delivery", productvo.getProductDelivery());
+            model.addAttribute("stock", productvo.getProductStock());
+            model.addAttribute("info", productvo.getProductInfo());
+            return "sikhuchung/detail";
+        } else {
+            return "redirect:/sikhuchung/main.do";
+        }
+
     }
-    
+
     // 상품 추가 -- 재훈
     @GetMapping(value = "/sikhuchung/item_regist.do")
     public String item_regist() {
         return "sikhuchung/item_regist";
     }
+
     // 상품 수정 -- 재훈
     @GetMapping(value = "/sikhuchung/item_modify.do")
     public String item_modify() {
         return "sikhuchung/item_modify";
-    }   
+    }
 }
