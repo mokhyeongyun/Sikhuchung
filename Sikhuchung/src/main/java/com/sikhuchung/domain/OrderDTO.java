@@ -12,5 +12,5 @@ public class OrderDTO {
     private String orderRecipientName;
     private String orderDate;
     private String orderRecipientTel;
-//    private String orderDetailResult;
+    private String orderDetailResult;
 }
