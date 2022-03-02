@@ -172,6 +172,10 @@
     	FROM
     		s_product where product_number = #{productNumber}
     </select>
+    
+    <insert id="item" parameterType="CartVO">
+    	INSERT INTO s_cart VALUES ( sequ_cart_number.nextval, #{productNumber}, #{userId}, #{cartCount}, SYSDATE) 
+    </insert>
 
     <!-- 회원가입 -->
     <insert id="saveUser" parameterType="UserVO">

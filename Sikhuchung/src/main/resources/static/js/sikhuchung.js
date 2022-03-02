@@ -98,6 +98,7 @@ setInterval(() => {
     s1.next();
     s2.next();
 }, 1000);
+
 /******************************************************** 회원가입 유효성 -현균*************************8 */
 //아이디 중복검사
 function idDuplicateCheck() {
@@ -750,4 +751,21 @@ function registerReview(form) {
     if ( result == false ) {
         return false;
     }
+}
+
+/**************************** 상세 화면 ********************************/
+function checkNumber() {
+	let name = document.getElementById("name");
+	let number = document.getElementById("productNumber");
+	let quantity = document.getElementById("quantity");
+	let price = document.getElementById("price");
+	let thumbnail = document.getElementById("thumbnail");
+	
+
+	if(quantity.value == "0") {
+		alert("수량을 선택해 주세요.");
+		return false;
+	} else {
+		document.formCheckQuantity.submit();
+	}
 }
