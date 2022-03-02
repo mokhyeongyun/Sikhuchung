@@ -18,7 +18,7 @@
             <div th:if="${session.user} == 'admin'" class="headerTag">
             <a class="headerATag" th:href="@{/sikhuchung/logout.do}">로그아웃</a>
             <a class="headerATag" th:href="@{/sikhuchung/cart.do}">장바구니</a>
-            <a class="headerATag" th:href="@{/sikhuchung/paymentlist.do}">주문 리스트</a>
+            <a class="headerATag" th:href="@{/sikhuchung/paymentlist.do}">주문 리스트</a> <!-- 시작 로그인세션, 비로그인 세션, 주문목록(s_order_detail -> s_order -> s_payment) 삭제, 입금버튼 바뀌도록 -->
             <a class="headerATag" th:href="@{/sikhuchung/mypageOrderInfo.do}">마이페이지</a>
             <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
             </div>
