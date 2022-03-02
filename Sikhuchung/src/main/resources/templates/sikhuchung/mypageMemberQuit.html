@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="sikhuchung/layout/basic">
+<th:block layout:fragment="title">
+	<title>login</title>
+</th:block>
+<th:block layout:fragment="contents">
+	<div class="sub_content">
+		<div class="side_cont">
+			<div class="sub_menu_box">
+				<h2>마이페이지</h2>
+				<ul class="sub_menu_mypage">
+					<li><a href="mypageOrderInfo.do">- 주문목록</a></li>
+					<li><a href="mypageMemberInfoPwCheck.do">- 회원정보 변경</a></li>
+					<li><a href="mypageMemberQuit.do">- 회원 탈퇴</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="contents">
+			<div class="mypage_cont">
+				<div class="my_page_password">
+					<form id="formUserQuit" name="formUserQuit" action="/sikhuchung/mypageMemberQuit.do" method="post">
+					<input type="text" class="id" id="id" name="userId" th:value="${session.user}">
+						<div>
+							<div class="mypage_zone_tit">
+								<h2>회원탈퇴</h2>
+							</div>
+							<div class="mypage_unregister">
+								<div class="unregister_guid">
+									<h3>01.회원탈퇴 안내</h3>
+								</div>
+								<div class="unregister_info">
+									"식후청" 탈퇴안내<br> <br> 회원님께서 회원 탈퇴를 원하신다니 저희 쇼핑몰의 서비스가 많이 부족하고 미흡했나 봅니다.<br> 불편하셨던 점이나 불만사항을 알려주시면 적극 반영해서 고객님의 불편함을 해결해 드리도록
+									노력하겠습니다.<br> <br> ■ 아울러 회원 탈퇴시의 아래 사항을 숙지하시기 바랍니다.<br> 회원 탈퇴 시 회원님의 정보는 상품 반품 및 A/S를 위해 전자상거래 등에서의 소비자 보호에 관한 법률에 의거한 <br>
+									고객정보 보호정책에따라 관리됩니다.<br>
+								</div>
+
+								<div class="unregister_guid">
+									<h3>02.회원탈퇴 하기</h3>
+								</div>
+
+								<div class="mypage_table_type">
+									<div class="mypage_pwcheck">
+										<span>비밀번호</span> <input type="password" class="password" id="password" name="userPw">
+										<div>
+									<p class="memberQuitMsg">비밀번호가 일치하지 않습니다.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="btn_pwcheck_box">
+							<button type="button" class="btn_pwcheck_certify" onclick="userQuitNullCheck()">탈퇴</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>

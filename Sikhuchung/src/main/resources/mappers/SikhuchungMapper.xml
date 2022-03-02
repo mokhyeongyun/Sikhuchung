@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sikhuchung.mapper.SikhuchungMapper">
-    
+    <!-- 공지사항 -->
     <sql id="noticeColumns">
           notice_number
         , user_id
         , notice_title
         , notice_content
-        , TO_CHAR(sysdate, 'yyyy-MM-dd') notice_date
+        , TO_CHAR(notice_date, 'yyyy-MM-dd') notice_date
         , notice_hit
         , notice_update_id
         , notice_update_date
@@ -16,21 +16,25 @@
     
     <insert id="insertNotice" parameterType="NoticeDTO">
         INSERT INTO s_notice (
-            <include refid="noticeColumns" />
+            notice_number
+            ,user_id
+            ,notice_title
+            ,notice_content
+            ,notice_date
+            ,notice_hit
+            ,notice_delete
         ) VALUES (
-              #{noticeNumber}
-            , #{userId}
-            , #{noticeTitle}
-            , #{noticeContent}
+              sequ_notice_number.nextval
+            , #{userId, jdbcType=VARCHAR}
+            , #{noticeTitle, jdbcType=VARCHAR}
+            , #{noticeContent, jdbcType=VARCHAR}
             , sysdate
             , 0
-            , NULL
-            , NULL
             , 'N'
         )
     </insert>
 
-    <select id="selectNoticeDetail" parameterType="long" resultType="NoticeDTO">
+    <select id="selectNoticeDetail" parameterType="Long" resultType="NoticeDTO">
         SELECT
             <include refid="noticeColumns" />
         FROM
@@ -52,7 +56,7 @@
             notice_number = #{noticeNumber}
     </update>
 
-    <update id="deleteNotice" parameterType="long">
+    <update id="deleteNotice" parameterType="Long">
         UPDATE s_notice
         SET
               notice_delete = 'Y'
@@ -61,15 +65,50 @@
     </update>
 
     <select id="selectNoticeList" parameterType="NoticeDTO" resultType="NoticeDTO">
-        SELECT
-            <include refid="noticeColumns" />
-        FROM
-            s_notice
-        WHERE
-            notice_delete = 'N'
-        ORDER BY
-            notice_number DESC,
-            notice_date DESC
+        SELECT 
+            notice_number
+	        , user_id
+	        , notice_title
+	        , notice_content
+	        , TO_CHAR(notice_date, 'yyyy-MM-dd') notice_date
+	        , notice_hit
+	        , notice_update_id
+	        , notice_update_date
+	        , notice_delete
+            FROM (
+                SELECT ROW_NUMBER() OVER (ORDER BY notice_number DESC, notice_date DESC) NUM
+                    , A.*
+                    FROM S_NOTICE A
+                    <where> 
+                    <if test="searchKeyword != null and searchKeyword != ''">
+			            <choose>
+			                <when test="searchType != null and searchType != ''">
+			                    <choose>
+			                        <when test="'title'.equals(searchType)">
+			                            AND notice_title LIKE '%' || #{searchKeyword} || '%'
+			                        </when>
+			                        <when test="'content'.equals(searchType)">
+			                            AND notice_content LIKE '%' || #{searchKeyword} || '%'
+			                        </when>
+			                        <when test="'writer'.equals(searchType)">
+			                            AND user_id LIKE '%' || #{searchKeyword} || '%'
+			                        </when>
+			                    </choose>
+			                </when>
+			                <otherwise>
+			                    AND
+			                        (
+			                               notice_title LIKE '%' || #{searchKeyword} || '%'
+			                            OR notice_content LIKE '%' || #{searchKeyword} || '%'
+			                            OR user_id LIKE '%' || #{searchKeyword} || '%'
+			                        )
+			                </otherwise>
+			            </choose>
+			        </if>
+			        </where>
+                    ORDER BY notice_number DESC,notice_date DESC
+                    )
+             WHERE NUM BETWEEN #{paginationInfo.firstRecordIndex} AND #{paginationInfo.lastRecordIndex} AND notice_delete = 'N'
     </select>
 
     <select id="selectNoticeTotalCount" parameterType="NoticeDTO" resultType="int">
@@ -134,4 +173,235 @@
     		s_product where product_number = #{productNumber}
     </select>
 
+    <!-- 회원가입 -->
+    <insert id="saveUser" parameterType="UserVO">
+        INSERT INTO s_user VALUES(#{userId},#{userPw},#{userName},#{userEmail},#{userTel},#{userGrade},SYSDATE)
+    </insert>
+    
+    <!-- id중복확인 -->
+    <select id="idCheck" resultType="int">
+        select count(*) from s_user where user_id = #{userid}
+                    <if test="searchKeyword != null and searchKeyword != ''">
+                        <choose>
+                            <when test="searchType != null and searchType != ''">
+                                <choose>
+                                    <when test="'title'.equals(searchType)">
+                                        AND notice_title LIKE '%' || #{searchKeyword} || '%'
+                                    </when>
+                                    <when test="'content'.equals(searchType)">
+                                        AND notice_content LIKE '%' || #{searchKeyword} || '%'
+                                    </when>
+                                    <when test="'writer'.equals(searchType)">
+                                        AND user_id LIKE '%' || #{searchKeyword} || '%'
+                                    </when>
+                                </choose>
+                            </when>
+                            <otherwise>
+                                AND
+                                    (
+                                           notice_title LIKE '%' || #{searchKeyword} || '%'
+                                        OR notice_content LIKE '%' || #{searchKeyword} || '%'
+                                        OR user_id LIKE '%' || #{searchKeyword} || '%'
+                                    )
+                            </otherwise>
+                        </choose>
+                    </if>
+    </select>
+    
+    <!-- 로그인 -->
+    <select id="userLogin" resultType="int"  parameterType="UserVO">
+        select count(*) from s_user where user_id = #{userId} and user_pw = #{userPw}
+    </select>
+    
+    <!-- 아이디찾기 -->
+    <select id="findIdCheck" resultType="String" parameterType="UserVO">
+        select user_id from s_user where user_name = #{userName} and user_email= #{userEmail}
+    </select>
+    
+    <!-- 비밀번호찾기 -->
+    <select id="findPwCheck" resultType="String" parameterType="UserVO">
+        select user_pw from s_user where user_id = #{userId} and user_name= #{userName}
+    </select>
+    <!-- 회원정보 변경 비밀번호 확인 -->
+    <select id="memberInfoPwCheck" resultType="int" parameterType="UserVO">
+        select count(*) from s_user where user_id = #{userId} and user_pw = #{userPw}
+    </select>
+    <!-- 회원정보 보여주기 -->
+    <select id="memberInfo" resultType="UserVO" parameterType="UserVO">
+         select user_id, user_pw, user_name, user_email, user_tel, user_grade, user_joindate from s_user where user_id = #{userId} and user_pw = #{userPw}
+    </select>
+    <!-- 회원정보 변경 -->
+    <update id="memberInfoUpdate" parameterType="UserVO">
+        update s_user set user_pw=#{userPw}, user_name=#{userName}, user_email=#{userEmail}, user_tel=#{userTel} where user_id=#{userId}
+    </update>
+    <!-- 회원탈퇴 -->
+    <delete id="memberQuit" parameterType="UserVO">
+        delete from s_user where user_id = #{userId} and user_pw = #{userPw} 
+    </delete>
+    <!-- 주문목록 리스트 -->
+    <select id="getOrderList" parameterType="String" resultType="OrderDetailDTO">
+        SELECT order_detail_number, order_detail_count, order_detail_result ,TO_CHAR(order_date, 'YYYY-MM-DD') order_date, product_price, product_name
+            FROM s_order_detail sor, s_order so, s_product sp
+            WHERE sor.product_number = sp.product_number and sor.order_number = so.order_number
+            AND so.user_id=#{user}
+    </select>
+
+    
+    <update id="hitPlus" parameterType="long">
+        UPDATE s_notice
+        SET
+            notice_hit = notice_hit+1
+        WHERE
+            notice_number = #{noticeNumber}    
+    </update>
+    
+    <!-- 후기 -->
+    <sql id="reviewColumns">
+          review_number
+        , order_detail_number
+        , review_title
+        , review_content
+        , TO_CHAR(review_date, 'yyyy-MM-dd') review_date
+        , review_rate
+        , review_update_date
+        , review_delete
+    </sql>
+    
+    <insert id="insertReview" parameterType="ReviewDTO">
+        INSERT INTO s_review (
+              review_number
+	        , review_title
+	        , review_content
+	        , TO_CHAR(review_date, 'yyyy-MM-dd') review_date
+	        , review_rate
+	        , review_delete
+        ) VALUES (
+              sequ_review_number.nextval
+            , SUBSTR(#{reviewContent},30)
+            , #{reviewContent}
+            , sysdate
+            , #{reviewRate}
+            , 'N'
+        )
+    </insert>
+
+    <select id="selectReviewDetail" parameterType="long" resultType="ReviewDTO">
+        SELECT
+            <include refid="reviewColumns" />
+        FROM
+            s_review
+        WHERE
+            review_delete = 'N'
+        AND
+            review_number = #{reviewNumber}
+    </select>
+
+    <update id="updateReview" parameterType="ReviewDTO">
+        UPDATE s_review
+        SET
+              review_update_date = sysdate
+            , review_title = #{reviewTitle}
+            , review_content = #{reviewContent}
+            , review_rate = #{reviewRate}
+        WHERE
+            review_number = #{reviewNumber}
+    </update>
+
+    <update id="deleteReview" parameterType="long">
+        UPDATE s_review
+        SET
+              review_delete = 'Y'
+        WHERE
+            review_number = #{reviewNumber}
+    </update>
+
+    <select id="selectReviewList" parameterType="ReviewDTO" resultType="ReviewDTO">
+        SELECT
+            <include refid="reviewColumns" />
+        FROM
+            s_review
+        WHERE
+            review_delete = 'N'
+        ORDER BY
+            review_number DESC,
+            review_date DESC
+    </select>
+
+    <select id="selectReviewTotalCount" parameterType="ReviewDTO" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            s_review
+        WHERE
+            review_delete = 'N'
+    </select>
+    
+    
+    <!-- 장바구니 -->
+    <select id="cartlist" resultType="CartVO" parameterType="String">
+        select cart_number,user_id,cart_count,cart_indate,product_name,product_thumbnail,product_price
+        from s_cart sc ,s_product sp
+        where user_id=#{userid} and sc.product_number=sp.product_number
+    </select>
+    <!-- 주문목록(관리자) -->
+    <select id="plist" resultType="OrderDTO">
+    <!-- SELECT so.ORDER_NUMBER,user_id,order_address1,order_address2,order_address3
+        ,order_recipient_name,order_recipient_tel,order_detail_count, order_detail_result,order_date
+        FROM s_order so, s_order_detail sod
+        where so.order_number=sod.order_number -->
+        select order_number,user_id,order_address1,order_address2,order_address3
+        ,order_recipient_name,order_recipient_tel,order_date from s_order
+    </select>
+    
+    
+    <!-- 장바구니 -> 결제창 -->
+    <select id="paymentlist" resultType="CartVO" parameterType="String">
+        select cart_number,user_id,cart_count,cart_indate,product_name,product_thumbnail,product_price
+        from s_cart sc ,s_product sp
+        where sc.product_number=sp.product_number and cart_number=#{paymentlist}
+    </select>
+    
+    <!-- 장바구니 선택 삭제 -->
+    <delete id="deletecart" parameterType="int">
+        DELETE FROM s_cart
+        WHERE  cart_number=#{checkNum}
+    </delete>
+    
+    <!-- 주문목록(관리자) 선택 삭제 -->
+    <delete id="deleteOrderlist" parameterType="int">
+        DELETE FROM s_order WHERE  order_number=#{checkNum}
+    </delete>
+    
+    
+    <!-- 결제창 -> 메인 주문 테이블 삽입 -->
+    <insert id="order" parameterType="OrderDTO">
+	    insert into s_order values (sequ_order_number.nextval,'test',#{orderAddress1},#{orderAddress2},#{orderAddress3}
+	    ,#{orderRecipientName},#{orderRecipientTel},sysdate)
+    </insert>
+    
+    <!-- ordernumber 가져오기 -->
+    <select id="ordernumber22" resultType="int">
+        select max(order_number) order_number from s_order ORDER BY 'order_number'
+    </select>
+    
+    <!-- 결제 -> 주문 상세 테이블 삽입 -->
+    <insert id="orderDetailDTO" parameterType="OrderDetailDTO">
+        insert into s_order_detail values (sequ_order_detail_number.nextval,1,1,3,'입금대기')
+    </insert>
+    <!-- 주문번호 가져오려면 파라미터2개 써야하는데 2개는 가져올 수 가 없음 -->
+    
+    <!-- 결제 -> 결제 테이블 삽입 -->
+    <insert id="paymentDTO" parameterType="PaymentDTO">
+        insert into s_payment values(sequ_payment_number.nextval,1,'새벽배송',sysdate,'무통장입금'
+        ,30000,0,3000,33000,'장필립','국민은행','200001-04-151211')
+    </insert>
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </mapper>

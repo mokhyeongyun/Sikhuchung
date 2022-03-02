@@ -1,12 +1,6 @@
-html {
-  height: 100%;
-  width: 80%;
-  margin: auto;
-}
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
+    margin: 0;
+    padding: 0;
 }
 a {
   text-decoration-line: none;
@@ -441,3 +435,723 @@ a {
   border: 3px solid rgb(148, 185, 240);
   background-color: rgba(223, 232, 248, 0.596);
 }
+
+.content_box{
+	width:100%;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
+	margin: 0;
+	padding: 0;
+}
+
+.content_box {
+	width: 100%;
+}
+/* 로그인  */
+.id_chk{
+	display : none;
+	color : red;
+	font-size : 10px;
+}
+.member_wrap {
+	width: 510px;
+	margin: 20px auto 40px auto;
+}
+
+.member_cont {
+	padding: 0px 20px 70px;
+}
+.login_box{
+	margin-top: 80px;
+}
+
+.member_cont .member_login_box h3 {
+	font-weight: normal;
+	font-size: 18px;
+	color: #222222;
+}
+
+.member_cont .member_login_box .login_input_sec>div {
+	float: left;
+}
+
+.member_cont .member_login_box .login_input_sec input {
+	display: block;
+	width: 292px;
+	height: 36px;
+	margin: 15px 0 10px 0;
+	padding: 0 0 0 8px;
+	border: 1px solid #d0d0d0;
+	color: #979d9d;
+}
+
+.login_input_sec input[type="text"], .login_input_sec input[type="password"] {
+	padding: 0 10px;
+	font-size: 12px;
+}
+
+.member_cont .member_login_box .id_chk {
+	padding: 0 0 26px 0;
+}
+
+.member_cont .member_login_box .login_input_sec {
+	overflow: hidden;
+}
+
+.member_cont .member_login_box .login_input_sec button {
+	float: right;
+	width: 158px;
+	height: 91px;
+	margin: 15px 0 0 0;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	background-color: #333333;
+	border-color: #333333;
+}
+
+.btn_login_ul li {
+	list-style: none;
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+.member_cont .btn_login_box li:first-child {
+	margin: 0;
+}
+
+.member_cont .btn_login_box li {
+	float: left;
+	margin: 0 0 0 10px;
+}
+
+.member_login_box {
+	margin: auto;
+}
+
+.id_chk p {
+	font-size: 13px;
+}
+/* 로그인 버튼*/
+.btn_member_join {
+	width: 150px;
+	height: 45px;
+	margin: 0;
+	color: #ffffff;
+	font-size: 14px;
+	border: 1px solid #666666;
+	background: #666666;
+	cursor: pointer;
+	font-weight: bold;
+}
+/* 흰색 버튼 */
+.btn_member_white {
+	width: 150px;
+	height: 45px;
+	color: #3e3d3c;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #cccccc;
+	background: #fff;
+	cursor: pointer;
+}
+
+.member_cont .btn_login_box {
+	margin: 0;
+	padding: 0;
+	border-top: none;
+	overflow: hidden;
+}
+/*******************************아이디 찾기 ****************/
+.findIdMsgFail{
+	color : red;
+}
+.findIdMsgTrue{
+	color : #339f4b;
+	font-weight: bold;
+}
+.find_id_box {
+	width: 460px;
+	margin: auto;
+}
+
+.member_tit h2 {
+	font-size: 28px;
+	margin: 0 0 20px 0;
+	font-weight: 400;
+}
+
+.find_id_box .find_id_sec h3 {
+	font-weight: normal;
+	font-size: 18px;
+	color: #222222;
+}
+
+.find_id_sec .login_input {
+	overflow: hidden;
+	border-top: none 0;
+}
+
+.find_id_sec .login_input input {
+	display: block;
+	width: 292px;
+	height: 36px;
+	margin: 15px 0 10px 0;
+	padding: 0 0 0 8px;
+	border: 1px solid #d0d0d0;
+	color: #979d9d;
+	outline: none;
+	font-size: 12px;
+}
+
+.find_id_sec .login_input>div {
+	float: left;
+}
+
+.btn_member_id {
+	float: right;
+	width: 158px;
+	height: 91px;
+	margin: 15px 0 0 0;
+	color: #ffffff;
+	font-size: 15px;
+	font-weight: bold;
+	border: 1px solid #3e3d3c;
+	background: #3e3d3c;
+	cursor: pointer;
+}
+
+.find_id_sec p {
+	font-size: 13px;
+}
+
+.find_id_box .btn_member_sec {
+	margin: 20px 0 0 0;
+	border-top: 1px solid #dbdbdb;
+}
+
+.find_id_box .btn_member_sec ul {
+	overflow: hidden;
+	margin: 20px 0 0 0;
+	text-align: center;
+	font-size: 0;
+}
+
+.find_id_box .btn_member_sec li {
+	display: inline-block;
+	margin: 0 0 0 10px;
+}
+
+.find_id_box .btn_member_sec li:first-child {
+	margin: 0;
+}
+
+.btn_findid_login {
+	width: 150px;
+	height: 45px;
+	margin: 0;
+	color: #ffffff;
+	font-size: 14px;
+	border: 1px solid #333333;
+	background: #333333;
+	cursor: pointer;
+	font-weight: bold;
+}
+/************************비밀번호 찾기 **************/
+.find_password_box h3 {
+	font-weight: normal;
+	font-size: 18px;
+	color: #222222;
+}
+
+.find_password_box h3+p {
+	padding: 5px 0 8px 0;
+	color: #bebebc;
+	font-size: 10px;
+}
+
+.find_password_box .login_input {
+	padding: 30px 0 0 0;
+	border-top: 1px solid #dbdbdb;
+}
+
+.member_findpw {
+	display: block;
+	position: relative;
+	margin: 0 0 0 100px;
+}
+
+.member_findpw input {
+	width: 263px;
+	margin: 10px 0 0 0;
+	border: 1px solid #d6d6d6;
+	line-height: 31px;
+	font-size: 12px;
+	padding: 0 0 0 8px;
+}
+
+.member_findpw p {
+	padding: 5px 0 0 0;
+	text-align: left;
+	color: #929292;
+	font-size: 12px;
+}
+
+.btn_findpw_box {
+	margin: 20px 0 0 0;
+	text-align: center;
+}
+
+.btn_findpw {
+	width: 150px;
+	height: 45px;
+	background-color: #333333;
+	border-color: #333333;
+	color: #ffffff;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 20px;
+}
+.findPwMsgFail{
+    color : red;
+    font-size: 12px;
+}
+.findPwMsgTrue{
+	font-size: 12px;
+    color : #339f4b;
+    font-weight: bold;
+}
+/************************* 회원가입************************/
+.join_base_wrap .member_cont {
+	width: 743px;
+	margin: auto;
+	border: none;
+}
+
+.btn_join_box {
+	margin: 20px 0 0 0;
+	text-align: center;
+}
+
+.important {
+	text-align: right;
+	line-height: 40px;
+	padding: 0 0 0 10px;
+	font-size: 13px;
+}
+
+.base_join_sec {
+	border-top: 1px solid #999999;
+}
+
+.base_join_sec table {
+	width: 100%;
+}
+
+.base_join_sec table th {
+	font-size: 13px;
+	text-align: left;
+	border-bottom: 1px solid #dcdcdc;
+	background: #fbfbfb;
+}
+
+.base_join_sec table td {
+	padding: 15px 0 15px 15px;
+	border-bottom: 1px solid #dcdcdc;
+}
+
+.base_join_sec table input[type="text"] {
+	width: 380px;
+}
+
+.base_join_sec table input[type="text"], .base_join_sec table input[type="password"] {
+	line-height: 31px;
+	font-size: 12px;
+	padding: 0 0 0 8px;
+	border: 1px solid #d6d6d6;
+}
+
+.btn_idcheck {
+	background-color: #333333;
+	border-color: #333333;
+	color: #ffffff;
+	cursor: pointer;
+	font-size: 12px;
+	width: 70px;
+	height: 32px;
+}
+
+.btn_join_cancel {
+	width: 150px;
+	height: 45px;
+	color: #3e3d3c;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #cccccc;
+	background: #fff;
+	cursor: pointer;
+}
+
+.btn_join {
+	width: 150px;
+	height: 45px;
+	margin: 0;
+	color: #ffffff;
+	font-size: 14px;
+	border: 1px solid #666666;
+	background: #666666;
+	cursor: pointer;
+	font-weight: bold;
+}
+/* 중복아이디 존재하지 않는경우 */
+.id_input_re_1 {
+	color: green;
+	display: none;
+	font-size: 10px;
+}
+/* 중복아이디 존재하는 경우 */
+.id_input_re_2 {
+	color: red;
+	display: none;
+	font-size: 10px;
+}
+
+.sign_p {
+	color: #808080;
+	font-size: 10px;
+}
+/*****************마이페이지 회원정보변경***********/
+.sub_content {
+	width: 1216px;
+	padding: 20px 0 0;
+}
+
+.sub_content .side_cont {
+	float: left;
+	width: 200px;
+}
+
+.side_cont .sub_menu_box h2 {
+	padding: 0 0 14px 10px;
+	border-bottom: 1px solid #ececec;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage {
+	margin: 30px 0 25px 0;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage li {
+	padding: 8px 0 15px 0;
+	font-size: 14px;
+	font-weight: bold;
+	list-style: none;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage a {
+	text-decoration: none;
+	margin-left: 20px;
+	color: black;
+}
+
+.mypage_zone_tit {
+	margin: 0 0 0 0;
+	padding: 0 0 10px 0;
+	line-height: 41px;
+	border-bottom: 1px solid #666666;
+}
+
+.mypage_zone_tit h2 {
+	font-size: 28px;
+	margin: 0 0 20px 0;
+	font-weight: 400;
+}
+
+.mypage_cont {
+	padding: 0 0 80px 0;
+}
+
+.my_page_password {
+	width: 80%;
+	margin-left: 250px;
+}
+
+.my_page_password p {
+	font-size: 14px;
+	text-align: center;
+}
+
+.mypage_pwcheck {
+	margin: 30px 0 30px 0;
+	padding: 35px 0 35px 0;
+	border: 1px solid #dadada;
+	background: #ffffff;
+	text-align: center;
+}
+
+.btn_pwcheck_box {
+	text-align: center;
+}
+
+.btn_pwcheck_cancel {
+	display: inline-block;
+	width: 100px;
+	height: 44px;
+	padding: 0 10px 0 10px;
+	line-height: 44px;
+	color: #3e3d3c;
+	font-size: 14px;
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.btn_pwcheck_certify {
+	width: 100px;
+	height: 44px;
+	padding: 0 10px 0 10px;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	border: 1px solid #666666;
+	background: #666666;
+	text-align: center;
+	vertical-align: top;
+}
+/*****************마이페이지 회원탈퇴***********/
+.unregister_guid h3 {
+	margin: 0 0 0 0;
+	padding: 0 0 10px 0;
+	line-height: 41px;
+	font-size: 30px;
+	color: #333;
+	font-weight: 600;
+}
+
+.unregister_info {
+	margin: 0 0 40px 0;
+	padding: 15px 15px 15px 15px;
+	color: #717171;
+	border: 1px solid #dadada;
+	font-size: 12px;
+}
+.memberQuitMsg{
+	display : none;
+	color : red;
+	font-size:12px;
+}
+/****************마이페이지 주문목록***************/
+.mypage_order_info {
+	width: 80%;
+	margin-left: 250px;
+}
+
+.mypage_order_info .mypage_zone_tit {
+	border-bottom: none;
+}
+
+.mypage_order_info .mypage_zone_tit h3 {
+	font-size: 28px;
+	margin: 0 0 20px 0;
+	font-weight: 400;
+}
+
+.order_list_num {
+	display: block;
+	padding: 20px 0 10px 0;
+	font-size: 14px;
+}
+
+.mypage_order_info_table table {
+	width: 100%;
+	border: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.mypage_order_info_table th {
+	padding: 9px 10px 10px 10px;
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #dbdbdb;
+	background: #f7f7f7;
+}
+
+.mypage_order_info_table td {
+	border-bottom: 1px solid #dbdbdb;
+	border-left: 1px dotted #ededed;
+}
+/****************공지사항***************/
+
+/*공지사항 리스트*/
+div.notice_table td.text-left a {
+	text-decoration: none;
+	color: black;
+}
+/*공지사항 리스트 검색*/
+div.notice_search {
+	text-align: center;
+}
+div.select-box select {
+	width: 10%;
+	float: left;
+}
+div.input-box input {
+	display: inline-block;
+	width: 80%;
+}
+div.input-box button {
+	width: 60px;
+	float: right;
+}
+/*공지사항 리스트 페이징*/
+div.notice_paging {
+	width: 450px;
+	margin: 100px auto 20px auto;
+}
+/*공지사항 리스트 버튼*/
+div.btn_wrap {
+	float: right;
+}
+/*공지사항 등록*/
+form.form-horizontal {
+	width: 90%;
+	margin: 80px 160px;
+}
+/*공지사항 등록 버튼*/
+div.btn_wrap2 {
+    width: 200px;
+    margin: 100px 380px;
+}
+/*공지사항 상세리스트 버튼*/
+div.btn_wrap3 {
+    width: 450px;
+    margin: 100px 400px;
+}
+
+/***************후기***************/
+
+/*후기 리스트*/
+.panel {
+	display: none;
+}
+.review_table table {
+	table-layout : fixed;
+}
+.review_table table td:nth-child(2) {
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow : ellipsis;
+	
+}
+
+/* 필립 css 시작 */
+
+.amount_list {
+    text-align:right;
+    background-color : rgb(224,224,224);
+    border : rgb(224,224,224);
+}
+
+.btn_list {
+    border-bottom:white;
+}
+
+.gray_button {
+    background-color : rgb(224,224,224);
+    border : rgb(224,224,224);
+    border-radius : 5px;
+}
+.dark_gray_button {
+    background-color : rgb(94,94,94);
+    border : rgb(94,94,94);
+    border-radius : 5px;
+    color : white;
+}
+.btn_right{
+    text-align:right;
+}
+
+.payment_table {
+    width: 100%;
+    margin:0;
+    padding:0;
+    margin-bottom:30px;
+}
+.payment_table thead{
+	border-bottom:3px solid rgb(224,224,224);
+	font-size:16pt;
+}
+.payment_table tbody {
+	border-bottom:3px solid rgb(224,224,224);
+	font-size:12pt;
+}
+.payment_table tbody tr{
+    width:30%;
+}
+.payment_table tbody tr:last-child td{
+    margin-bottom:10px;
+}
+.payment_table tbody tr td:nth-child(1){
+    padding-left:20px;
+}
+.payment_table tbody td{
+    width:155px;
+    float:left;
+    padding-top:10px;
+}
+.payment_table tbody tr.amount_list td{
+    width:350px;
+    float:right;
+}
+.payment_table tr.payment_btn td{
+    text-align:center;;
+}
+button.payment_btn{
+    text-align:center;
+    margin:auto;
+    width:100px;
+    border-radius:5px;
+    border:1px solid rgb(224,224,224);
+}
+.payment_btn_box {
+	text-align:center;
+}
+#cart_content{
+	width:80%;
+	margin:auto;
+}
+/*헤더 태그*/
+.headerTag {
+    text-align: right;
+    color: white;
+}
+.headerATag{
+	margin-right:20px;
+	font-size : 13px;
+	font-weight: none;
+	color: white;
+	text-decoration:none;
+	cursor:pointer;
+}
+/*footer 글자*/
+.lead2 {
+	font-size : 13px;
+	font-weight: 300;
+}
+.hul{
+	list-style:none;
+}
+.hli{
+	color:white;
+	float:left;
+	margin-left:30px;
+	margin-right:30px;
+	
+}
+
+
+/* 필립 css 끝 */

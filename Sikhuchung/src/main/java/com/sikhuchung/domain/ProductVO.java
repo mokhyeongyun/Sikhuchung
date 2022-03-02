@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ProductVO {
+
     private int productNumber;
     private String productCategory;
     private String productName;
@@ -18,4 +19,5 @@ public class ProductVO {
     private String productRegister;
     private String productUpdate;
     private String productUpdater;
+
 }

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="sikhuchung/layout/basic">
+<th:block layout:fragment="title">
+	<title>mypage</title>
+</th:block>
+<th:block layout:fragment="contents">
+	<div class="sub_content">
+		<div class="side_cont">
+			<div class="sub_menu_box">
+				<h2>마이페이지</h2>
+				<ul class="sub_menu_mypage">
+					<li><a href="mypageOrderInfo.do">- 주문목록</a></li>
+					<li><a href="mypageMemberInfoPwCheck.do">- 회원정보 변경</a></li>
+					<li><a href="mypageMemberQuit.do">- 회원 탈퇴</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="contents">
+			<div class="join_base_wrap">
+				<div class="member_tit">
+					<h2>회원정보 변경</h2>
+				</div>
+				<div class="member_cont">
+                  <div class="important">* 표시는 반드시 입력하셔야 하는 항목입니다.</div>
+                    <form id="formMemberUpdate" name="formMemberUpdate" action="/sikhuchung/mypageMemberInfo.do" method="post">
+                    <input type="text" name="sessionId" th:value="${session.user}">
+                        <div class="base_join_box">
+                            <div class="base_join_sec">
+                                <table>
+                                    <colgroup>
+                                        <col width="25%">
+                                        <col width="75%">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th><span class="">* 아이디</span></th>
+                                            <td>
+                                                <div>
+                                                    <input type="text" id="uid" name="userId" readonly th:value="${userId}">
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <th><span class="">* 비밀번호</span></th>
+                                            <td>
+                                                <div>
+                                                    <input type="password" id="upw" name="userPw" autocomplete="off" placeholder="">
+                                                </div>
+                                                <p class="sign_p pw_msg" id="pwMsg">영어,특수문자,숫자 1개이상 포함하여 4~20자 사이로 입력해주세요.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><span class="">* 비밀번호 확인</span></th>
+                                            <td>
+                                                <div>
+                                                    <input type="password" name="upwCheck" id="upwCheck"  autocomplete="off">
+                                                </div>
+                                                <p class="sign_p pw_check_msg" id="pwCheckMsg"></p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><span class="">* 이름</span></th>
+                                            <td>
+                                                <div>
+                                                    <input type="text" name="userName" id="uname"  th:value="${userName}" maxlength="30">
+                                                </div>
+                                                <p class="sign_p name_msg" id="nameMsg">2~20자 사이의 한글과 영어만 입력가능합니다.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><span class="">* 이메일</span></th>
+                                            <td>
+                                                <div>
+                                                    <input type="text" name="userEmail" id="uemail" th:value="${userEmail}"> 
+                                                </div>
+                                                <p class="sign_p email_msg" id="emailMsg">예)sikhuchung@naver.com</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th><span class="">* 휴대폰번호</span></th>
+                                            <td>
+                                                <div>
+                                                    <input type="text" id="utel" name="userTel" th:value="${userTel}" maxlength="12" placeholder="- 없이 입력하세요.">
+                                                </div>
+                                                <p class="sign_p tel_msg" id="telMsg">최소 11자리 이상의 숫자만 입력 가능합니다.</p>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="btn_join_box">
+                            <button type="button" id="" class="btn_join_cancel">취소</button>
+                            <button type="button" class="btn_join" onclick="userUpdateNullCheck()" value="회원가입">정보수정</button>
+                        </div>
+                    </form>
+                </div>
+			</div>
+		</div>
+	</div>
+</th:block>
+</html>

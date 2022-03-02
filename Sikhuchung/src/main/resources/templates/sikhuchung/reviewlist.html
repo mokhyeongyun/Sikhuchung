@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="sikhuchung/layout/basic">
+  <th:block layout:fragment="title">
+    <title>후기-리스트</title>
+  </th:block>
+  
+  <th:block layout:fragment="contents">
+    <div class="review_table">
+    <h2>상품후기</h2>
+    <div class="btn_wrap text-right">
+        <button type="button" class="reviewbtn btn btn-primary waves-effect waves-light" onclick="more()">펼치기</button>
+    </div>
+    <table class="table table-hover">
+	  <thead>
+	   <tr>
+        <th scope="col">번호</th>
+        <th scope="col">제목</th>
+        <th scope="col">평점</th>
+        <th scope="col">작성자</th>
+        <th scope="col">날짜</th>
+       </tr>
+	  </thead>
+	  <tbody>
+	    <div th:if="${not #lists.isEmpty( reviewList )}" th:each="row : ${reviewList}">
+		    <tr>
+		      <td th:text="${row.reviewNumber}"></td>
+		      <td th:text="${row.reviewContent}"></td>
+		      <td th:text="${row.reviewRate}" id="rate"></td>
+		      <td>작성자</td>
+		      <td th:text="${row.reviewDate}"></td>
+		    </tr>
+		      <td colspan="5" th:text="${row.reviewContent}" class="panel"></td>
+	    </div>
+	    <tr th:unless="${not #lists.isEmpty( reviewList )}">
+            <td colspan="5">조회된 결과가 없습니다.</td>
+        </tr>
+	  </tbody>
+	</table>
+    </div>
+    <div class="review_paging">
+        <nav th:replace="sikhuchung/fragments/common :: pagination"></nav>
+    </div>
+    <script th:inline="javascript">
+    function more() {
+    	if($(".panel").css("display") == "none"){
+    	    $(".panel").show();
+    	}else{
+    	    $(".panel").hide();
+    	}
+    }
+    </script>
+  </th:block>
+</html>

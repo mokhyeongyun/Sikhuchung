@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class NoticeDTO {
-    int noticeNumber, noticeHit;
-    String userId, noticeTitle, noticeContent, noticeDate, noticeUpdateId, noticeUpdateDate, noticeDelete;
+public class NoticeDTO extends CommonDTO {
+    private Long noticeNumber, noticeHit;
+    private String userId, noticeTitle, noticeContent, noticeDate, noticeUpdateId, noticeUpdateDate, noticeDelete;
 }
