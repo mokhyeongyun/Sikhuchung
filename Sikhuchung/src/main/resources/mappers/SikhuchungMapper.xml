@@ -276,8 +276,8 @@
 	        , review_rate
 	        , review_delete
         ) VALUES (
-              #{reviewNumber}
-            , #{reviewTitle}
+              sequ_review_number.nextval
+            , SUBSTR(#{reviewContent},30)
             , #{reviewContent}
             , sysdate
             , #{reviewRate}

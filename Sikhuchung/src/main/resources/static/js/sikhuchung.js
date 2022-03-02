@@ -510,8 +510,16 @@ function deleteNotice(noticeNumber, queryString) {
 }
 
 /***************************** 후기 ***************************/
-
-
+/* 후기 등록 */
+function registerReview(form) {
+    var result = (
+        isValid(form.reviewRate, "평점", form.reviewRate)
+        && isValid(form.reviewContent, "내용", form.reviewContent)
+    );
+    if ( result == false ) {
+        return false;
+    }
+}
 
 
 

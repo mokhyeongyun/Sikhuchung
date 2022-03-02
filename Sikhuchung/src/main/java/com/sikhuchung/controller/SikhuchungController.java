@@ -35,18 +35,27 @@ public class SikhuchungController extends UiUtils {
     // 공지사항 글쓰기 이동 -- 유진
     @GetMapping(value = "/sikhuchung/noticewrite.do")
     public String openNoticeWrite(@ModelAttribute("params") NoticeDTO params,
-            @RequestParam(value = "noticeNumber", required = false) Long noticeNumber, Model model) {
-        if (noticeNumber == null) {
-            model.addAttribute("notice", new NoticeDTO());
+            @RequestParam(value = "noticeNumber", required = false) Long noticeNumber, Model model,
+            HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        String user = (String) session.getAttribute("user");
+        if (session.getAttribute("user") == null) {
+            return "sikhuchung/login";
         } else {
-            NoticeDTO notice = sikhuchungService.getNoticeDetail(noticeNumber);
-            if (notice == null) {
-                return showMessageWithRedirect("없는 게시글이거나 이미 삭제된 게시글입니다.", "/sikhuchung/noticelist.do", Method.GET,
-                        null, model);
+
+            if (noticeNumber == null) {
+                model.addAttribute("notice", new NoticeDTO());
+            } else {
+                NoticeDTO notice = sikhuchungService.getNoticeDetail(noticeNumber);
+                if (notice == null) {
+                    return showMessageWithRedirect("없는 게시글이거나 이미 삭제된 게시글입니다.", "/sikhuchung/noticelist.do", Method.GET,
+                            null, model);
+                }
+                model.addAttribute("notice", notice);
             }
-            model.addAttribute("notice", notice);
+
+            return "sikhuchung/noticewrite";
         }
-        return "sikhuchung/noticewrite";
     }
 
     // 공지사항 글쓰기 처리 -- 유진
@@ -139,7 +148,7 @@ public class SikhuchungController extends UiUtils {
     public String openReviewWrite(@RequestParam(value = "reviewNumber", required = false) Long reviewNumber,
             Model model) {
         if (reviewNumber == null) {
-            model.addAttribute("board", new ReviewDTO());
+            model.addAttribute("review", new ReviewDTO());
         } else {
             ReviewDTO review = sikhuchungService.getReviewDetail(reviewNumber);
             if (review == null) {
