@@ -5,11 +5,18 @@
 </th:block>
 <th:block layout:fragment="contents">
     <main>
+    <form>
         <div class="detail_info_top_area">
             <div class="detail_info_img_area">
                 <img th:src="${thumbnail}" alt="" class="detail_info_img_area">
             </div>
             <div class="detail_info_table_area">
+            <!-- 상품번호, 상품수량, 삼풍가격, 상품이름, 상품이미지, 사용자 ID -->
+            <input type="hidden" name="productNumber" th:value="${productNumber}">
+            <input type="hidden" name="name" th:value="${name}">
+            <input type="hidden" name="price" th:value="${price}">
+            <input type="hidden" name="price" th:value="${price}">
+            <input type="hidden" name="userId" th:value="${session.user}">
                 <table class="detail_info_table">
                     <tr class="detail_info_tr">
                         <td><button type="button" onclick="" class="detail_info_btn"><img src="../img/rectify.png" alt=""
@@ -44,8 +51,8 @@
                     </tr>
                     <tr class="detail_info_tr">
                         <td class="detail_info_td_label">상품선택</td>
-                        <td class="detail_info_select_box"><select name="mount" id="" class="detail_info_select">
-                                <option value="basic">상품 선택 (  상자 / 봉지 )</option>
+                        <td class="detail_info_select_box"><select name="mount" id="theNumberOfProduct" class="detail_info_select" onchange="selectBoxValue(this.value);">
+                                <option value="0">상품 선택 (  상자 / 봉지 )</option>
                                 <option value="1">０１ - １상자 / １봉지</option>
                                 <option value="2">０２ - ２상자 / ２봉지</option>
                                 <option value="3">０３ - ３상자 / ３봉지</option>
@@ -65,6 +72,7 @@
                 </table>
             </div>
         </div>
+        </form>
         <div class="detail_info_middle_area">
             <img th:src="${info}" alt="" class="detail_info_img">
         </div>
@@ -75,5 +83,6 @@
             <p class="detail_info_btm_title">상품 후기</p>
         </div>
     </main>
+    <script defer src="../sikhuchung.js"></script>
 </th:block>
 </html>
