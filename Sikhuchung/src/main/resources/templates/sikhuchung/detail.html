@@ -12,9 +12,9 @@
             <div class="detail_info_table_area">
                 <table class="detail_info_table">
                     <tr class="detail_info_tr">
-                        <td><button type="button" onclick="" class="detail_info_btn"><img src="../img/rectify.png" alt=""
+                        <td th:if="${session.user} == 'admin'"><button type="button" onclick="" class="detail_info_btn"><img src="../img/rectify.png" alt=""
                                     class="detail_info_btn_img"></button></td>
-                        <td><button type="submit" onclick="" class="detail_info_btn"><img src="../img/delete.png" alt=""
+                         <td th:if="${session.user} == 'admin'"><button type="submit" onclick="" class="detail_info_btn"><img src="../img/delete.png" alt=""
                                     class="detail_info_btn_img"></button></td>
                     </tr>
                     <tr class="detail_info_tr">

@@ -116,4 +116,6 @@ public interface SikhuchungMapper {
 
     /* 주문목록(관리자) 목록 */
     public List<OrderDTO> plist();
+
+    public void cartOrderDelete(int cartNumber);
 }

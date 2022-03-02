@@ -356,7 +356,7 @@
     
     <!-- 장바구니 -> 결제창 -->
     <select id="paymentlist" resultType="CartVO" parameterType="String">
-        select cart_number,user_id,cart_count,cart_indate,product_name,product_thumbnail,product_price
+        select cart_number,sc.product_number product_number,user_id,cart_count,cart_indate,product_name,product_thumbnail,product_price
         from s_cart sc ,s_product sp
         where sc.product_number=sp.product_number and cart_number=#{paymentlist}
     </select>
@@ -386,16 +386,21 @@
     
     <!-- 결제 -> 주문 상세 테이블 삽입 -->
     <insert id="orderDetailDTO" parameterType="OrderDetailDTO">
-        insert into s_order_detail values (sequ_order_detail_number.nextval,1,1,3,'입금대기')
+        insert into s_order_detail values (sequ_order_detail_number.nextval,#{productNumber},#{orderNumber},#{orderDetailCount},'입금대기')
     </insert>
     <!-- 주문번호 가져오려면 파라미터2개 써야하는데 2개는 가져올 수 가 없음 -->
     
     <!-- 결제 -> 결제 테이블 삽입 -->
     <insert id="paymentDTO" parameterType="PaymentDTO">
-        insert into s_payment values(sequ_payment_number.nextval,1,'새벽배송',sysdate,'무통장입금'
-        ,30000,0,3000,33000,'장필립','국민은행','200001-04-151211')
+        insert into s_payment values(sequ_payment_number.nextval,#{orderNumber},#{paymentDelivery},sysdate,'무통장입금'
+        ,#{paymentTotalPrice},#{paymentDiscountPrice},3000,#{paymentFinalPrice},#{paymentDepositName},'국민은행','200001-04-151211')
     </insert>
     
+    
+    <delete id="cartOrderDelete" parameterType="int">
+        DELETE FROM s_cart
+        WHERE  cart_number=#{cartNumber}
+    </delete>
     
     
     

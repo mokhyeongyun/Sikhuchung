@@ -105,4 +105,6 @@ public interface SikhuchungService {
     /* 주문목록(관리자) - 필립 */
     public List<OrderDTO> plist() throws Exception;
 
+    public void cartOrderDelete(int cartNumber) throws Exception;
+
 }

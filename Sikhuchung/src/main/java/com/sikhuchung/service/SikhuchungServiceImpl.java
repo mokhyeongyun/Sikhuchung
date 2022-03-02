@@ -279,4 +279,9 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     public List<OrderDTO> plist() {
         return sikhuchungMapper.plist();
     }
+
+    @Override
+    public void cartOrderDelete(int cartNumber) throws Exception {
+        sikhuchungMapper.cartOrderDelete(cartNumber);
+    }
 }

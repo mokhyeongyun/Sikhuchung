@@ -9,7 +9,7 @@ public class PaymentDTO {
     private String paymentDelivery;
     private String paymentDate;
     private String paymentMethod;
-    private int paymentTotal_price;
+    private int paymentTotalPrice;
     private int paymentDiscountPrice;
     private int paymentDeliveryPrice;
     private int paymentFinalPrice;

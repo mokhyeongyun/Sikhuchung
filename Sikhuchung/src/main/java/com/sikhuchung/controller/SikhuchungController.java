@@ -421,28 +421,58 @@ public class SikhuchungController extends UiUtils {
         String[] paymentlist = request.getParameterValues("select_product");
         // System.out.println(paymentlist[0]);
         List<CartVO> orderlist = new ArrayList<CartVO>();
+        int amount = 0;
+        int count = 0;
+        int dc = 0;
+        int allamount = 0;
         for (int i = 0; i < paymentlist.length; i++) {
             CartVO order = sikhuchungService.paymentlist(paymentlist[i]);
+            amount += order.getPriceAmount();
+            count += order.getCartCount();
             orderlist.add(order);
         }
+        if (count >= 5 && count < 10) {
+            dc = (int) (amount * 0.1);
+            allamount = amount - dc;
+        } else if (count >= 10) {
+            dc = (int) (amount * 0.2);
+            allamount = amount - dc;
+        }
+        model.addAttribute("dc", dc);
+        model.addAttribute("priceamount", amount);
+        model.addAttribute("allamount", allamount);
         model.addAttribute("orderlist", orderlist);
         return "sikhuchung/payment";
     }
 
     // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄) -- 필립
     @PostMapping(value = "/sikhuchung/cart.do")
-    public String orderlist(HttpServletRequest request, OrderDTO orderDto, OrderDetailDTO orderDetailDto,
-            PaymentDTO paymentDto) throws Exception {
-
+    public String orderlist(HttpServletRequest request, OrderDTO orderDto, PaymentDTO paymentDto) throws Exception {
         sikhuchungService.order(orderDto); // 주문테이블 삽입 성공
+        int ordernumber = sikhuchungService.ordernumber22();
 
-//        int ordernumber = sikhuchungService.ordernumber22(); // ordernumber 가져오기
+        String[] orderDetailCountlist = request.getParameterValues("orderDetailCount");
+        String[] productNumberlist = request.getParameterValues("productNumber");
 
-//        System.out.println(ordernumber);// ordernumber 넘버 가져오기
+        for (int i = 0; i < orderDetailCountlist.length; i++) {
+            OrderDetailDTO orderdetail = new OrderDetailDTO();
+            int orderdetailcount = Integer.parseInt(orderDetailCountlist[i]);
+            int productnumber = Integer.parseInt(productNumberlist[i]);
 
-        sikhuchungService.orderDetailDTO(orderDetailDto); // 주문 상세 테이블 삽입
+            orderdetail.setOrderDetailCount(orderdetailcount);
+            orderdetail.setProductNumber(productnumber);
+            orderdetail.setOrderNumber(ordernumber);
+            sikhuchungService.orderDetailDTO(orderdetail);
+        }
 
+        paymentDto.setOrderNumber(ordernumber);
         sikhuchungService.paymentDTO(paymentDto); // 결제 테이블
+
+        String[] cartNumberlist = request.getParameterValues("cartNumber");
+        for (int i = 0; i < cartNumberlist.length; i++) {
+            int cartNumber = Integer.parseInt(cartNumberlist[i]);
+            sikhuchungService.cartOrderDelete(cartNumber);
+        }
 
         return "redirect:/sikhuchung/cart.do";
     }
@@ -533,6 +563,7 @@ public class SikhuchungController extends UiUtils {
         ProductVO productvo = sikhuchungService.getProductData(productNumber);
         if (productvo.getProductDelete().equals("N")) {
             // 썸네일, 이름, 가격, 분류, 원산지, 배송방법, 재고, 상세설명img
+            model.addAttribute("productNumber", productvo.getProductNumber());
             model.addAttribute("thumbnail", productvo.getProductThumbnail());
             model.addAttribute("name", productvo.getProductName());
             model.addAttribute("price", productvo.getProductPrice());

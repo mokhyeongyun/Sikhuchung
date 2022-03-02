@@ -26,7 +26,7 @@
           <tbody>
                 <tr th:if="${not #lists.isEmpty( cartlist )}" th:each="row:${cartlist}"> 
                     <td><input type="checkbox" name="select_product" th:value="${row.cartNumber}" onclick="checkSelectAll()" checked></td>
-                    <td th:text="${row.productThumbnail}"></td>
+                    <td><img th:src="${row.productThumbnail}" width="130px" height="130px" alt=""></td>
                     <td th:text="${row.productName}">제품명</td>
                     <td><input type="text" name="" value="" size="3" maxlength="3" th:value="${row.cartCount}">개</td>
                     <td th:text="${row.productPrice}"></td>
