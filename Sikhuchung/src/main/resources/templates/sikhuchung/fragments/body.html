@@ -9,9 +9,16 @@
             <a class="headerATag" th:href="@{/sikhuchung/join.do}">회원가입</a>
             <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
             </div>
-            <div th:if="${session.user} != null" class="headerTag">
+            <div th:if="${session.user} != null and ${session.user} != 'admin'" class="headerTag">
             <a class="headerATag" th:href="@{/sikhuchung/logout.do}">로그아웃</a>
             <a class="headerATag" th:href="@{/sikhuchung/cart.do}">장바구니</a>
+            <a class="headerATag" th:href="@{/sikhuchung/mypageOrderInfo.do}">마이페이지</a>
+            <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
+            </div>
+            <div th:if="${session.user} == 'admin'" class="headerTag">
+            <a class="headerATag" th:href="@{/sikhuchung/logout.do}">로그아웃</a>
+            <a class="headerATag" th:href="@{/sikhuchung/cart.do}">장바구니</a>
+            <a class="headerATag" th:href="@{/sikhuchung/paymentlist.do}">주문 리스트</a>
             <a class="headerATag" th:href="@{/sikhuchung/mypageOrderInfo.do}">마이페이지</a>
             <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
             </div>
