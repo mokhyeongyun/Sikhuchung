@@ -173,6 +173,7 @@
     		s_product where product_number = #{productNumber}
     </select>
     
+    <!-- 장바구니 넣기 -->
     <insert id="item" parameterType="CartVO">
     	INSERT INTO s_cart VALUES ( sequ_cart_number.nextval, #{productNumber}, #{userId}, #{cartCount}, SYSDATE) 
     </insert>
