@@ -37,6 +37,7 @@ public interface SikhuchungService {
     /* 상세화면 -- 재훈 */
     public ProductVO getProductData(int productNumber);
     
+    /* 장바구니 넣기 -- 재훈 */
     public void getItem(CartVO cartvo);
 
     public boolean hitPlus(Long noticeNumber);

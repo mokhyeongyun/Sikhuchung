@@ -226,6 +226,7 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return productData;
     }
     
+    /* 장바구니 넣기 -- 재훈 */
     @Override
     public void getItem(CartVO cartvo) {
     	sikhuchungMapper.item(cartvo);
