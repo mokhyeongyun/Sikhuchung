@@ -74,6 +74,8 @@ public interface SikhuchungMapper {
 
     /* 상세화면 -- 재훈 */
     public ProductVO selectProductData(int productNumber);
+    
+    public void item(CartVO cartvo);
 
     // 마이페이지 회원정보수정 비밀번호체크
     public int memberInfoPwCheck(UserVO userVO);
