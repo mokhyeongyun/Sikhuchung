@@ -23,7 +23,7 @@
               <th scope="col">수신인</th>
               <th scope="col">주문자 연락처</th>
               <th scope="col">주문일자</th>
-              <!-- <th scope="col">입금상태</th> -->
+              <th scope="col" colspan="2">입금확인</th>
             </tr>
             
           </thead>
@@ -38,10 +38,11 @@
                     <td th:text="${row.orderRecipientName}"></td>
                     <td th:text="${row.orderRecipientTel}"></td>
                     <td th:text="${row.orderDate}"></td>
-                    <!-- <td th:text="${row.orderDetailResult}"></td> -->
+                    <td th:text="${row.orderDetailResult}"></td>
+                    <td><button >입금확인</button></td>
                 </tr>
                 <tr th:unless="${not #lists.isEmpty( paylist )}">
-                    <td colspan="9">기록된 주문이 없습니다.</td>
+                    <td colspan="10">기록된 주문이 없습니다.</td>
                 </tr>
                 <tr class="btn_list">
                     <td colspan=8><button type="submit" class="gray_button" onclick="deleteOrderlist()">선택 목록 삭제</button></td>

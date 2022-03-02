@@ -593,7 +593,8 @@ public class SikhuchungController extends UiUtils {
     // 장바구니 등록 -- 재훈
     @PostMapping(value = "/sikhuchung/test.do")
     public String detail(CartVO cartvo) {
+        System.out.println(cartvo.getProductNumber());
         sikhuchungService.getItem(cartvo);
-        return "redirect:/sikhuchung/cart";
+        return "redirect:/sikhuchung/cart.do";
     }
 }

@@ -175,7 +175,7 @@
     
     <!-- 장바구니 넣기 -->
     <insert id="item" parameterType="CartVO">
-    	INSERT INTO s_cart VALUES ( sequ_cart_number.nextval, #{productNumber}, #{userId}, #{cartCount}, SYSDATE) 
+    	INSERT INTO s_cart VALUES (sequ_cart_number.nextval, #{productNumber}, #{userId}, #{cartCount}, SYSDATE) 
     </insert>
 
     <!-- 회원가입 -->
@@ -350,12 +350,11 @@
     </select>
     <!-- 주문목록(관리자) -->
     <select id="plist" resultType="OrderDTO">
-    <!-- SELECT so.ORDER_NUMBER,user_id,order_address1,order_address2,order_address3
-        ,order_recipient_name,order_recipient_tel,order_detail_count, order_detail_result,order_date
-        FROM s_order so, s_order_detail sod
-        where so.order_number=sod.order_number -->
-        select order_number,user_id,order_address1,order_address2,order_address3
-        ,order_recipient_name,order_recipient_tel,order_date from s_order
+       select so.order_number,user_id,order_address1,order_address2,order_address3
+        ,order_recipient_name,order_recipient_tel,order_date, ORDER_DETAIL_RESULT from s_order so, s_order_detail sod
+        where so.ORDER_NUMBER = sod.ORDER_NUMBER
+        <!-- select order_number,user_id,order_address1,order_address2,order_address3
+        ,order_recipient_name,order_recipient_tel,order_date from s_order -->
     </select>
     
     

@@ -74,7 +74,7 @@ public interface SikhuchungMapper {
 
     /* 상세화면 -- 재훈 */
     public ProductVO selectProductData(int productNumber);
-    
+
     /* 장바구니 넣기 -- 재훈 */
     public void item(CartVO cartvo);
 
@@ -120,5 +120,6 @@ public interface SikhuchungMapper {
     /* 주문목록(관리자) 목록 */
     public List<OrderDTO> plist();
 
+    /* 주문목록 삭제 */
     public void cartOrderDelete(int cartNumber);
 }
