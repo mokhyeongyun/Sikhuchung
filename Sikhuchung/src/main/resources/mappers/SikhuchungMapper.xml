@@ -274,15 +274,17 @@
     
     <insert id="insertReview" parameterType="ReviewDTO">
         INSERT INTO s_review (
-              review_number
-	        , review_title
-	        , review_content
-	        , TO_CHAR(review_date, 'yyyy-MM-dd') review_date
-	        , review_rate
-	        , review_delete
+            review_number
+          , order_detail_number
+            , review_title
+            , review_content
+            , review_date
+            , review_rate
+            , review_delete
         ) VALUES (
               sequ_review_number.nextval
-            , SUBSTR(#{reviewContent},30)
+            , #{orderDetailNumber}
+            , #{reviewContent}
             , #{reviewContent}
             , sysdate
             , #{reviewRate}
@@ -321,12 +323,22 @@
     </update>
 
     <select id="selectReviewList" parameterType="ReviewDTO" resultType="ReviewDTO">
-        SELECT
-            <include refid="reviewColumns" />
+         SELECT
+          review_number
+        , sr.order_detail_number order_detil_number
+        , review_title
+        , review_content
+        , TO_CHAR(review_date, 'yyyy-MM-dd') review_date
+        , review_rate
+        , review_update_date
+        , review_delete
+        , user_id
+        , product_name
         FROM
-            s_review
+            s_review sr, s_order_detail sod,s_order so, s_product sp
         WHERE
-            review_delete = 'N'
+            sr.order_detail_number= sod.order_detail_number and sod.order_number = so.order_number
+            and sp.product_number=sod.product_number
         ORDER BY
             review_number DESC,
             review_date DESC
@@ -406,6 +418,37 @@
         DELETE FROM s_cart
         WHERE  cart_number=#{cartNumber}
     </delete>
+    
+    <select id="getProductName" parameterType="int" resultType="String">
+        select product_name from s_product sp,s_order_detail sod 
+        where sod.order_detail_number=#{orderDetailNumber} 
+        and sp.product_number=sod.product_number
+    </select>
+    
+    <update id="updateresult" parameterType="Long" >
+        UPDATE s_order_detail SET order_detail_result='후기완료'
+        WHERE order_detail_number=#{result}
+    </update>
+    
+    
+    <select id="getreviewdto" parameterType="int" resultType="ReviewDTO">
+        select review_number,order_detail_number,review_title,review_content,review_rate from s_review 
+        where order_detail_number=#{orderDetailNumber}
+    </select>
+    
+    <update id="reviewUpdate" parameterType="ReviewDTO">
+        UPDATE s_review SET review_title=#{reviewContent}, review_content=#{reviewContent}, review_rate=#{reviewRate}
+        WHERE order_detail_number=#{orderDetailNumber}
+    </update>
+    
+    <delete id="reviewDelete"  parameterType="int" >
+        delete from s_review where order_detail_number = #{orderDetailNumber}
+    </delete>
+    
+    <update id="resultChange" parameterType="int" >
+         UPDATE s_order_detail SET order_detail_result='배송완료'
+        WHERE order_detail_number=#{orderDetailNumber}
+    </update>
     
     
     

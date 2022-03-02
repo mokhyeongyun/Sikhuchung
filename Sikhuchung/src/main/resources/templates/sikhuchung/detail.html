@@ -10,6 +10,7 @@
             <div class="detail_info_img_area">
                 <img th:src="${thumbnail}" alt="" class="detail_info_img_area">
             </div>
+            <input type="hidden" th:value="${session.user}">
             <div class="detail_info_table_area">
             <!-- 상품번호, 상품수량, 삼풍가격, 상품이름, 상품이미지, 사용자 ID -->
             <input type="hidden" name="productNumber"  id="productNumber" th:value="${productNumber}">

@@ -13,7 +13,7 @@
     <table class="table table-hover">
 	  <thead>
 	   <tr>
-        <th scope="col">번호</th>
+        <th scope="col">상품</th>
         <th scope="col">제목</th>
         <th scope="col">평점</th>
         <th scope="col">작성자</th>
@@ -23,10 +23,10 @@
 	  <tbody>
 	    <div th:if="${not #lists.isEmpty( reviewList )}" th:each="row : ${reviewList}">
 		    <tr>
-		      <td th:text="${row.reviewNumber}"></td>
+		      <td th:text="${row.productName}"></td>
 		      <td th:text="${row.reviewContent}"></td>
 		      <td th:text="${row.reviewRate}" id="rate"></td>
-		      <td>작성자</td>
+		      <td th:text="${row.userId}">작성자</td>
 		      <td th:text="${row.reviewDate}"></td>
 		    </tr>
 		      <td colspan="5" th:text="${row.reviewContent}" class="panel"></td>

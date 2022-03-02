@@ -81,16 +81,33 @@ public class SikhuchungServiceImpl implements SikhuchungService {
 
     /* 후기 */
     @Override
-    public boolean registerReview(ReviewDTO params) {
-        int queryResult = 0;
+    public void registerReview(ReviewDTO reviewdto) {
+        sikhuchungMapper.insertReview(reviewdto);
+    }
 
-        if (params.getReviewNumber() == null) {
-            queryResult = sikhuchungMapper.insertReview(params);
-        } else {
-            queryResult = sikhuchungMapper.updateReview(params);
-        }
+    @Override
+    public void updateresult(Long result) {
+        sikhuchungMapper.updateresult(result);
+    }
 
-        return (queryResult == 1) ? true : false;
+    @Override
+    public ReviewDTO getreviewdto(int orderDetailNumber) {
+        return sikhuchungMapper.getreviewdto(orderDetailNumber);
+    }
+
+    @Override
+    public void reviewUpdate(ReviewDTO reviewdto) {
+        sikhuchungMapper.reviewUpdate(reviewdto);
+    }
+
+    @Override
+    public void reviewDelete(int orderDetailNumber) {
+        sikhuchungMapper.reviewDelete(orderDetailNumber);
+    }
+
+    @Override
+    public void resultChange(int orderDetailNumber) {
+        sikhuchungMapper.resultChange(orderDetailNumber);
     }
 
     @Override
@@ -290,4 +307,10 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     public void cartOrderDelete(int cartNumber) throws Exception {
         sikhuchungMapper.cartOrderDelete(cartNumber);
     }
+
+    @Override
+    public String getProductName(int orderDetailNumber) {
+        return sikhuchungMapper.getProductName(orderDetailNumber);
+    }
+
 }
