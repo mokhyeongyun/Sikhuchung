@@ -571,6 +571,7 @@ public class SikhuchungController extends UiUtils {
             model.addAttribute("delivery", productvo.getProductDelivery());
             model.addAttribute("stock", productvo.getProductStock());
             model.addAttribute("info", productvo.getProductInfo());
+            model.addAttribute("productNumber", productvo.getProductNumber());
             return "sikhuchung/detail";
         } else {
             return "redirect:/sikhuchung/main.do";
@@ -589,11 +590,12 @@ public class SikhuchungController extends UiUtils {
     public String item_modify() {
         return "sikhuchung/item_modify";
     }
-    
+
     // 장바구니 등록 -- 재훈
-    @PostMapping(value="/sikhuchung/test.do")
+    @PostMapping(value = "/sikhuchung/test.do")
     public String detail(CartVO cartvo) {
-    	sikhuchungService.getItem(cartvo);
-    	return "redirect:/sikhuchung/cart.do";
+        System.out.println(cartvo.getProductNumber());
+        sikhuchungService.getItem(cartvo);
+        return "redirect:/sikhuchung/cart.do";
     }
 }
