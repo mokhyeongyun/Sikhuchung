@@ -7,10 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
+<<<<<<< HEAD
 import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.ProductVO;
 import com.sikhuchung.domain.ReviewDTO;
+=======
+import com.sikhuchung.domain.OrderDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
+import com.sikhuchung.domain.PaymentDTO;
+>>>>>>> philip
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 import com.sikhuchung.paging.PaginationInfo;
@@ -77,6 +84,7 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     }
 
     /* 후기 */
+<<<<<<< HEAD
     @Override
     public boolean registerReview(ReviewDTO params) {
         int queryResult = 0;
@@ -221,5 +229,60 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     public ProductVO getProductData(int productNumber) {
         ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
         return productData;
+=======
+
+    /* 장바구니 */
+    @Override
+    public List<CartVO> cartlist(String userid) {
+        return sikhuchungMapper.cartlist(userid);
+    }
+
+    /* 결제창 */
+    @Override
+    public CartVO paymentlist(String paymentlist) {
+        return sikhuchungMapper.paymentlist(paymentlist);
+    }
+
+    /* 주문목록 -> 메인(주문 테이블 삽입) */
+    @Override
+    public void order(OrderDTO orderDto) {
+        sikhuchungMapper.order(orderDto);
+    }
+
+    /* ordernumber 가져오기 */
+    @Override
+    public int ordernumber22() {
+        return sikhuchungMapper.ordernumber22();
+    }
+
+    /* 주문목록 -> 메인(주문 상세 테이블 삽입) */
+    @Override
+    public void orderDetailDTO(OrderDetailDTO orderDetailDto) {
+        sikhuchungMapper.orderDetailDTO(orderDetailDto);
+    }
+
+    /* 주문목록 -> 메인(결제 테이블 삽입) */
+    @Override
+    public void paymentDTO(PaymentDTO paymentDto) {
+        sikhuchungMapper.paymentDTO(paymentDto);
+    }
+
+    /* 장바구니 선택 삭제 */
+    @Override
+    public void deletecart(int checkNum) {
+        sikhuchungMapper.deletecart(checkNum);
+    }
+
+    /* 주문목록(관리자) 선택 삭제 */
+    @Override
+    public void deleteOrderlist(int checkNum) {
+        sikhuchungMapper.deleteOrderlist(checkNum);
+    }
+
+    /* 주문목록(관리자) */
+    @Override
+    public List<OrderDTO> plist() {
+        return sikhuchungMapper.plist();
+>>>>>>> philip
     }
 }

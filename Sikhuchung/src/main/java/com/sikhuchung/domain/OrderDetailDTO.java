@@ -16,4 +16,8 @@ public class OrderDetailDTO {
     public int getPrice() {
         return orderDetailCount * productPrice;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> philip

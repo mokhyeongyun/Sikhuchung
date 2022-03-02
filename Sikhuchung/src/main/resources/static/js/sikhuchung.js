@@ -408,6 +408,7 @@ function userQuitNullCheck() {
     }
 }
 /* 필립 js 시작 */
+<<<<<<< HEAD
 function paymentFormCheck() {
     let order_user, order_phone; /*이 부분이 없어도 정상 실행됌*/
 
@@ -440,9 +441,241 @@ function paymentFormCheck() {
         return false;
     } else if (get_phone.value == "") {
         alert("배송정보의 휴대폰 번호를 기입해주세요.")
+=======
+// 결제 체크 유효성
+function paymentFormCheck() {
+    if (!ordernameCheck()) { // 주문자 이름 검사
+        return false;
+    }else if (!paymentEmailCheck()) { //이메일 검사
+        return false;
+    }else if (!orderTelCheck()) { //주문자 전화번호 검사
+        return false;
+    }else if(!getnameCheck()){ //받는 분 이름 검사
+        return false;
+    }else if(!addrCheck()){ //주소 검사
+        return false;
+    }else if(!getTelCheck()){ //받는 분 전화번호 검사
+        return false;
+    } else { //유효성 검사 완료시 회원가입 진행
+        alert("결제가 완료되었습니다.");
+        document.paymentCheck.submit();
+        return true;
+    }
+}
+// 주문자 이름 유효성 체크
+function ordernameCheck() {
+    let order_user = document.getElementById("order_user");
+    var name_c = /^[가-힣a-zA-Z]{2,20}$/;
+    if (order_user.value == "") {
+        alert("주문하시는 분을 입력해 주세요");
+        order_user.focus();
+        return false;
+    } else if (!name_c.test(order_user.value)) {
+        alert("주문하시는 분은 2~20자 사이의 한글과 영어만 입력가능합니다.");
+        order_user.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+// 받는 분 이름 유효성 체크
+function getnameCheck() {
+    let get_user = document.getElementById("get_user");
+    var name_c = /^[가-힣a-zA-Z]{2,20}$/;
+    if (order_user.value == "") {
+        alert("받으실 분을 입력해 주세요");
+        get_user.focus();
+        return false;
+    } else if (!name_c.test(get_user.value)) {
+        alert("받으실 분은 2~20자 사이의 한글과 영어만 입력가능합니다.");
+        get_user.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+// 이메일 유효성 체크
+function paymentEmailCheck() {
+    let order_email = document.getElementById("order_email");
+    var email_c = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,20})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+    if (order_email.value == "") {
+        alert("이메일을 입력해 주세요");
+        order_email.focus();
+        return false;
+    } else if (!email_c.test(order_email.value)) {
+        alert("이메일형식이 잘못되었습니다.");
+        order_email.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+// 주문자 핸드폰번호 유효성 체크
+function orderTelCheck() {
+    let order_phone = document.getElementById("order_phone");
+    var phone_c = /^[0-9]{11,}$/;
+    if (order_phone.value == "") {
+        alert("주문자 정보의 휴대폰번호를 입력해 주세요");
+        order_phone.focus();
+        return false;
+    } else if (!phone_c.test(order_phone.value)) {
+        alert("주문자 정보의 휴대폰번호는 최소 11자리 이상의 숫자만 입력 가능합니다.");
+        order_phone.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+// 받는 분 핸드폰번호 유효성 체크
+function getTelCheck() {
+    let get_phone = document.getElementById("get_phone");
+    var phone_c = /^[0-9]{11,}$/;
+    if (get_phone.value == "") {
+        alert("배송정보의 휴대폰번호를 입력해 주세요");
+        get_phone.focus();
+        return false;
+    } else if (!phone_c.test(get_phone.value)) {
+        alert("배송정보의 휴대폰번호는 최소 11자리 이상의 숫자만 입력 가능합니다.");
+        get_phone.focus();
+        return false;
+    } else {
+        return true;
+    }
+}
+//주소 유효성 체크
+function addrCheck(){
+    let addr0 = document.getElementById("addr0");
+    let addr1 = document.getElementById("addr1");
+    let addr2 = document.getElementById("addr2");
+    
+    if(addr0.value==""||addr1.value==""||addr2.value==""){
+        alert("주소를 입력해주세요.")
+        addr0.focus();
+        return false;
+    } else {
+        return true;
+>>>>>>> philip
     }
 
 }
+
+
+
+/* 우편번호 */
+function openZipSearch() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            $('[name=orderAddress1]').val(data.zonecode); // 우편번호 (5자리)
+            $('[name=orderAddress2]').val(data.address);
+            $('[name=orderAddress3]').val(data.buildingName);
+        }
+    }).open();
+}
+
+
+/* 체크박스(장바구니) */
+function checkSelectAll()  {
+  // 전체 체크박스
+  const checkboxes 
+    = document.querySelectorAll('input[name="select_product"]');
+  // 선택된 체크박스
+  const checked 
+    = document.querySelectorAll('input[name="select_product"]:checked');
+  // select all 체크박스
+  const selectAll 
+    = document.querySelector('input[name="select_all"]');
+  if(checkboxes.length === checked.length)  {
+    selectAll.checked = true;
+  }else {
+    selectAll.checked = false;
+  }
+}
+function selectAll(selectAll)  {
+  const checkboxes 
+     = document.getElementsByName('select_product');
+  
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = selectAll.checked
+  })
+}
+
+
+function pwCertifyNullCheck() {
+    let pw = document.getElementById("pw");
+    if (pw.value == "") {
+        alert("비밀번호를 입력해 주세요");
+        pw.focus();
+        return false;
+    } else {
+        document.formPwCertify.submit();
+    }
+}
+
+
+/* 체크박스 값 가져오기 */
+function getCheckboxValue()  {
+  // 선택된 목록 가져오기
+  const query = 'input[name="select_product"]:checked';
+  const selectedEls = 
+      document.querySelectorAll(query);
+  
+  // 선택된 목록에서 value 찾기
+  let result = '';
+  selectedEls.forEach((el) => {
+    result += el.value + ',';
+  });
+  
+  // 출력
+  document.getElementById('result').innerText
+    = result;
+}
+
+/* 장바구니 선택 삭제*/
+function deleteCart(){
+  var checkBoxArr = []; 
+  $("input:checkbox[name='select_product']:checked").each(function() {
+  checkBoxArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+  console.log(checkBoxArr);
+})
+
+  $.ajax({
+      type  : "POST",
+      url    : "/sikhuchung/cartdelete.do",
+      data: {
+      checkBoxArr : checkBoxArr
+      },
+      success: function(result){
+        console.log(result);
+        alert("삭제가 완료되었습니다.");
+        location.href = '/sikhuchung/cart.do';
+      }
+   });
+}
+
+/* 주문목록(관리자버전) 선택 삭제*/
+function deleteOrderlist(){
+  var checkBoxArr = []; 
+  $("input:checkbox[name='select_product']:checked").each(function() {
+  checkBoxArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+  console.log(checkBoxArr);
+})
+
+  $.ajax({
+      type  : "POST",
+      url    : "/sikhuchung/deleteOrderlist.do",
+      data: {
+      checkBoxArr : checkBoxArr
+      },
+      success: function(result){
+        console.log(result);
+        alert("삭제가 완료되었습니다.");
+        location.href = '/sikhuchung/paymentlist.do';
+      }
+   });
+}
+
+
+
 
 
 /* 필립 js 끝 */
