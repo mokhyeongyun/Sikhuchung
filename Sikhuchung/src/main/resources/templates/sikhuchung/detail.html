@@ -9,6 +9,7 @@
             <div class="detail_info_img_area">
                 <img th:src="${thumbnail}" alt="" class="detail_info_img_area">
             </div>
+            <input type="hidden" th:value="${session.user}">
             <div class="detail_info_table_area">
                 <table class="detail_info_table">
                     <tr class="detail_info_tr">

@@ -8,12 +8,14 @@
             <a class="headerATag" th:href="@{/sikhuchung/login.do}">로그인</a>
             <a class="headerATag" th:href="@{/sikhuchung/join.do}">회원가입</a>
             <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
+            <a class="headerATag" th:href="@{/sikhuchung/reviewlist.do}">후기</a>
             </div>
             <div th:if="${session.user} != null and ${session.user} != 'admin'" class="headerTag">
             <a class="headerATag" th:href="@{/sikhuchung/logout.do}">로그아웃</a>
             <a class="headerATag" th:href="@{/sikhuchung/cart.do}">장바구니</a>
             <a class="headerATag" th:href="@{/sikhuchung/mypageOrderInfo.do}">마이페이지</a>
             <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
+            <a class="headerATag" th:href="@{/sikhuchung/reviewlist.do}">후기</a>
             </div>
             <div th:if="${session.user} == 'admin'" class="headerTag">
             <a class="headerATag" th:href="@{/sikhuchung/logout.do}">로그아웃</a>
@@ -21,6 +23,7 @@
             <a class="headerATag" th:href="@{/sikhuchung/paymentlist.do}">주문 리스트</a>
             <a class="headerATag" th:href="@{/sikhuchung/mypageOrderInfo.do}">마이페이지</a>
             <a class="headerATag" th:href="@{/sikhuchung/noticelist.do}">공지사항</a>
+            <a class="headerATag" th:href="@{/sikhuchung/reviewlist.do}">후기</a>
             </div>
             <div class="container">
                 <a class="navbar-brand" th:href="@{/sikhuchung/main.do}">식 후 청</a>

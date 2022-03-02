@@ -40,13 +40,25 @@ public interface SikhuchungService {
     public boolean hitPlus(Long noticeNumber);
 
     /* 후기 */
-    public boolean registerReview(ReviewDTO params);
+    public void registerReview(ReviewDTO reviewdto);
+
+    public void reviewUpdate(ReviewDTO reviewdto);
+
+    public void updateresult(Long result);
 
     public ReviewDTO getReviewDetail(Long reviewNumber);
 
     public boolean deleteReview(Long reviewNumber);
 
     public List<ReviewDTO> getReviewList();
+
+    public String getProductName(int orderDetailNumber);
+
+    public ReviewDTO getreviewdto(int orderDetailNumber);
+
+    public void reviewDelete(int orderDetailNumber);
+
+    public void resultChange(int orderDetailNumber);
 
     /* 회원가입 */
     public void joinUser(UserVO userVO);
