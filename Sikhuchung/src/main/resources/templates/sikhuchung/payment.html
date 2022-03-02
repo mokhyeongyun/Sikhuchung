@@ -13,12 +13,12 @@
     <div th:each="row:${orderlist}">
        
        <input type="hidden" name="cartNumber" th:value="${row.cartNumber}">
-       <input type="hidden" name="payment_thumbnail" th:value="${row.productThumbnail}">
-       <input type="hidden" name="payment_name" th:value="${row.productName}">
-       <input type="hidden" name="payment_count" th:value="${row.cartCount}">
-       <input type="hidden" name="payment_price" th:value="${row.productPrice}">
-       <input type="hidden" name="payment_sale" th:value="${row.cartCount}">
-       <input type="hidden" name="payment_amount" th:value="${row.getPriceAmount()}">
+       <input type="hidden" name="paymentThumbnail" th:value="${row.productThumbnail}">
+       <input type="hidden" name="paymentName" th:value="${row.productName}">
+       <input type="hidden" name="paymentCount" th:value="${row.cartCount}">
+       <input type="hidden" name="paymentPrice" th:value="${row.productPrice}">
+       <input type="hidden" name="paymentSale" th:value="${row.cartCount}">
+       <input type="hidden" name="paymentAmount" th:value="${row.getPriceAmount()}">
     </div>
         <table class="table">
           <thead>
@@ -34,7 +34,6 @@
           
           <tbody>
              <tr th:each="row:${orderlist}"> 
-                    <!-- <td th:text="${row.productThumbnail}" name="payment_product"></td> -->
                     <td th:text="${row.productThumbnail}"></td>
                     <td th:text="${row.productName}"></td>
                     <td><input type="text"value="" size="3" maxlength="3" th:value="${row.cartCount}" readonly>개</td>
@@ -55,15 +54,15 @@
             <tbody>
                 <tr>
                     <td>주문하시는 분</td>
-                    <td><input type="text" name="order_user" id="order_user" size=25></td>
+                    <td><input type="text" name="orderUser" id="order_user" size=25></td>
                 </tr>
                 <tr>
                     <td>이메일</td>
-                    <td><input type="text" name="order_email" id="order_email" size=25></td>
+                    <td><input type="text" name="orderEmail" id="order_email" size=25></td>
                 </tr>
                 <tr>
                     <td>휴대폰 번호</td>
-                    <td><input type="text" name="order_phone" id="order_phone" placeholder="'-'는 제외하고 입력해주세요." size=25></td>
+                    <td><input type="text" name="orderPhone" id="order_phone" placeholder="'-'는 제외하고 입력해주세요." size=25></td>
                 </tr>
             </tbody>
         </table>
@@ -78,8 +77,8 @@
             <tbody>
                 <tr>
                     <td>배송지 입력</td>
-                    <td><input type="radio" name="payment_address" value="self_address" checked>직접입력</td>
-                    <td><input type="radio" name="payment_address" value="user_address">주문자 정보와 동일</td>
+                    <td><input type="radio" name="paymentAddress" value="self_address" checked>직접입력</td>
+                    <td><input type="radio" name="paymentAddress" value="user_address">주문자 정보와 동일</td>
                 </tr>
                 <tr>
                     <td>받으실 분</td>
@@ -111,8 +110,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="radio" name="payment_delivery" value="early_delivery" checked>새벽 배송</td>
-                    <td><input type="radio" name="payment_delivery" value="standard_delivery">일반 배송</td>
+                    <td><input type="radio" name="paymentDelivery" value="early_delivery" checked>새벽 배송</td>
+                    <td><input type="radio" name="paymentDelivery" value="standard_delivery">일반 배송</td>
                 </tr>
             </tbody>
         </table>
@@ -154,8 +153,7 @@
             <tbody>
                 <tr>
                     <td>결제수단</td>
-                    <td><input type="radio" name="payment_method" value="direct_money" checked>무통장 입금</td>
-                    <td><input type="radio" name="payment_method" value="kakaopay">카카오페이</td>
+                    <td><input type="radio" name="paymentMethod" value="direct_money" checked>무통장 입금</td>
                 </tr>
                 <tr>
                     <td>입금자명</td>
@@ -171,10 +169,9 @@
                 </tr>
             </tbody>
         </table>
-        
         <table class="payment_table">
             <tr class="amount_list">
-                <td>총 합계 + 배송비(3,000) : </td>
+                <td>총 합계 + 배송비(3,000) :</td>
             </tr>
         </table>
       </form>

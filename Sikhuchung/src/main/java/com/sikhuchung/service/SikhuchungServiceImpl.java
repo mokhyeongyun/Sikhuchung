@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.OrderDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
+import com.sikhuchung.domain.PaymentDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 import com.sikhuchung.paging.PaginationInfo;
@@ -103,20 +105,45 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         return sikhuchungMapper.paymentlist(paymentlist);
     }
 
-    /* 주문목록 -> 메인 */
+    /* 주문목록 -> 메인(주문 테이블 삽입) */
     @Override
     public void order(OrderDTO orderDto) {
         sikhuchungMapper.order(orderDto);
     }
 
-//    @Override
-//    public OrderDTO orderlist(String orderlist) {
-//        return sikhuchungMapper.orderlist(orderlist);
-//    }
+    /* ordernumber 가져오기 */
+    @Override
+    public int ordernumber22() {
+        return sikhuchungMapper.ordernumber22();
+    }
 
-    /* 장바구니 삭제 */
+    /* 주문목록 -> 메인(주문 상세 테이블 삽입) */
+    @Override
+    public void orderDetailDTO(OrderDetailDTO orderDetailDto) {
+        sikhuchungMapper.orderDetailDTO(orderDetailDto);
+    }
+
+    /* 주문목록 -> 메인(결제 테이블 삽입) */
+    @Override
+    public void paymentDTO(PaymentDTO paymentDto) {
+        sikhuchungMapper.paymentDTO(paymentDto);
+    }
+
+    /* 장바구니 선택 삭제 */
     @Override
     public void deletecart(int checkNum) {
         sikhuchungMapper.deletecart(checkNum);
+    }
+
+    /* 주문목록(관리자) 선택 삭제 */
+    @Override
+    public void deleteOrderlist(int checkNum) {
+        sikhuchungMapper.deleteOrderlist(checkNum);
+    }
+
+    /* 주문목록(관리자) */
+    @Override
+    public List<OrderDTO> plist() {
+        return sikhuchungMapper.plist();
     }
 }

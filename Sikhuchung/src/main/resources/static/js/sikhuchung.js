@@ -506,7 +506,7 @@ function openZipSearch() {
 }
 
 
-/* 체크박스 */
+/* 체크박스(장바구니) */
 function checkSelectAll()  {
   // 전체 체크박스
   const checkboxes 
@@ -581,6 +581,28 @@ function deleteCart(){
         console.log(result);
         alert("삭제가 완료되었습니다.");
         location.href = '/sikhuchung/cart.do';
+      }
+   });
+}
+
+/* 주문목록(관리자버전) 선택 삭제*/
+function deleteOrderlist(){
+  var checkBoxArr = []; 
+  $("input:checkbox[name='select_product']:checked").each(function() {
+  checkBoxArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
+  console.log(checkBoxArr);
+})
+
+  $.ajax({
+      type  : "POST",
+      url    : "/sikhuchung/deleteOrderlist.do",
+      data: {
+      checkBoxArr : checkBoxArr
+      },
+      success: function(result){
+        console.log(result);
+        alert("삭제가 완료되었습니다.");
+        location.href = '/sikhuchung/paymentlist.do';
       }
    });
 }

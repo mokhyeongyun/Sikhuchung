@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.OrderDTO;
+import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.PaymentDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
@@ -214,9 +215,13 @@ public class SikhuchungController {
     }
 
     // 상세주문목록 화면 -- 필립
-    @GetMapping(value = "/sikhuchung/orderlist.do")
-    public String orderlist() {
-        return "sikhuchung/orderlist";
+    @GetMapping(value = "/sikhuchung/paymentlist.do")
+    public String plist(Model model) throws Exception {
+
+        List<OrderDTO> plist = sikhuchungService.plist();
+//        System.out.println(plist);
+        model.addAttribute("paylist", plist);
+        return "sikhuchung/paymentlist";
     }
 
     // 장바구니 화면 -- 필립
@@ -228,7 +233,7 @@ public class SikhuchungController {
         return "sikhuchung/cart";
     }
 
-    // 장바구니 -> 결제창
+    // 장바구니 -> 결제창 -- 필립
     @PostMapping(value = "sikhuchung/payment.do")
     public String paymentlist(HttpServletRequest request, Model model) throws Exception {
 
@@ -243,49 +248,25 @@ public class SikhuchungController {
         return "sikhuchung/payment";
     }
 
-    // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄)
+    // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄) -- 필립
     @PostMapping(value = "/sikhuchung/cart.do")
-    public String orderlist(HttpServletRequest request, OrderDTO orderDto, PaymentDTO paymentDto) throws Exception {
-//        System.out.println("테스트"); // 여기까지는 넘어옴
+    public String orderlist(HttpServletRequest request, OrderDTO orderDto, OrderDetailDTO orderDetailDto,
+            PaymentDTO paymentDto) throws Exception {
 
-        sikhuchungService.order(orderDto); // 주문테이블 생성
+        sikhuchungService.order(orderDto); // 주문테이블 삽입 성공
 
-//        int o_num = sikhuchungService.ordernumber(orderDto); // o_num -> 주문번호
-//
-//        sikhuchungService.pay(o_num, paymentDto); // 결제테이블
-//
-//        String[] orders = request.getParameterValues("cartNumber");
-//        for (int i = 0; i < orders.length; i++) {
-//            String product_num = sikhuchungService.product_num(orders[i]); // product_num -> 상품번호
-//            String pay_count = sikhuchungService.pay_count(orders[i]); // pay_count -> 구매갯수
-//            sikhuchungService.orderlist(product_num, pay_count, o_num); // 주문상
-//        }
+//        int ordernumber = sikhuchungService.ordernumber22(); // ordernumber 가져오기
+
+//        System.out.println(ordernumber);// ordernumber 넘버 가져오기
+
+        sikhuchungService.orderDetailDTO(orderDetailDto); // 주문 상세 테이블 삽입
+
+        sikhuchungService.paymentDTO(paymentDto); // 결제 테이블
+
         return "redirect:/sikhuchung/cart.do";
     }
-//    // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄)
-//    @PostMapping(value = "/sikhuchung/cart.do")
-//    public String orderlist(HttpServletRequest request, OrderDTO orderDto, 결제테이블DTO) throws Exception {
-////        System.out.println("테스트"); // 여기까지는 넘어옴
-//        
-//        sikhuchungService.order(orderDto); // 주문테이블 생성
-//        
-//        int o_num = sikhuchungService.ordernumber(orderDto); // o_num -> 주문번호
-//        
-//        sikhuchungService.pay(o_num, 결제테이블DTO); // 결제테이블
-//        
-//        String[] orders = request.getParameterValues("cartNumber");
-////        for (int i = 0; i < orders.length; i++) {
-////            sikhuchungService.orderlist(orders[i], o_num); // 주문상세테이블
-////        }
-//        for (int i = 0; i < orders.length; i++) {
-//            String 상품번호 = sikhuchungService.상품번호(orders[i]);
-//            String 수량 = sikhuchungService.수량(orders[i]);
-//            sikhuchungService.orderlist(상품번호, 수량, o_num); // 주문상
-//        }
-//        return "redirect:/sikhuchung/cart.do";
-//    }
 
-    // 장바구니(삭제)
+    // 장바구니 선택 삭제 -- 필립
     @ResponseBody // 주소로 반환되지 않고 적은값 그대로 반환
     @PostMapping(value = "/sikhuchung/cartdelete.do")
     public int cartDelete(HttpServletRequest request, @RequestParam(value = "checkBoxArr[]") List<String> checkBoxArr)
@@ -297,6 +278,22 @@ public class SikhuchungController {
             checkNum = Integer.parseInt(str);
             // System.out.println(checkNum);
             sikhuchungService.deletecart(checkNum);
+        }
+        return result;
+    }
+
+    // 주문목록 선택 삭제(관리자버전) -- 필립
+    @ResponseBody // 주소로 반환되지 않고 적은값 그대로 반환
+    @PostMapping(value = "/sikhuchung/deleteOrderlist.do")
+    public int deleteOrdelist(HttpServletRequest request,
+            @RequestParam(value = "checkBoxArr[]") List<String> checkBoxArr) throws Exception {
+        int result = 0;
+        int checkNum;
+
+        for (String str : checkBoxArr) {
+            checkNum = Integer.parseInt(str);
+            System.out.println(checkNum);
+            sikhuchungService.deleteOrderlist(checkNum);
         }
         return result;
     }
