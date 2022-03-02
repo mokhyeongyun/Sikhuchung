@@ -322,6 +322,7 @@
             review_number = #{reviewNumber}
     </update>
 
+    <!-- 후기 리스트 -->
     <select id="selectReviewList" parameterType="ReviewDTO" resultType="ReviewDTO">
          SELECT
           review_number
