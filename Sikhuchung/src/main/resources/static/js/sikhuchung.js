@@ -407,8 +407,7 @@ function userQuitNullCheck() {
         }
     }
 }
-/* 필립 js 시작 */
-<<<<<<< HEAD
+/* 결제 체크 */
 function paymentFormCheck() {
     let order_user, order_phone; /*이 부분이 없어도 정상 실행됌*/
 
@@ -441,7 +440,8 @@ function paymentFormCheck() {
         return false;
     } else if (get_phone.value == "") {
         alert("배송정보의 휴대폰 번호를 기입해주세요.")
-=======
+        }
+        }
 // 결제 체크 유효성
 function paymentFormCheck() {
     if (!ordernameCheck()) { // 주문자 이름 검사
@@ -554,7 +554,6 @@ function addrCheck(){
         return false;
     } else {
         return true;
->>>>>>> philip
     }
 
 }
@@ -678,7 +677,6 @@ function deleteOrderlist(){
 
 
 
-/* 필립 js 끝 */
 
 /***************************** 공지사항 ***************************/
 /* 공지사항 리스트 */
@@ -753,22 +751,3 @@ function registerReview(form) {
         return false;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

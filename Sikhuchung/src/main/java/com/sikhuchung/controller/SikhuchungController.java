@@ -7,8 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -20,19 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-<<<<<<< HEAD
 import com.sikhuchung.constant.Method;
-import com.sikhuchung.domain.NoticeDTO;
-import com.sikhuchung.domain.OrderDetailDTO;
-import com.sikhuchung.domain.ProductVO;
-import com.sikhuchung.domain.ReviewDTO;
-=======
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.OrderDTO;
 import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.PaymentDTO;
->>>>>>> philip
+import com.sikhuchung.domain.ProductVO;
+import com.sikhuchung.domain.ReviewDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.service.SikhuchungService;
 import com.sikhuchung.util.UiUtils;
@@ -501,36 +494,39 @@ public class SikhuchungController extends UiUtils {
         model.addAttribute("present", presentList);
         return "/sikhuchung/main";
     }
-    
+
     // 제철 과일 리스트 -- 재훈
     @GetMapping(value = "/sikhuchung/season.do")
     public String season(ProductVO productVO, Model model) {
-    	List<ProductVO> seasonList = sikhuchungService.getSeasonList();
-    	model.addAttribute("season", seasonList);
+        List<ProductVO> seasonList = sikhuchungService.getSeasonList();
+        model.addAttribute("season", seasonList);
         return "/sikhuchung/season";
     }
- // 별난 과일 리스트 -- 재훈
+
+    // 별난 과일 리스트 -- 재훈
     @GetMapping(value = "/sikhuchung/weird.do")
     public String weird(ProductVO productVO, Model model) {
-    	List<ProductVO> weirdList = sikhuchungService.getWeirdList();
-    	model.addAttribute("weird", weirdList);
+        List<ProductVO> weirdList = sikhuchungService.getWeirdList();
+        model.addAttribute("weird", weirdList);
         return "/sikhuchung/weird";
     }
- // 간편 과일 리스트 -- 재훈
+
+    // 간편 과일 리스트 -- 재훈
     @GetMapping(value = "/sikhuchung/simple.do")
     public String simple(ProductVO productVO, Model model) {
-    	List<ProductVO> simpleList = sikhuchungService.getSimpleList();
-    	model.addAttribute("simple", simpleList);
+        List<ProductVO> simpleList = sikhuchungService.getSimpleList();
+        model.addAttribute("simple", simpleList);
         return "/sikhuchung/simple";
     }
- // 선물 과일 리스트 -- 재훈
+
+    // 선물 과일 리스트 -- 재훈
     @GetMapping(value = "/sikhuchung/present.do")
     public String present(ProductVO productVO, Model model) {
-    	List<ProductVO> presentList = sikhuchungService.getPresentList();
-    	model.addAttribute("present", presentList);
+        List<ProductVO> presentList = sikhuchungService.getPresentList();
+        model.addAttribute("present", presentList);
         return "/sikhuchung/present";
     }
-    
+
     // 상세 정보 -- 재훈
     @GetMapping(value = "/sikhuchung/detail.do")
     public String detail(int productNumber, Model model) {

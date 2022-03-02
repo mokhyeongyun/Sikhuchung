@@ -9,15 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sikhuchung.domain.CartVO;
 import com.sikhuchung.domain.NoticeDTO;
-<<<<<<< HEAD
-import com.sikhuchung.domain.OrderDetailDTO;
-import com.sikhuchung.domain.ProductVO;
-import com.sikhuchung.domain.ReviewDTO;
-=======
 import com.sikhuchung.domain.OrderDTO;
 import com.sikhuchung.domain.OrderDetailDTO;
 import com.sikhuchung.domain.PaymentDTO;
->>>>>>> philip
+import com.sikhuchung.domain.ProductVO;
+import com.sikhuchung.domain.ReviewDTO;
 import com.sikhuchung.domain.UserVO;
 import com.sikhuchung.mapper.SikhuchungMapper;
 import com.sikhuchung.paging.PaginationInfo;
@@ -84,7 +80,6 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     }
 
     /* 후기 */
-<<<<<<< HEAD
     @Override
     public boolean registerReview(ReviewDTO params) {
         int queryResult = 0;
@@ -229,7 +224,7 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     public ProductVO getProductData(int productNumber) {
         ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
         return productData;
-=======
+    }
 
     /* 장바구니 */
     @Override
@@ -283,6 +278,5 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     @Override
     public List<OrderDTO> plist() {
         return sikhuchungMapper.plist();
->>>>>>> philip
     }
 }
