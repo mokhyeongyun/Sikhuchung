@@ -20,7 +20,7 @@
 			<div class="mypage_cont">
 				<div class="my_page_password">
 					<form name="formPwCertify" id="formPwCertify" action="/sikhuchung/mypageMemberInfoPwCheck.do" method="post" novalidate="novalidate">
-					 <input type="text" name="userId" th:value="${session.user}">
+					 <input type="hidden" name="userId" th:value="${session.user}">
 						<div class="mypage_zone_tit">
 							<h2>회원정보 변경</h2>
 						</div>
