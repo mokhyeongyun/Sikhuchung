@@ -84,6 +84,7 @@ public interface SikhuchungMapper {
 
     /* 상세화면 -- 재훈 */
     public ProductVO selectProductData(int productNumber);
+    public List<ReviewDTO> selectDetailReviewList(int productNumber);
 
     /* 장바구니 넣기 -- 재훈 */
     public void item(CartVO cartvo);

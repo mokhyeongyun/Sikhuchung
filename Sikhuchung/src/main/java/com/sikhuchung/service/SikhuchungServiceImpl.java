@@ -242,6 +242,17 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
         return productData;
     }
+    @Override
+    public List<ReviewDTO> getDetailReviewList(int productNumber) {
+        List<ReviewDTO> detailReviewList = Collections.emptyList();
+
+        int reviewTotalCount = sikhuchungMapper.selectReviewTotalCount();
+
+        if (reviewTotalCount > 0) {
+            detailReviewList = sikhuchungMapper.selectDetailReviewList(productNumber);
+        }
+        return detailReviewList;
+    }
     
     /* 장바구니 넣기 -- 재훈 */
     @Override

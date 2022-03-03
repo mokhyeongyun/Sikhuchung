@@ -232,7 +232,7 @@ public class SikhuchungController extends UiUtils {
     @GetMapping("/sikhuchung/logout.do")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "sikhuchung/main"; // 주소 요청으로 변경
+        return "redirect:/sikhuchung/main.do"; // 주소 요청으로 변경
     }
 
     // 회원가입 화면 이동 -- 현균
@@ -576,6 +576,7 @@ public class SikhuchungController extends UiUtils {
     @GetMapping(value = "/sikhuchung/detail.do")
     public String detail(int productNumber, Model model) {
         ProductVO productvo = sikhuchungService.getProductData(productNumber);
+        List<ReviewDTO> detailReviewList = sikhuchungService.getDetailReviewList(productNumber);
         if (productvo.getProductDelete().equals("N")) {
             // 썸네일, 이름, 가격, 분류, 원산지, 배송방법, 재고, 상세설명img
             model.addAttribute("thumbnail", productvo.getProductThumbnail());
@@ -587,6 +588,7 @@ public class SikhuchungController extends UiUtils {
             model.addAttribute("stock", productvo.getProductStock());
             model.addAttribute("info", productvo.getProductInfo());
             model.addAttribute("productNumber", productvo.getProductNumber());
+            model.addAttribute("reviewList", detailReviewList);
             return "sikhuchung/detail";
         } else {
             return "redirect:/sikhuchung/main.do";

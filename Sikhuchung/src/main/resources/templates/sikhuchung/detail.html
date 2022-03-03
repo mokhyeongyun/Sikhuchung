@@ -64,8 +64,8 @@
                             </select></td>
                     </tr>
                     <tr class="detail_info_tr_btn">
-                    	<td class="detail_info_button"><a href="#"><button  type="button" onclick="checkNumber()"><img src="../img/payment.png" class="detail_info_bottom_btn_img">바로 결제</button></a></td>
-                    	<td class="detail_info_button"><a href="#"><button  type="button" onclick="checkNumber()"><img src="../img/shoppingCart.png" class="detail_info_bottom_btn_img" >장바구니</button></a></td>
+                    	<td class="detail_info_button" th:if="${session.user} != null"><a href="#"><button  type="button" onclick="checkNumber()"><img src="../img/payment.png" class="detail_info_bottom_btn_img">바로 결제</button></a></td>
+                    	<td class="detail_info_button" th:if="${session.user} != null"><a href="#"><button  type="button" onclick="checkNumber()"><img src="../img/shoppingCart.png" class="detail_info_bottom_btn_img" >장바구니</button></a></td>
                     </tr>
                 </table>
             </div>
@@ -79,6 +79,12 @@
         </div>
         <div class="detail_info_bottom_area">
             <p class="detail_info_btm_title">상품 후기</p>
+            <div th:each="row:${reviewList}" class="about_list">
+            	<p th:text = "${row.reviewRate}" class="about_p_rate">별점</p>
+            	<p th:text = "${row.reviewTitle}" class="about_p_title">제목</p>
+            	<p th:text = "${row.userId}" class="about_p_id">아이디</p>
+            	<p th:text = "${row.reviewContent}" class = "about_p_content">내용</p>
+            </div>
         </div>
     </main>
 </th:block>

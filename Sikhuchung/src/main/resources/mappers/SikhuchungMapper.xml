@@ -172,6 +172,19 @@
     	FROM
     		s_product where product_number = #{productNumber}
     </select>
+    <select id="selectDetailReviewList" parameterType="int" resultType="ReviewDTO">
+         SELECT
+          review_title
+        , review_content
+        , review_rate
+        , user_id
+        , product_name
+        FROM
+            s_review sr, s_order_detail sod,s_order so, s_product sp
+        WHERE
+            sr.order_detail_number= sod.order_detail_number and sod.order_number = so.order_number
+            and sp.product_number=sod.product_number and sod.product_number=#{productNumber}
+    </select>
     
     <!-- 장바구니 넣기 -->
     <insert id="item" parameterType="CartVO">

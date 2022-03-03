@@ -107,7 +107,7 @@ a {
   padding: 0%;
   margin: auto;
   font-family: "GmarketSansMedium";
-  font-size: 16px;
+  font-size: 14px;
 }
 .sub_total_list {
   height: 23em;
@@ -294,10 +294,71 @@ a {
   padding-bottom: 2em;
   flex-direction: column;
   justify-items: center;
+  overflow-y: auto;
+   height: 20em;
 }
+.detail_info_bottom_area::-webkit-scrollbar {
+  width: 0.4em;
+}
+.detail_info_bottom_area::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  background-image: linear-gradient(
+    136deg,
+    rgb(229 121 180 / 50%) 0%,
+    rgb(133 157 225 / 50%) 99%
+  );
+}
+.about_list {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+	padding-bottom: 1em;
+}
+.about_p_rate {
+	height: 2em;
+	width: 15%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
+.about_p_title {
+	height: 2em;
+	width: 64%;
+	padding: 0px 5px;
+	margin: auto;
+	font-family: "Cafe24SsurroundAir";
+	font-size: 16px;
+	display: inline-flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.about_p_id {
+	height: 2em;
+	width: 20%;
+	font-family: "Cafe24SsurroundAir";
+	font-size: 11px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
+.about_p_content {
+	height: 2em;
+	width: 100%;
+	font-family: "Cafe24SsurroundAir";
+	font-size: 16px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+}
+
 .detail_info_btm_title {
   margin: 0;
   display: flex;
+  padding-bottom: 0.5em;
   align-items: center;
   justify-content: center;
   font-family: "GMARKET-SANS300";
