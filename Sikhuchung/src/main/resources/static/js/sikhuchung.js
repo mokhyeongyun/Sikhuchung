@@ -630,6 +630,10 @@ function getCheckboxValue()  {
     = result;
 }
 
+
+
+
+
 /* 장바구니 선택 삭제*/
 function deleteCart(){
   var checkBoxArr = []; 
@@ -651,7 +655,6 @@ function deleteCart(){
       }
    });
 }
-
 /* 주문목록(관리자버전) 선택 삭제*/
 function deleteOrderlist(){
   var checkBoxArr = []; 
@@ -659,7 +662,6 @@ function deleteOrderlist(){
   checkBoxArr.push($(this).val());     // 체크된 것만 값을 뽑아서 배열에 push
   console.log(checkBoxArr);
 })
-
   $.ajax({
       type  : "POST",
       url    : "/sikhuchung/deleteOrderlist.do",
@@ -673,7 +675,22 @@ function deleteOrderlist(){
       }
    });
 }
-
+/* 주문목록(관리자버전) 입금 상태 변경*/
+function change_deposit(){
+  let test = document.getElementById("ch_dp");
+  var param = {orderNumber : test.value};  
+    /*console.log(test.value);*/
+  $.ajax({
+      type  : "POST",
+      url    : "/sikhuchung/changeDeposit.do",
+      data: param,
+      success: function(result){
+        console.log(result);
+        alert("배송 완료되었습니다.");
+        location.href = '/sikhuchung/paymentlist.do';
+      }
+   });
+}
 
 
 

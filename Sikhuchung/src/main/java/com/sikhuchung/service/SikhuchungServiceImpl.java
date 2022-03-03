@@ -242,11 +242,11 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         ProductVO productData = sikhuchungMapper.selectProductData(productNumber);
         return productData;
     }
-    
+
     /* 장바구니 넣기 -- 재훈 */
     @Override
     public void getItem(CartVO cartvo) {
-    	sikhuchungMapper.item(cartvo);
+        sikhuchungMapper.item(cartvo);
     }
 
     /* 장바구니 */
@@ -293,8 +293,19 @@ public class SikhuchungServiceImpl implements SikhuchungService {
 
     /* 주문목록(관리자) 선택 삭제 */
     @Override
-    public void deleteOrderlist(int checkNum) {
-        sikhuchungMapper.deleteOrderlist(checkNum);
+    public void deleteOrderlist1(int checkNum) {
+        sikhuchungMapper.deleteOrderlist1(checkNum);
+    }
+
+    @Override
+    public void deleteOrderlist2(int checkNum) {
+        sikhuchungMapper.deleteOrderlist2(checkNum);
+    }
+
+    /* 주문목록 입금 상태 변경 */
+    @Override
+    public void changeDeposit(int checkNum) {
+        sikhuchungMapper.changeDeposit(checkNum);
     }
 
     /* 주문목록(관리자) */

@@ -385,10 +385,17 @@
     </delete>
     
     <!-- 주문목록(관리자) 선택 삭제 -->
-    <delete id="deleteOrderlist" parameterType="int">
-        DELETE FROM s_order WHERE  order_number=#{checkNum}
+    <delete id="deleteOrderlist1" parameterType="int">
+        DELETE FROM s_order_detail WHERE order_number=#{checkNum}
+    </delete>
+    <delete id="deleteOrderlist2" parameterType="int">
+        DELETE FROM s_order_detail WHERE order_number=#{checkNum}
     </delete>
     
+    <!-- 주문목록 입금 상태 변경 -->
+    <update id="changeDeposit" parameterType="int">
+        UPDATE s_order_detail SET ORDER_DETAIL_RESULT='배송완료' where order_number=#{checkNum}
+    </update>
     
     <!-- 결제창 -> 메인 주문 테이블 삽입 -->
     <insert id="order" parameterType="OrderDTO">

@@ -36,7 +36,7 @@ public interface SikhuchungService {
 
     /* 상세화면 -- 재훈 */
     public ProductVO getProductData(int productNumber);
-    
+
     /* 장바구니 넣기 -- 재훈 */
     public void getItem(CartVO cartvo);
 
@@ -115,7 +115,12 @@ public interface SikhuchungService {
     public void deletecart(int checkNum) throws Exception;
 
     /* 주문목록(관리자) 선택 삭제 - 필립 */
-    public void deleteOrderlist(int checkNum) throws Exception;
+    public void deleteOrderlist1(int checkNum) throws Exception;
+
+    public void deleteOrderlist2(int checkNum) throws Exception;
+
+    /* 주문목록 입금 상태 변경 - 필립 */
+    public void changeDeposit(int checkNum) throws Exception;
 
     /* 주문목록(관리자) - 필립 */
     public List<OrderDTO> plist() throws Exception;

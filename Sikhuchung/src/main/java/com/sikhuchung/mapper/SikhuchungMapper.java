@@ -125,7 +125,12 @@ public interface SikhuchungMapper {
     public void deletecart(int checkNum);
 
     /* 주문목록(관리자) 선택 삭제 */
-    public void deleteOrderlist(int checkNum);
+    public void deleteOrderlist1(int checkNum);
+
+    public void deleteOrderlist2(int checkNum);
+
+    /* 주문목록 입금 상태 변경 */
+    public void changeDeposit(int checkNum);
 
     /* 주문목록(관리자) 목록 */
     public List<OrderDTO> plist();
