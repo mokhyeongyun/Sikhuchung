@@ -19,6 +19,10 @@ a {
   font-weight: normal;
   font-style: normal;
 }
+.review_table{
+	margin-top:20px;
+	margin-bottom:200px;
+}
 
 /* Main Page */
 /* 버튼 목록 */

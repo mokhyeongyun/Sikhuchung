@@ -31,7 +31,11 @@ public interface SikhuchungMapper {
     public boolean hitPlus(Long noticeNumber);
 
     /* 후기 */
-    public int insertReview(ReviewDTO params);
+    public int insertReview(ReviewDTO reviewdto);
+
+    public void updateresult(Long result);
+
+    public void reviewUpdate(ReviewDTO reviewdto);
 
     public ReviewDTO selectReviewDetail(Long reviewNumber);
 
@@ -44,6 +48,12 @@ public interface SikhuchungMapper {
     public int selectReviewTotalCount();
 
     public int selectNoticeTotalCount();
+
+    public ReviewDTO getreviewdto(int orderDetailNumber);
+
+    public void reviewDelete(int orderDetailNumber);
+
+    public void resultChange(int orderDetailNumber);
 
     /* 회원가입 */
     public void saveUser(UserVO userVO);
@@ -74,7 +84,7 @@ public interface SikhuchungMapper {
 
     /* 상세화면 -- 재훈 */
     public ProductVO selectProductData(int productNumber);
-    
+
     /* 장바구니 넣기 -- 재훈 */
     public void item(CartVO cartvo);
 
@@ -120,5 +130,8 @@ public interface SikhuchungMapper {
     /* 주문목록(관리자) 목록 */
     public List<OrderDTO> plist();
 
+    /* 주문목록 삭제 */
     public void cartOrderDelete(int cartNumber);
+
+    public String getProductName(int orderDetailNumber);
 }

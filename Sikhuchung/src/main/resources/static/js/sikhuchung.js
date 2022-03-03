@@ -755,11 +755,7 @@ function registerReview(form) {
 
 /**************************** 상세 화면 ********************************/
 function checkNumber() {
-	let name = document.getElementById("name");
-	let number = document.getElementById("productNumber");
 	let quantity = document.getElementById("quantity");
-	let price = document.getElementById("price");
-	let thumbnail = document.getElementById("thumbnail");
 	
 
 	if(quantity.value == "0") {
