@@ -32,7 +32,7 @@
               <th scope="col">상품/옵션 정보</th>
               <th scope="col">수량</th>
               <th scope="col">상품금액</th>
-              <th scope="col">할인</th>
+              <!-- <th scope="col">할인</th> -->
               <th scope="col">합계금액</th>
             </tr>
           </thead>
@@ -43,7 +43,7 @@
                     <td th:text="${row.productName}"></td>
                     <td><input type="text"value="" size="3" maxlength="3" th:value="${row.cartCount}" readonly>개</td>
                     <td th:text="${row.productPrice}"></td>
-                    <td th:text="${row.cartCount}"></td>
+                    <!-- <td th:text="${row.cartCount}"></td> -->
                     <td th:text="${row.getPriceAmount()}"></td>
                 </tr>
           </tbody>

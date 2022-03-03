@@ -198,6 +198,41 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         sikhuchungMapper.memberQuit(userVO);
     }
 
+    @Override
+    public int[] getOrderNumber(String userId) throws Exception {
+        return sikhuchungMapper.getOrderNumber(userId);
+    }
+
+    @Override
+    public void deleteCart2(String userId) {
+        sikhuchungMapper.deleteCart2(userId);
+    }
+
+    @Override
+    public int[] getOrderDetailNumber(int orderNumber) {
+        return sikhuchungMapper.getOrderDetailNumber(orderNumber);
+    }
+
+    @Override
+    public void deleteReview2(int orderDetailNumber) {
+        sikhuchungMapper.deleteReview2(orderDetailNumber);
+    }
+
+    @Override
+    public void deleteOrderDetail(int orderDetailNumber) {
+        sikhuchungMapper.deleteOrderDetail(orderDetailNumber);
+    }
+
+    @Override
+    public void deletePayment(int orderNumber) {
+        sikhuchungMapper.deletePayment(orderNumber);
+    }
+
+    @Override
+    public void deleteOrder(int orderNumber) {
+        sikhuchungMapper.deleteOrder(orderNumber);
+    }
+
     // 마이페이지 주문목록
     @Override
     public List<OrderDetailDTO> getOrderList(String user) throws Exception {
@@ -257,7 +292,7 @@ public class SikhuchungServiceImpl implements SikhuchungService {
     /* 장바구니 넣기 -- 재훈 */
     @Override
     public void getItem(CartVO cartvo) {
-    	sikhuchungMapper.item(cartvo);
+        sikhuchungMapper.item(cartvo);
     }
 
     /* 장바구니 */
@@ -304,8 +339,19 @@ public class SikhuchungServiceImpl implements SikhuchungService {
 
     /* 주문목록(관리자) 선택 삭제 */
     @Override
-    public void deleteOrderlist(int checkNum) {
-        sikhuchungMapper.deleteOrderlist(checkNum);
+    public void deleteOrderlist1(int checkNum) {
+        sikhuchungMapper.deleteOrderlist1(checkNum);
+    }
+
+    @Override
+    public void deleteOrderlist2(int checkNum) {
+        sikhuchungMapper.deleteOrderlist2(checkNum);
+    }
+
+    /* 주문목록 입금 상태 변경 */
+    @Override
+    public void changeDeposit(int checkNum) {
+        sikhuchungMapper.changeDeposit(checkNum);
     }
 
     /* 주문목록(관리자) */

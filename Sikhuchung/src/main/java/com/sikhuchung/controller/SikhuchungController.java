@@ -246,7 +246,7 @@ public class SikhuchungController extends UiUtils {
     @PostMapping(value = "/sikhuchung/join.do")
     public String userJoin(UserVO userVO) {
         sikhuchungService.joinUser(userVO);
-        return "sikhuchung/login";
+        return "redirect:/sikhuchung/login.do";
     }
 
     // 아이디 중복 검사 --현균
@@ -273,10 +273,10 @@ public class SikhuchungController extends UiUtils {
     public String findIdPOST(UserVO userVO, Model model) throws Exception {
         if (sikhuchungService.findIdCheck(userVO) == null) {
             model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
-            return "/sikhuchung/find_id";
+            return "redirect:/sikhuchung/find_id.do";
         } else {
             model.addAttribute("user", sikhuchungService.findIdCheck(userVO));
-            return "sikhuchung/find_id";
+            return "redirect:/sikhuchung/find_id.do";
         }
     }
 
@@ -291,10 +291,10 @@ public class SikhuchungController extends UiUtils {
     public String findPwPOST(UserVO userVO, Model model) throws Exception {
         if (sikhuchungService.findPwCheck(userVO) == null) {
             model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
-            return "/sikhuchung/find_pw";
+            return "redirect:/sikhuchung/find_pw.do";
         } else {
             model.addAttribute("user", sikhuchungService.findPwCheck(userVO));
-            return "sikhuchung/find_pw";
+            return "redirect:/sikhuchung/find_pw.do";
         }
     }
 
@@ -305,7 +305,7 @@ public class SikhuchungController extends UiUtils {
         String user = (String) session.getAttribute("user");
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login.do";
         } else {
             List<OrderDetailDTO> orderList = sikhuchungService.getOrderList(user);
             model.addAttribute("orderList", orderList);
@@ -320,7 +320,7 @@ public class SikhuchungController extends UiUtils {
         HttpSession session = req.getSession();
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login.do";
         } else {
             // System.out.println("세션있음");
             return "sikhuchung/mypageMemberInfoPwCheck";
@@ -334,7 +334,7 @@ public class SikhuchungController extends UiUtils {
         UserVO userInfo = sikhuchungService.memberInfo(userVO);
         if (result == 0) {
             model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
-            return "/sikhuchung/mypageMemberInfoPwCheck";
+            return "sikhuchung/mypageMemberInfoPwCheck";
         } else {
             model.addAttribute("check", "true");
             model.addAttribute("userId", userInfo.getUserId());
@@ -342,7 +342,7 @@ public class SikhuchungController extends UiUtils {
             model.addAttribute("userName", userInfo.getUserName());
             model.addAttribute("userEmail", userInfo.getUserEmail());
             model.addAttribute("userTel", userInfo.getUserTel());
-            return "/sikhuchung/mypageMemberInfo";
+            return "sikhuchung/mypageMemberInfo";
         }
     }
 
@@ -352,7 +352,7 @@ public class SikhuchungController extends UiUtils {
         HttpSession session = req.getSession();
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login/do";
         } else {
             // System.out.println("세션있음");
             if (model.getAttribute("check") == null) { // 비밀번호 확인 미완료
@@ -369,11 +369,11 @@ public class SikhuchungController extends UiUtils {
         HttpSession session = req.getSession();
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login.do";
         } else {
             // System.out.println("세션있음");
             sikhuchungService.memberInfoUpdate(uservo);
-            return "sikhuchung/mypageOrderInfo";
+            return "redirect:/sikhuchung/mypageOrderInfo.do";
         }
     }
 
@@ -383,7 +383,7 @@ public class SikhuchungController extends UiUtils {
         HttpSession session = req.getSession();
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login.do";
         } else {
             // System.out.println("세션있음");
             return "sikhuchung/mypageMemberQuit";
@@ -395,9 +395,22 @@ public class SikhuchungController extends UiUtils {
     @ResponseBody
     public String MemberQuit(UserVO userVO, HttpServletRequest req, HttpSession session, Model model) throws Exception {
         int result = sikhuchungService.memberInfoPwCheck(userVO);
+        int[] orderNumber = sikhuchungService.getOrderNumber(userVO.getUserId());
+
         if (result == 0) {
             return "fail";
         } else {
+            sikhuchungService.deleteCart2(userVO.getUserId()); // 카트삭제
+            for (int i = 0; i < orderNumber.length; i++) {
+                int[] orderDetailNumber = sikhuchungService.getOrderDetailNumber(orderNumber[i]); // 디테일 넘버 가져오기
+                for (int a = 0; a < orderDetailNumber.length; a++) {
+                    System.out.println(orderDetailNumber[a]);
+                    sikhuchungService.deleteReview2(orderDetailNumber[a]); // 리뷰삭제
+                    sikhuchungService.deleteOrderDetail(orderDetailNumber[a]); // 상세주문삭제
+                }
+                sikhuchungService.deletePayment(orderNumber[i]); // 결제테이블 삭제
+                sikhuchungService.deleteOrder(orderNumber[i]); // 주문삭제
+            }
             sikhuchungService.memberQuit(userVO);
             session.invalidate();
             return "true";
@@ -406,90 +419,135 @@ public class SikhuchungController extends UiUtils {
 
     // 결제창 화면 -- 필립
     @GetMapping(value = "/sikhuchung/payment.do")
-    public String payment() {
-        return "sikhuchung/payment";
+//    public String payment(HttpServletRequest req) throws Exception{
+    public String payment(HttpServletRequest req) {
+        HttpSession session = req.getSession();
+        String user = (String) session.getAttribute("user");
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            return "sikhuchung/payment";
+        }
     }
 
     // 상세주문목록 화면 -- 필립
     @GetMapping(value = "/sikhuchung/paymentlist.do")
-    public String plist(Model model) throws Exception {
+    public String plist(HttpServletRequest req, Model model) throws Exception {
 
-        List<OrderDTO> plist = sikhuchungService.plist();
+        HttpSession session = req.getSession();
+        String user = (String) session.getAttribute("user");
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            List<OrderDTO> plist = sikhuchungService.plist();
 //        System.out.println(plist);
-        model.addAttribute("paylist", plist);
-        return "sikhuchung/paymentlist";
+            model.addAttribute("paylist", plist);
+            return "sikhuchung/paymentlist";
+        }
     }
 
     // 장바구니 화면 -- 필립
     @GetMapping(value = "/sikhuchung/cart.do")
-    public String cart(Model model) throws Exception {
-        String userid = "test";
-        List<CartVO> cartlist = sikhuchungService.cartlist(userid);
-        model.addAttribute("cartlist", cartlist);
-        return "sikhuchung/cart";
+    public String cart(HttpServletRequest req, Model model) throws Exception {
+
+        HttpSession session = req.getSession();
+        String user = (String) session.getAttribute("user");
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            String userid = user;
+            List<CartVO> cartlist = sikhuchungService.cartlist(userid);
+            model.addAttribute("cartlist", cartlist);
+            return "sikhuchung/cart";
+        }
     }
 
     // 장바구니 -> 결제창 -- 필립
     @PostMapping(value = "sikhuchung/payment.do")
-    public String paymentlist(HttpServletRequest request, Model model) throws Exception {
+    public String paymentlist(HttpServletRequest request, HttpServletRequest req, Model model) throws Exception {
 
-        String[] paymentlist = request.getParameterValues("select_product");
-        // System.out.println(paymentlist[0]);
-        List<CartVO> orderlist = new ArrayList<CartVO>();
-        int amount = 0;
-        int count = 0;
-        int dc = 0;
-        int allamount = 0;
-        for (int i = 0; i < paymentlist.length; i++) {
-            CartVO order = sikhuchungService.paymentlist(paymentlist[i]);
-            amount += order.getPriceAmount();
-            count += order.getCartCount();
-            orderlist.add(order);
+        HttpSession session = req.getSession();
+        String user = (String) session.getAttribute("user");
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            String[] paymentlist = request.getParameterValues("select_product");
+            List<CartVO> orderlist = new ArrayList<CartVO>();
+            int amount = 0;
+            int count = 0;
+            int dc = 0;
+            int allamount = 0;
+            for (int i = 0; i < paymentlist.length; i++) {
+                CartVO order = sikhuchungService.paymentlist(paymentlist[i]);
+                amount += order.getPriceAmount();
+                count += order.getCartCount();
+                orderlist.add(order);
+            }
+
+            if (count >= 5 && count < 10) {
+                dc = (int) (amount * 0.1);
+                allamount = amount - dc;
+            } else if (count >= 10) {
+                dc = (int) (amount * 0.2);
+                allamount = amount - dc;
+            } else {
+                dc = 0;
+                allamount = amount;
+            }
+            model.addAttribute("dc", dc);
+            model.addAttribute("priceamount", amount);
+            model.addAttribute("allamount", allamount);
+            model.addAttribute("orderlist", orderlist);
+            return "/sikhuchung/payment";
+
         }
-        if (count >= 5 && count < 10) {
-            dc = (int) (amount * 0.1);
-            allamount = amount - dc;
-        } else if (count >= 10) {
-            dc = (int) (amount * 0.2);
-            allamount = amount - dc;
-        }
-        model.addAttribute("dc", dc);
-        model.addAttribute("priceamount", amount);
-        model.addAttribute("allamount", allamount);
-        model.addAttribute("orderlist", orderlist);
-        return "sikhuchung/payment";
+
     }
 
     // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄) -- 필립
     @PostMapping(value = "/sikhuchung/cart.do")
-    public String orderlist(HttpServletRequest request, OrderDTO orderDto, PaymentDTO paymentDto) throws Exception {
-        sikhuchungService.order(orderDto); // 주문테이블 삽입 성공
-        int ordernumber = sikhuchungService.ordernumber22();
+    public String orderlist(HttpServletRequest request, HttpServletRequest req, OrderDTO orderDto,
+            PaymentDTO paymentDto) throws Exception {
 
-        String[] orderDetailCountlist = request.getParameterValues("orderDetailCount");
-        String[] productNumberlist = request.getParameterValues("productNumber");
+        HttpSession session = req.getSession();
+        String user = (String) session.getAttribute("user");
+        if (session.getAttribute("user") == null) {
+            // System.out.println("세션없음");
+            return "sikhuchung/login";
+        } else {
+            orderDto.setUserId(user);
+            sikhuchungService.order(orderDto); // 주문테이블 삽입 성공
+            int ordernumber = sikhuchungService.ordernumber22();
 
-        for (int i = 0; i < orderDetailCountlist.length; i++) {
-            OrderDetailDTO orderdetail = new OrderDetailDTO();
-            int orderdetailcount = Integer.parseInt(orderDetailCountlist[i]);
-            int productnumber = Integer.parseInt(productNumberlist[i]);
+            String[] orderDetailCountlist = request.getParameterValues("orderDetailCount");
+            String[] productNumberlist = request.getParameterValues("productNumber");
 
-            orderdetail.setOrderDetailCount(orderdetailcount);
-            orderdetail.setProductNumber(productnumber);
-            orderdetail.setOrderNumber(ordernumber);
-            sikhuchungService.orderDetailDTO(orderdetail);
+            for (int i = 0; i < orderDetailCountlist.length; i++) {
+                OrderDetailDTO orderdetail = new OrderDetailDTO();
+                int orderdetailcount = Integer.parseInt(orderDetailCountlist[i]);
+                int productnumber = Integer.parseInt(productNumberlist[i]);
+
+                orderdetail.setOrderDetailCount(orderdetailcount);
+                orderdetail.setProductNumber(productnumber);
+                orderdetail.setOrderNumber(ordernumber);
+                sikhuchungService.orderDetailDTO(orderdetail);
+            }
+
+            paymentDto.setOrderNumber(ordernumber);
+            sikhuchungService.paymentDTO(paymentDto); // 결제 테이블
+
+            String[] cartNumberlist = request.getParameterValues("cartNumber");
+            for (int i = 0; i < cartNumberlist.length; i++) {
+                int cartNumber = Integer.parseInt(cartNumberlist[i]);
+                sikhuchungService.cartOrderDelete(cartNumber);
+            }
+
+            return "redirect:/sikhuchung/cart.do";
         }
-
-        paymentDto.setOrderNumber(ordernumber);
-        sikhuchungService.paymentDTO(paymentDto); // 결제 테이블
-
-        String[] cartNumberlist = request.getParameterValues("cartNumber");
-        for (int i = 0; i < cartNumberlist.length; i++) {
-            int cartNumber = Integer.parseInt(cartNumberlist[i]);
-            sikhuchungService.cartOrderDelete(cartNumber);
-        }
-
-        return "redirect:/sikhuchung/cart.do";
     }
 
     // 장바구니 선택 삭제 -- 필립
@@ -497,6 +555,7 @@ public class SikhuchungController extends UiUtils {
     @PostMapping(value = "/sikhuchung/cartdelete.do")
     public int cartDelete(HttpServletRequest request, @RequestParam(value = "checkBoxArr[]") List<String> checkBoxArr)
             throws Exception {
+
         int result = 0;
         int checkNum;
 
@@ -511,7 +570,7 @@ public class SikhuchungController extends UiUtils {
     // 주문목록 선택 삭제(관리자버전) -- 필립
     @ResponseBody // 주소로 반환되지 않고 적은값 그대로 반환
     @PostMapping(value = "/sikhuchung/deleteOrderlist.do")
-    public int deleteOrdelist(HttpServletRequest request,
+    public int deleteOrdelist(HttpServletRequest request, HttpServletRequest req,
             @RequestParam(value = "checkBoxArr[]") List<String> checkBoxArr) throws Exception {
         int result = 0;
         int checkNum;
@@ -519,8 +578,20 @@ public class SikhuchungController extends UiUtils {
         for (String str : checkBoxArr) {
             checkNum = Integer.parseInt(str);
             System.out.println(checkNum);
-            sikhuchungService.deleteOrderlist(checkNum);
+            sikhuchungService.deleteOrderlist1(checkNum);
+            sikhuchungService.deleteOrderlist2(checkNum);
         }
+        return result;
+    }
+
+    // 주문목록 입금확인 상태 변경(관리자버전) -- 필립
+    @ResponseBody // 주소로 반환되지 않고 적은값 그대로 반환
+    @PostMapping(value = "/sikhuchung/changeDeposit.do")
+    public int changeDeposit(HttpServletRequest request, OrderDetailDTO odd) throws Exception {
+        int result = 0;
+        System.out.println(odd.getOrderNumber());
+
+        sikhuchungService.changeDeposit(odd.getOrderNumber());
         return result;
     }
 

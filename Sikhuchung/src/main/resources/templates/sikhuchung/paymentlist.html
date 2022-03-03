@@ -13,7 +13,6 @@
         <table class="table">
           <thead>
             <tr>
-            
               <th scope="col"><input type="checkbox" name="select_all" value="select_all"  onclick="selectAll(this)" checked></th>
               <th scope="col">주문번호</th>
               <th scope="col">주문자 ID</th>
@@ -23,9 +22,8 @@
               <th scope="col">수신인</th>
               <th scope="col">주문자 연락처</th>
               <th scope="col">주문일자</th>
-              <th scope="col" colspan="2">입금확인</th>
+              <th scope="col" colspan="2">입금 확인란</th>
             </tr>
-            
           </thead>
           <tbody>
                 <tr th:if="${not #lists.isEmpty( paylist )}" th:each="row:${paylist}"> 
@@ -39,7 +37,7 @@
                     <td th:text="${row.orderRecipientTel}"></td>
                     <td th:text="${row.orderDate}"></td>
                     <td th:text="${row.orderDetailResult}"></td>
-                    <td><button >입금확인</button></td>
+                    <td><button th:if="${row.orderDetailResult} != '배송완료'" type="button" class="gray_button" th:value="${row.orderNumber}" name="ch_dp" id="ch_dp" onclick="change_deposit()">입금확인</button></td>
                 </tr>
                 <tr th:unless="${not #lists.isEmpty( paylist )}">
                     <td colspan="10">기록된 주문이 없습니다.</td>
@@ -47,13 +45,9 @@
                 <tr class="btn_list">
                     <td colspan=8><button type="submit" class="gray_button" onclick="deleteOrderlist()">선택 목록 삭제</button></td>
                 </tr>
-                
           </tbody>
         </table>
       </form>
-    
-    
-    
     </div>
     
 </th:block>

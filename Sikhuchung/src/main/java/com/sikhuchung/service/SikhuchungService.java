@@ -91,6 +91,20 @@ public interface SikhuchungService {
     // 회원탈퇴
     public void memberQuit(UserVO userVO) throws Exception;
 
+    public int[] getOrderNumber(String userId) throws Exception;
+
+    public void deleteCart2(String userId);
+
+    public int[] getOrderDetailNumber(int orderNumber);
+
+    public void deleteReview2(int orderDetailNumber);
+
+    public void deleteOrderDetail(int orderDetailNumber);
+
+    public void deletePayment(int orderNumber);
+
+    public void deleteOrder(int orderNumber);
+
     // 마이페이지 주문목록
     public List<OrderDetailDTO> getOrderList(String user) throws Exception;
 
@@ -116,7 +130,12 @@ public interface SikhuchungService {
     public void deletecart(int checkNum) throws Exception;
 
     /* 주문목록(관리자) 선택 삭제 - 필립 */
-    public void deleteOrderlist(int checkNum) throws Exception;
+    public void deleteOrderlist1(int checkNum) throws Exception;
+
+    public void deleteOrderlist2(int checkNum) throws Exception;
+
+    /* 주문목록 입금 상태 변경 - 필립 */
+    public void changeDeposit(int checkNum) throws Exception;
 
     /* 주문목록(관리자) - 필립 */
     public List<OrderDTO> plist() throws Exception;

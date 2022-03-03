@@ -18,7 +18,7 @@
               <th scope="col">상품/옵션 정보</th>
               <th scope="col">수량</th>
               <th scope="col">상품금액</th>
-              <th scope="col">할인</th>
+              <!-- <th scope="col">할인</th> -->
               <th scope="col">합계금액</th>
             </tr>
             
@@ -30,18 +30,18 @@
                     <td th:text="${row.productName}">제품명</td>
                     <td><input type="text" name="" value="" size="3" maxlength="3" th:value="${row.cartCount}">개</td>
                     <td th:text="${row.productPrice}"></td>
-                    <td th:text="${row.cartCount}"></td>
+                    <!-- <td th:text="${row.cartCount}"></td> -->
                     <td th:text="${row.getPriceAmount()}"></td>
                 </tr>
                 <tr th:unless="${not #lists.isEmpty( cartlist )}">
-                    <td colspan="7">담겨진 상품이 없습니다.</td>
+                    <td colspan="6">담겨진 상품이 없습니다.</td>
                 </tr>
             
                 <tr class="amount_list">
-                    <td colspan=7>총 합계 + 배송비(3,000) : </td>
+                    <td colspan=7>5개 -> 10%할인<br>10개 -> 20%할인</td>
                 </tr>
                 <tr class="btn_list">
-                    <td colspan=6><button type="button" class="gray_button" onclick="deleteCart()">선택 상품 삭제</button></td>
+                    <td colspan=5><button type="button" class="gray_button" onclick="deleteCart()">선택 상품 삭제</button></td>
                     <td class="btn_right"><button type="submit" class="dark_gray_button">선택 상품 주문</button></td>
                 </tr>
           </tbody>
