@@ -273,10 +273,10 @@ public class SikhuchungController extends UiUtils {
     public String findIdPOST(UserVO userVO, Model model) throws Exception {
         if (sikhuchungService.findIdCheck(userVO) == null) {
             model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
-            return "redirect:/sikhuchung/find_id.do";
+            return "sikhuchung/find_id";
         } else {
             model.addAttribute("user", sikhuchungService.findIdCheck(userVO));
-            return "redirect:/sikhuchung/find_id.do";
+            return "sikhuchung/find_id";
         }
     }
 
@@ -291,10 +291,10 @@ public class SikhuchungController extends UiUtils {
     public String findPwPOST(UserVO userVO, Model model) throws Exception {
         if (sikhuchungService.findPwCheck(userVO) == null) {
             model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
-            return "redirect:/sikhuchung/find_pw.do";
+            return "sikhuchung/find_pw";
         } else {
             model.addAttribute("user", sikhuchungService.findPwCheck(userVO));
-            return "redirect:/sikhuchung/find_pw.do";
+            return "sikhuchung/find_pw";
         }
     }
 
