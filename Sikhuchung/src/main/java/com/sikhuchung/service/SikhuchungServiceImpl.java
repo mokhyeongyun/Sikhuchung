@@ -198,6 +198,41 @@ public class SikhuchungServiceImpl implements SikhuchungService {
         sikhuchungMapper.memberQuit(userVO);
     }
 
+    @Override
+    public int[] getOrderNumber(String userId) throws Exception {
+        return sikhuchungMapper.getOrderNumber(userId);
+    }
+
+    @Override
+    public void deleteCart2(String userId) {
+        sikhuchungMapper.deleteCart2(userId);
+    }
+
+    @Override
+    public int[] getOrderDetailNumber(int orderNumber) {
+        return sikhuchungMapper.getOrderDetailNumber(orderNumber);
+    }
+
+    @Override
+    public void deleteReview2(int orderDetailNumber) {
+        sikhuchungMapper.deleteReview2(orderDetailNumber);
+    }
+
+    @Override
+    public void deleteOrderDetail(int orderDetailNumber) {
+        sikhuchungMapper.deleteOrderDetail(orderDetailNumber);
+    }
+
+    @Override
+    public void deletePayment(int orderNumber) {
+        sikhuchungMapper.deletePayment(orderNumber);
+    }
+
+    @Override
+    public void deleteOrder(int orderNumber) {
+        sikhuchungMapper.deleteOrder(orderNumber);
+    }
+
     // 마이페이지 주문목록
     @Override
     public List<OrderDetailDTO> getOrderList(String user) throws Exception {

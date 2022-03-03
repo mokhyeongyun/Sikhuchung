@@ -100,6 +100,20 @@ public interface SikhuchungMapper {
     // 마이페이지 회원탈퇴 진행
     public void memberQuit(UserVO userVO);
 
+    public int[] getOrderNumber(String userId);
+
+    public void deleteCart2(String userId); // 카트삭제
+
+    public int[] getOrderDetailNumber(int orderNumber);
+
+    public void deleteReview2(int orderDetailNumber);
+
+    public void deleteOrderDetail(int orderDetailNumber);
+
+    public void deletePayment(int orderNumber);
+
+    public void deleteOrder(int orderNumber);
+
     // 마이페이지 주문목록 리스트
     public List<OrderDetailDTO> getOrderList(String user);
 

@@ -90,6 +90,20 @@ public interface SikhuchungService {
     // 회원탈퇴
     public void memberQuit(UserVO userVO) throws Exception;
 
+    public int[] getOrderNumber(String userId) throws Exception;
+
+    public void deleteCart2(String userId);
+
+    public int[] getOrderDetailNumber(int orderNumber);
+
+    public void deleteReview2(int orderDetailNumber);
+
+    public void deleteOrderDetail(int orderDetailNumber);
+
+    public void deletePayment(int orderNumber);
+
+    public void deleteOrder(int orderNumber);
+
     // 마이페이지 주문목록
     public List<OrderDetailDTO> getOrderList(String user) throws Exception;
 

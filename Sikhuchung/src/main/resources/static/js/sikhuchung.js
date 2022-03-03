@@ -385,7 +385,7 @@ function userQuitNullCheck() {
         pw.focus();
         return false;
     } else {
-        var answer = confirm("회원정보를 변경 하시겠습니까?");
+        var answer = confirm("탈퇴 하시겠습니까?");
         if (answer) {
             $.ajax({
                 type: "post",
