@@ -232,7 +232,7 @@ public class SikhuchungController extends UiUtils {
     @GetMapping("/sikhuchung/logout.do")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "sikhuchung/main"; // 주소 요청으로 변경
+        return "redirect:sikhuchung/main.do"; // 주소 요청으로 변경
     }
 
     // 회원가입 화면 이동 -- 현균
@@ -246,7 +246,7 @@ public class SikhuchungController extends UiUtils {
     @PostMapping(value = "/sikhuchung/join.do")
     public String userJoin(UserVO userVO) {
         sikhuchungService.joinUser(userVO);
-        return "sikhuchung/login";
+        return "redirect:/sikhuchung/login.do";
     }
 
     // 아이디 중복 검사 --현균
@@ -273,10 +273,10 @@ public class SikhuchungController extends UiUtils {
     public String findIdPOST(UserVO userVO, Model model) throws Exception {
         if (sikhuchungService.findIdCheck(userVO) == null) {
             model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
-            return "/sikhuchung/find_id";
+            return "redirect:/sikhuchung/find_id.do";
         } else {
             model.addAttribute("user", sikhuchungService.findIdCheck(userVO));
-            return "sikhuchung/find_id";
+            return "redirect:/sikhuchung/find_id.do";
         }
     }
 
@@ -291,10 +291,10 @@ public class SikhuchungController extends UiUtils {
     public String findPwPOST(UserVO userVO, Model model) throws Exception {
         if (sikhuchungService.findPwCheck(userVO) == null) {
             model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
-            return "/sikhuchung/find_pw";
+            return "redirect:/sikhuchung/find_pw.do";
         } else {
             model.addAttribute("user", sikhuchungService.findPwCheck(userVO));
-            return "sikhuchung/find_pw";
+            return "redirect:/sikhuchung/find_pw.do";
         }
     }
 
@@ -305,12 +305,12 @@ public class SikhuchungController extends UiUtils {
         String user = (String) session.getAttribute("user");
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login.do";
         } else {
             List<OrderDetailDTO> orderList = sikhuchungService.getOrderList(user);
             model.addAttribute("orderList", orderList);
             model.addAttribute("length", orderList.size());
-            return "sikhuchung/mypageOrderInfo";
+            return "redirect:/sikhuchung/mypageOrderInfo.do";
         }
     }
 
@@ -320,10 +320,10 @@ public class SikhuchungController extends UiUtils {
         HttpSession session = req.getSession();
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login.do";
         } else {
             // System.out.println("세션있음");
-            return "sikhuchung/mypageMemberInfoPwCheck";
+            return "redirect:/sikhuchung/mypageMemberInfoPwCheck.do";
         }
     }
 
@@ -334,7 +334,7 @@ public class SikhuchungController extends UiUtils {
         UserVO userInfo = sikhuchungService.memberInfo(userVO);
         if (result == 0) {
             model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
-            return "/sikhuchung/mypageMemberInfoPwCheck";
+            return "redirect:/sikhuchung/mypageMemberInfoPwCheck.do";
         } else {
             model.addAttribute("check", "true");
             model.addAttribute("userId", userInfo.getUserId());
@@ -342,7 +342,7 @@ public class SikhuchungController extends UiUtils {
             model.addAttribute("userName", userInfo.getUserName());
             model.addAttribute("userEmail", userInfo.getUserEmail());
             model.addAttribute("userTel", userInfo.getUserTel());
-            return "/sikhuchung/mypageMemberInfo";
+            return "redirect:/sikhuchung/mypageMemberInfo.do";
         }
     }
 
@@ -352,13 +352,13 @@ public class SikhuchungController extends UiUtils {
         HttpSession session = req.getSession();
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login/do";
         } else {
             // System.out.println("세션있음");
             if (model.getAttribute("check") == null) { // 비밀번호 확인 미완료
-                return "sikhuchung/mypageMemberInfoPwCheck";
+                return "redirect:/sikhuchung/mypageMemberInfoPwCheck.do";
             } else {
-                return "sikhuchung/mypageMemberInfo";
+                return "redirect:/sikhuchung/mypageMemberInfo.do";
             }
         }
     }
@@ -369,11 +369,11 @@ public class SikhuchungController extends UiUtils {
         HttpSession session = req.getSession();
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login.do";
         } else {
             // System.out.println("세션있음");
             sikhuchungService.memberInfoUpdate(uservo);
-            return "sikhuchung/mypageOrderInfo";
+            return "redirect:/sikhuchung/mypageOrderInfo.do";
         }
     }
 
@@ -383,10 +383,10 @@ public class SikhuchungController extends UiUtils {
         HttpSession session = req.getSession();
         if (session.getAttribute("user") == null) {
             // System.out.println("세션없음");
-            return "sikhuchung/login";
+            return "redirect:/sikhuchung/login.do";
         } else {
             // System.out.println("세션있음");
-            return "sikhuchung/mypageMemberQuit";
+            return "redirect:/sikhuchung/mypageMemberQuit.do";
         }
     }
 
@@ -457,7 +457,7 @@ public class SikhuchungController extends UiUtils {
         model.addAttribute("priceamount", amount);
         model.addAttribute("allamount", allamount);
         model.addAttribute("orderlist", orderlist);
-        return "sikhuchung/payment";
+        return "redirect:/sikhuchung/payment.do";
     }
 
     // 결제창 -> 메인 (메인하면 에러나서 우선 카트로 보냄) -- 필립
