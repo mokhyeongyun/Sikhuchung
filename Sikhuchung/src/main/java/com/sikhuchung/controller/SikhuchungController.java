@@ -151,9 +151,7 @@ public class SikhuchungController extends UiUtils {
     @GetMapping(value = "/sikhuchung/reviewwrite.do")
     public String openReviewWrite(int orderDetailNumber, Model model) {
 
-        System.out.println(orderDetailNumber);
         String productName = sikhuchungService.getProductName(orderDetailNumber);
-        System.out.println(productName);
         model.addAttribute("productName", productName);
         model.addAttribute("orderDetailNumber", orderDetailNumber);
 
@@ -164,7 +162,6 @@ public class SikhuchungController extends UiUtils {
     @PostMapping(value = "/sikhuchung/registerreview.do")
     public String registerReview(ReviewDTO reviewdto) {
 
-        System.out.println(reviewdto.getReviewRate());
         Long result = reviewdto.getOrderDetailNumber();
         sikhuchungService.registerReview(reviewdto);
         sikhuchungService.updateresult(result);
@@ -212,8 +209,6 @@ public class SikhuchungController extends UiUtils {
     @PostMapping(value = "/sikhuchung/login.do")
     @ResponseBody
     public String userLogin(UserVO userVO, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
-        System.out.println(userVO.getUserId());
-        System.out.println(userVO.getUserPw());
         HttpSession session = req.getSession();
         int result = sikhuchungService.userLogin(userVO);
 
@@ -404,7 +399,6 @@ public class SikhuchungController extends UiUtils {
             for (int i = 0; i < orderNumber.length; i++) {
                 int[] orderDetailNumber = sikhuchungService.getOrderDetailNumber(orderNumber[i]); // 디테일 넘버 가져오기
                 for (int a = 0; a < orderDetailNumber.length; a++) {
-                    System.out.println(orderDetailNumber[a]);
                     sikhuchungService.deleteReview2(orderDetailNumber[a]); // 리뷰삭제
                     sikhuchungService.deleteOrderDetail(orderDetailNumber[a]); // 상세주문삭제
                 }
@@ -577,7 +571,6 @@ public class SikhuchungController extends UiUtils {
 
         for (String str : checkBoxArr) {
             checkNum = Integer.parseInt(str);
-            System.out.println(checkNum);
             sikhuchungService.deleteOrderlist1(checkNum);
             sikhuchungService.deleteOrderlist2(checkNum);
         }
@@ -589,7 +582,6 @@ public class SikhuchungController extends UiUtils {
     @PostMapping(value = "/sikhuchung/changeDeposit.do")
     public int changeDeposit(HttpServletRequest request, OrderDetailDTO odd) throws Exception {
         int result = 0;
-        System.out.println(odd.getOrderNumber());
 
         sikhuchungService.changeDeposit(odd.getOrderNumber());
         return result;
@@ -682,7 +674,6 @@ public class SikhuchungController extends UiUtils {
     // 장바구니 등록 -- 재훈
     @PostMapping(value = "/sikhuchung/test.do")
     public String detail(CartVO cartvo) {
-        System.out.println(cartvo.getProductNumber());
         sikhuchungService.getItem(cartvo);
         return "redirect:/sikhuchung/cart.do";
     }
