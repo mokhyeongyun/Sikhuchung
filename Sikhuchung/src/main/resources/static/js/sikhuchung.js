@@ -326,11 +326,7 @@ function findPwCheck() {
     let email = document.getElementById("email");
 
 
-    if (id.value == "") {
-        alert("아이디를 입력해 주세요");
-        id.focus();
-        return false;
-    } else if (name.value == "") {
+    if (name.value == "") {
         alert("이름을 입력해 주세요");
         name.focus();
         return false;
