@@ -1,6 +1,7 @@
 package com.sikhuchung.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sikhuchung.constant.Method;
 import com.sikhuchung.domain.CartVO;
+import com.sikhuchung.domain.MailDto;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.OrderDTO;
 import com.sikhuchung.domain.OrderDetailDTO;
@@ -291,6 +293,27 @@ public class SikhuchungController extends UiUtils {
             model.addAttribute("user", sikhuchungService.findPwCheck(userVO));
             return "sikhuchung/find_pw";
         }
+    }
+
+    // Email과 name의 일치여부를 check하는 컨트롤러
+    @GetMapping("/check/findPw")
+    public @ResponseBody Map<String, Boolean> pw_find(String userEmail, String userName) {
+        Map<String, Boolean> json = new HashMap<>();
+        boolean pwFindCheck = sikhuchungService.userEmailCheck(userEmail, userName);
+
+        System.out.println(pwFindCheck);
+        json.put("check", pwFindCheck);
+        return json;
+    }
+
+    // 등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
+
+    @PostMapping("/check/findPw/sendEmail")
+    public @ResponseBody void sendEmail(String userEmail, String userName) {
+        MailDto dto = sikhuchungService.createMailAndChangePassword(userEmail, userName);
+        System.out.println(dto.getAddress());
+        sikhuchungService.mailSend(dto);
+
     }
 
     // 마이페이지-주문목록 화면 이동 -- 현균

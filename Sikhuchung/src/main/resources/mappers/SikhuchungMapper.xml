@@ -240,6 +240,16 @@
     <select id="findPwCheck" resultType="String" parameterType="UserVO">
         select user_pw from s_user where user_id = #{userId} and user_name= #{userName} and user_email=#{userEmail}
     </select>
+    <!-- 비밀번호찾기 테스트 -->
+    <select id="findUserByUserId" resultType="UserVO" parameterType="String">
+        select user_id, user_pw, user_name, user_email, user_tel, user_grade, user_joindate from s_user where user_email=#{userEmail}
+    </select>
+    <!-- 비밀번호찾기 테스트 -->
+    <update id="updateUserPassword" parameterType="UserVO">
+        update s_user set user_pw=#{userPw} where user_id=#{userId}
+    </update>
+    
+    
     <!-- 회원정보 변경 비밀번호 확인 -->
     <select id="memberInfoPwCheck" resultType="int" parameterType="UserVO">
         select count(*) from s_user where user_id = #{userId} and user_pw = #{userPw}

@@ -70,6 +70,10 @@ public interface SikhuchungMapper {
     /* 비밀번호 찾기 */
     public String findPwCheck(UserVO userVO);
 
+    public UserVO findUserByUserId(String userEmail);
+
+    public void updateUserPassword(UserVO user);
+
     /* 메인화면 -- 재훈 */
     public List<ProductVO> selectProductList();
 
@@ -84,6 +88,7 @@ public interface SikhuchungMapper {
 
     /* 상세화면 -- 재훈 */
     public ProductVO selectProductData(int productNumber);
+
     public List<ReviewDTO> selectDetailReviewList(int productNumber);
 
     /* 장바구니 넣기 -- 재훈 */

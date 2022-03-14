@@ -3,6 +3,7 @@ package com.sikhuchung.service;
 import java.util.List;
 
 import com.sikhuchung.domain.CartVO;
+import com.sikhuchung.domain.MailDto;
 import com.sikhuchung.domain.NoticeDTO;
 import com.sikhuchung.domain.OrderDTO;
 import com.sikhuchung.domain.OrderDetailDTO;
@@ -12,6 +13,14 @@ import com.sikhuchung.domain.ReviewDTO;
 import com.sikhuchung.domain.UserVO;
 
 public interface SikhuchungService {
+
+    public MailDto createMailAndChangePassword(String userEmail, String userName);
+
+    public void updatePassword(String str, String userEmail);
+
+    public String getTempPassword();
+
+    public void mailSend(MailDto mailDto);
 
     /* 공지사항 */
     public boolean registerNotice(NoticeDTO params);
@@ -36,8 +45,9 @@ public interface SikhuchungService {
 
     /* 상세화면 -- 재훈 */
     public ProductVO getProductData(int productNumber);
+
     public List<ReviewDTO> getDetailReviewList(int productNumber);
-    
+
     /* 장바구니 넣기 -- 재훈 */
     public void getItem(CartVO cartvo);
 
@@ -78,6 +88,8 @@ public interface SikhuchungService {
 
     // 비밀번호찾기
     public String findPwCheck(UserVO userVO) throws Exception;
+
+    public boolean userEmailCheck(String userEmail, String userName);
 
     // 마이페이지 회원정보수정 비밀번호체크
     public int memberInfoPwCheck(UserVO userVO) throws Exception;

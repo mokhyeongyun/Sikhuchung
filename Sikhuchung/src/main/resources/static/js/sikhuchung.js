@@ -339,9 +339,41 @@ function findPwCheck() {
         email.focus();
         return false;
     }else {
-        document.formFindPw.submit();
+        findPw();
     }
 }
+
+  function findPw() {
+        let userEmail = $(".userEmail").val();
+        let userName = $(".userName").val();
+
+        $.ajax({
+            type: "GET",
+            url: "/check/findPw",
+            data: {
+                "userEmail": userEmail,
+                "userName": userName
+            },
+            success: function (res) {
+                if (res['check']) {
+                    alert("이메일로 임시비밀번호가 발송되었습니다.");
+                            $.ajax({
+                                type: "POST",
+                                url: "/check/findPw/sendEmail",
+                                data: {
+                                    "userEmail": userEmail,
+                                    "userName": userName
+                                }
+                            })
+                            window.location = "/sikhuchung/login.do";
+
+                    $('#checkMsg').html('<p style="color:darkblue"></p>');
+                } else {
+                    $('#checkMsg').html('<p style="color:red">일치하는 정보가 없습니다.</p>');
+                }
+            }
+        })
+    }
 /***************************************************** 회원정보변경 유효성 -현균***************************/
 // 회원가입 빈값 체크 유효성
 function userUpdateNullCheck() {
