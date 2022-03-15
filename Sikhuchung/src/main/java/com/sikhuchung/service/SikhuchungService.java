@@ -14,14 +14,6 @@ import com.sikhuchung.domain.UserVO;
 
 public interface SikhuchungService {
 
-    public MailDto createMailAndChangePassword(String userEmail, String userName);
-
-    public void updatePassword(String str, String userEmail);
-
-    public String getTempPassword();
-
-    public void mailSend(MailDto mailDto);
-
     /* 공지사항 */
     public boolean registerNotice(NoticeDTO params);
 
@@ -86,10 +78,20 @@ public interface SikhuchungService {
     // 아이디찾기
     public String findIdCheck(UserVO userVO) throws Exception;
 
-    // 비밀번호찾기
-    public String findPwCheck(UserVO userVO) throws Exception;
-
+    /* 비밀번호찾기 (이메일확인) */
     public boolean userEmailCheck(String userEmail, String userName);
+
+    /* 비밀번호찾기 (메일세팅) */
+    public MailDto createMailAndChangePassword(String userEmail, String userName);
+
+    /* 비밀번호찾기 (임시비밀번호변경) */
+    public void updatePassword(String str, String userEmail);
+
+    /* 비밀번호찾기 (임시비밀번호 세팅) */
+    public String getTempPassword();
+
+    /* 비밀번호찾기 (메일보내기) */
+    public void mailSend(MailDto mailDto);
 
     // 마이페이지 회원정보수정 비밀번호체크
     public int memberInfoPwCheck(UserVO userVO) throws Exception;

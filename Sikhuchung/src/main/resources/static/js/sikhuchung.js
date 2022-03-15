@@ -321,11 +321,8 @@ function findIdCheck() {
 /***************************************************** 비밀번호찾기 유효성 -현균***************************/
 // 비밀번호찾기 빈값 체크 유효성
 function findPwCheck() {
-    let id = document.getElementById("id");
     let name = document.getElementById("name");
     let email = document.getElementById("email");
-
-
     if (name.value == "") {
         alert("이름을 입력해 주세요");
         name.focus();
@@ -342,7 +339,7 @@ function findPwCheck() {
   function findPw() {
         let userEmail = $(".userEmail").val();
         let userName = $(".userName").val();
-
+        
         $.ajax({
             type: "GET",
             url: "/check/findPw",

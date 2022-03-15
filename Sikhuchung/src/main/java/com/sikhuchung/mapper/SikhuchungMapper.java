@@ -67,32 +67,11 @@ public interface SikhuchungMapper {
     /* 아이디 찾기 */
     public String findIdCheck(UserVO userVO);
 
-    /* 비밀번호 찾기 */
-    public String findPwCheck(UserVO userVO);
-
+    /* 비밀번호찾기 (이메일확인) */
     public UserVO findUserByUserId(String userEmail);
 
+    /* 비밀번호찾기 임시비밀번호 변경 */
     public void updateUserPassword(UserVO user);
-
-    /* 메인화면 -- 재훈 */
-    public List<ProductVO> selectProductList();
-
-    /* 메인화면 제철, 간편, 별난, 선물 -- 재훈 */
-    public List<ProductVO> selectPresentList();
-
-    public List<ProductVO> selectSimpleList();
-
-    public List<ProductVO> selectSeasonList();
-
-    public List<ProductVO> selectWeirdList();
-
-    /* 상세화면 -- 재훈 */
-    public ProductVO selectProductData(int productNumber);
-
-    public List<ReviewDTO> selectDetailReviewList(int productNumber);
-
-    /* 장바구니 넣기 -- 재훈 */
-    public void item(CartVO cartvo);
 
     // 마이페이지 회원정보수정 비밀번호체크
     public int memberInfoPwCheck(UserVO userVO);
@@ -159,4 +138,25 @@ public interface SikhuchungMapper {
     public void cartOrderDelete(int cartNumber);
 
     public String getProductName(int orderDetailNumber);
+
+    /* 메인화면 -- 재훈 */
+    public List<ProductVO> selectProductList();
+
+    /* 메인화면 제철, 간편, 별난, 선물 -- 재훈 */
+    public List<ProductVO> selectPresentList();
+
+    public List<ProductVO> selectSimpleList();
+
+    public List<ProductVO> selectSeasonList();
+
+    public List<ProductVO> selectWeirdList();
+
+    /* 상세화면 -- 재훈 */
+    public ProductVO selectProductData(int productNumber);
+
+    public List<ReviewDTO> selectDetailReviewList(int productNumber);
+
+    /* 장바구니 넣기 -- 재훈 */
+    public void item(CartVO cartvo);
+
 }

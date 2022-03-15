@@ -283,19 +283,7 @@ public class SikhuchungController extends UiUtils {
         return "sikhuchung/find_pw";
     }
 
-    // 비밀번호찾기 진행 -- 현균
-    @PostMapping(value = "/sikhuchung/find_pw.do")
-    public String findPwPOST(UserVO userVO, Model model) throws Exception {
-        if (sikhuchungService.findPwCheck(userVO) == null) {
-            model.addAttribute("msg", "일치하는 회원정보가 없습니다.");
-            return "sikhuchung/find_pw";
-        } else {
-            model.addAttribute("user", sikhuchungService.findPwCheck(userVO));
-            return "sikhuchung/find_pw";
-        }
-    }
-
-    // Email과 name의 일치여부를 check하는 컨트롤러
+    // Email과 name의 일치여부를 check- 현균
     @GetMapping("/check/findPw")
     public @ResponseBody Map<String, Boolean> pw_find(String userEmail, String userName) {
         Map<String, Boolean> json = new HashMap<>();
@@ -306,14 +294,12 @@ public class SikhuchungController extends UiUtils {
         return json;
     }
 
-    // 등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경하는 컨트롤러
-
+    // 등록된 이메일로 임시비밀번호를 발송하고 발송된 임시비밀번호로 사용자의 pw를 변경 - 현균
     @PostMapping("/check/findPw/sendEmail")
     public @ResponseBody void sendEmail(String userEmail, String userName) {
         MailDto dto = sikhuchungService.createMailAndChangePassword(userEmail, userName);
         System.out.println(dto.getAddress());
         sikhuchungService.mailSend(dto);
-
     }
 
     // 마이페이지-주문목록 화면 이동 -- 현균
