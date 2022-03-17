@@ -238,7 +238,7 @@
     
     <!-- 비밀번호찾기 -->
     <select id="findPwCheck" resultType="String" parameterType="UserVO">
-        select user_pw from s_user where user_id = #{userId} and user_name= #{userName}
+        select user_pw from s_user where user_id = #{userId} and user_name= #{userName} and user_email=#{userEmail}
     </select>
     <!-- 회원정보 변경 비밀번호 확인 -->
     <select id="memberInfoPwCheck" resultType="int" parameterType="UserVO">

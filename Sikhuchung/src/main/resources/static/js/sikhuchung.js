@@ -323,6 +323,7 @@ function findIdCheck() {
 function findPwCheck() {
     let id = document.getElementById("id");
     let name = document.getElementById("name");
+    let email = document.getElementById("email");
 
 
     if (id.value == "") {
@@ -333,7 +334,11 @@ function findPwCheck() {
         alert("이름을 입력해 주세요");
         name.focus();
         return false;
-    } else {
+    } else if (email.value == "") {
+        alert("이메일을 입력해 주세요");
+        email.focus();
+        return false;
+    }else {
         document.formFindPw.submit();
     }
 }
